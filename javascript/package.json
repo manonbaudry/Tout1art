@@ -1,0 +1,23 @@
+{
+  "name": "client-js",
+  "version": "1.0.0",
+  "description": "Client riche en Javascript",
+  "repository": {
+    "type": "git",
+    "url": "https://git-iut.univ-lille1.fr/thomas.clavier/squelette-projet-s4"
+  },
+  "private": false,
+  "license": "GPL-3.0-or-later",
+  "scripts": {
+    "test": "NODE_PATH=./src mocha --recursive",
+    "test:watch": "NODE_PATH=./src mocha --watch"
+  },
+  "dependencies": {},
+  "engines": {
+    "node": "*",
+    "npm": "*"
+  },
+  "devDependencies": {
+    "mocha": "*"
+  }
+}
