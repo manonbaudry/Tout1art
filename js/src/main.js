@@ -72,7 +72,7 @@ function renderHome(data:?Array<{nom:string, base:string, prix_petite:number, pr
 	}
 	PageRenderer.renderPage(homePage);
 }
-fetch('http://localhost:8080/api/v1/pizzas')
+fetch('/api/v1/pizzas')
 	.then( (response:Response) => response.json() )
 	.then( renderHome )
 	// B.3.6. retirer la classe is-loading
