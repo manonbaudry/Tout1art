@@ -1,0 +1,10 @@
+#!/bin/bash
+if [ -z $http_proxy ]
+then
+  BUILD_OPTS=""
+else
+  BUILD_OPTS="--build-arg http_proxy=$http_proxy"
+fi
+
+docker build --pull $BUILD_OPTS -t javascript .
+docker run -it -v $(pwd):/workspace/ --user $(id --user):$(id --group) javascript bash
