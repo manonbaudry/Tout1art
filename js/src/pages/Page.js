@@ -1,5 +1,5 @@
 // @flow
-import Component from './Component.js';
+import Component from '../components/Component.js';
 
 export default class Page extends Component {
 	#title:string;

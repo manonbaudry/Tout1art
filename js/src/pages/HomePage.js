@@ -1,6 +1,6 @@
 // @flow
-import Component from './Component.js';
-import PizzaThumbnail from './PizzaThumbnail.js';
+import Component from '../components/Component.js';
+import PizzaThumbnail from '../components/PizzaThumbnail.js';
 import Page from './Page.js';
 
 export default class HomePage extends Page {

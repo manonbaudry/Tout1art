@@ -1,7 +1,7 @@
 // @flow
-import HomePage from './HomePage.js';
+import HomePage from './pages/HomePage.js';
+import AddPizzaPage from './pages/AddPizzaPage.js';
 import PageRenderer from './PageRenderer.js';
-import AddPizzaPage from './AddPizzaPage.js';
 import $ from 'jquery';
 
 PageRenderer.titleElement = document.querySelector('.pageTitle');

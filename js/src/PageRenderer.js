@@ -1,5 +1,5 @@
 // @flow
-import Page from './Page';
+import Page from './pages/Page';
 
 export default class PageRenderer {
 
