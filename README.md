@@ -6,5 +6,5 @@ Pourvoir construire en une commande un container capable e servir le html et l'a
 
 ## Reste à faire
 
-Supprimer vscode : évitons de faire la promotion d'un logiciel propriétaire.
+* Supprimer vscode : évitons de faire la promotion d'un logiciel propriétaire.
 

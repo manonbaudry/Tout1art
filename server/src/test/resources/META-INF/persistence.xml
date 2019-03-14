@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<persistence xmlns="http://java.sun.com/xml/ns/persistence" version="2.0">
+
+    <persistence-unit name="PizzalandPersistenceUnit">
+        <provider>org.eclipse.persistence.jpa.PersistenceProvider</provider>
+        <class>fr.ulille.iut.pizzaland.dao.IngredientEntity</class>
+        <class>fr.ulille.iut.pizzaland.dao.PizzaEntity</class>
+        <properties>
+            <!-- Configuration postgresql -->
+ 	       	<!--<property name="javax.persistence.jdbc.url" value="jdbc:postgresql://localhost:5432/pizzaland"/> -->
+ 	        <!--<property name="javax.persistence.jdbc.driver" value="org.postgresql.Driver"/> -->
+ 	        <!--<property name="javax.persistence.jdbc.user" value="postgres"/> -->
+ 	        <!--<property name="javax.persistence.jdbc.password" value=""/> -->
+
+            <!-- Configuration h2 -->
+	        <property name="javax.persistence.jdbc.driver" value="org.h2.Driver"/>
+            <!-- base en mémoire -->
+	       	<!--<property name="javax.persistence.jdbc.url" value="jdbc:h2:mem:pizzaland"/>-->
+            <!--<property name="javax.persistence.jdbc.url" value="jdbc:h2:mem:pizzaland;INIT=RUNSCRIPT FROM 'populate.sql'"/>-->
+            <property name="javax.persistence.jdbc.url" value="jdbc:h2:mem:"/>
+            <!-- base sur fichiers -->
+            <!--<property name="javax.persistence.jdbc.url" value="jdbc:h2:~/tmp/pizzaland"/>-->
+            <!-- credential if needed -->
+ 	        <!--<property name="javax.persistence.jdbc.user" value="user"/> -->
+ 	        <!--<property name="javax.persistence.jdbc.password" value="password"/>         -->
+
+            <!-- database initialisation -->
+            <!--<property name="javax.persistence.schema-generation.database.action" value="drop-and-create"/>-->
+            <!--<property name="javax.persistence.schema-generation.create-source" value="META-INF/sql/create.sql"/>-->
+            <!--<property name="javax.persistence.schema-generation.drop-source" value="META-INF/sql/drop.sql"/>-->
+            <property name="javax.persistence.sql-load-script-source" value="META-INF/sql/populate.sql"/>
+
+            <!--<property name="eclipselink.ddl-generation" value="none"/>-->
+
+            <!-- To get a copy of sql initialisation commands -->
+            <property name="eclipselink.create-ddl-jdbc-file-name" value="createDDL_ddlGeneration.sql"/>
+            <property name="eclipselink.drop-ddl-jdbc-file-name" value="dropDDL_ddlGeneration.sql"/>
+            <property name="eclipselink.ddl-generation.output-mode" value="both"/>
+
+            <!-- logging level (INFO, FINE, FINEST, ...) -->
+            <property name="eclipselink.logging.parameters" value="false"/>
+            <property name="eclipselink.logging.level" value="OFF"/>
+            <property name="eclipselink.loggingc.level.sql" value="OFF"/>
+        </properties>
+    </persistence-unit>
+</persistence>

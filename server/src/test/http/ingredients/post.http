@@ -1,0 +1,20 @@
+POST http://localhost:8080/api/v1/ingredients
+Accept: */*
+Cache-Control: no-cache
+Content-type:application/json
+
+{ "nom" : "peperoni"  }
+###
+POST http://localhost:8080/api/v1/ingredients
+
+HTTP/1.1 201 Created
+Location: http://localhost:8080/api/v1/ingredients/9
+Content-Type: application/json
+Content-Length: 25
+
+{
+  "id": 9,
+  "nom": "peperoni"
+}
+
+Response code: 201 (Created); Time: 1109ms; Content length: 25 bytes

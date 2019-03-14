@@ -1,0 +1,16 @@
+DELETE http://localhost:8080/api/v1/pizzas/1
+Accept: */*
+Cache-Control: no-cache
+
+<> 2019-01-28T083839.200.json
+<> 2019-01-28T083740.200.json
+
+###
+#DELETE http://localhost:8080/api/v1/pizzas/1
+#
+#HTTP/1.1 204 No Content
+#
+#<Response body is empty>
+#
+#Response code: 204 (No Content); Time: 30ms; Content length: 0 bytes
+

@@ -4,7 +4,7 @@
   "description": "TP de JS",
   "main": "index.js",
   "scripts": {
-    "test": "NODE_PATH=./src mocha --recursive",
+    "test": "mocha src/**/*test.js --recursive",
     "test:watch": "NODE_PATH=./src mocha --watch",
     "build": "webpack --mode=production",
     "watch": "webpack --mode=development --watch"

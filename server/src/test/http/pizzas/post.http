@@ -1,0 +1,44 @@
+POST http://localhost:8080/api/v1/pizzas
+Accept: */*
+Cache-Control: no-cache
+Content-type:application/json
+
+  {
+    "base": "tomate",
+    "nom": "napoli",
+    "prix_grande": 8.5,
+    "prix_petite": 4.5,
+    "ingredients" : [ 1, 3, 4  ]
+  }
+
+###
+#POST http://localhost:8080/api/v1/pizzas
+#
+#HTTP/1.1 201 Created
+#Location: http://localhost:8080/api/v1/pizzas/6
+#Content-Type: application/json
+#Content-Length: 162
+#
+#{
+#  "base": "tomate",
+#  "id": 6,
+#  "nom": "napoli",
+#  "prix_grande": 8.5,
+#  "prix_petite": 4.5,
+#  "ingredients": [
+#    {
+#      "id": 3,
+#      "nom": "fromage"
+#    },
+#    {
+#      "id": 4,
+#      "nom": "oeuf"
+#    },
+#    {
+#      "id": 1,
+#      "nom": "tomate"
+#    }
+#  ]
+#}
+#
+#Response code: 201 (Created); Time: 1295ms; Content length: 162 bytes

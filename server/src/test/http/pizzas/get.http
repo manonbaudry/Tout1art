@@ -1,0 +1,54 @@
+GET http://localhost:8080/api/v1/pizzas
+Accept: */*
+Cache-Control: no-cache
+
+<> 2019-01-28T083839.200.json
+<> 2019-01-28T083740.200.json
+
+###
+#GET http://localhost:8080/api/v1/pizzas
+#
+#HTTP/1.1 200 OK
+#Content-Type: application/json
+#Content-Length: 393
+#
+#[
+#  {
+#    "base": "tomate",
+#    "id": 1,
+#    "nom": "oranaise",
+#    "prix_grande": 8.0,
+#    "prix_petite": 5.0
+#  },
+#  {
+#    "base": "tomate",
+#    "id": 2,
+#    "nom": "margarita",
+#    "prix_grande": 7.5,
+#    "prix_petite": 4.0
+#  },
+#  {
+#    "base": "creme",
+#    "id": 3,
+#    "nom": "carbonara",
+#    "prix_grande": 9.0,
+#    "prix_petite": 5.5
+#  },
+#  {
+#    "base": "tomate",
+#    "id": 4,
+#    "nom": "4 saisons",
+#    "prix_grande": 15.0,
+#    "prix_petite": 10.0
+#  },
+#  {
+#    "base": "creme",
+#    "id": 5,
+#    "nom": "hawai",
+#    "prix_grande": 11.5,
+#    "prix_petite": 11.0
+#  }
+#]
+#
+#Response code: 200 (OK); Time: 1105ms; Content length: 393 bytes
+

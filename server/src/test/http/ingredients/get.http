@@ -1,0 +1,50 @@
+GET http://localhost:8080/api/v1/ingredients
+Accept: */*
+Cache-Control: no-cache
+
+###
+GET http://localhost:8080/api/v1/ingredients
+
+HTTP/1.1 200 OK
+Content-Type: application/json
+Content-Length: 198
+
+[
+  {
+    "id": 1,
+    "nom": "tomate"
+  },
+  {
+    "id": 2,
+    "nom": "lardons"
+  },
+  {
+    "id": 3,
+    "nom": "fromage"
+  },
+  {
+    "id": 4,
+    "nom": "oeuf"
+  },
+  {
+    "id": 5,
+    "nom": "jambon"
+  },
+  {
+    "id": 6,
+    "nom": "merguez"
+  },
+  {
+    "id": 7,
+    "nom": "champignon"
+  },
+  {
+    "id": 8,
+    "nom": "ananas"
+  }
+]
+
+Response code: 200 (OK); Time: 1166ms; Content length: 198 bytes
+
+###
+
