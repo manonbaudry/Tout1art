@@ -1,5 +1,6 @@
 // @flow
 import Page from './Page.js';
+import $ from 'jquery';
 
 export default class AddPizzaPage extends Page {
 	constructor(){
@@ -42,12 +43,8 @@ export default class AddPizzaPage extends Page {
 	</form>`;
 	}
 
-	mount():void {
-		const form:?HTMLElement = document.querySelector('form.addPizzaPage');
-		if (!form) {
-			return;
-		}
-		form.addEventListener('submit', this.submit );
+	mount(container:HTMLElement):void {
+		$('form.addPizzaPage').submit( this.submit );
 	}
 
 	submit(event:Event):void {

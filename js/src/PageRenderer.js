@@ -14,7 +14,8 @@ export default class PageRenderer {
 		if (this.contentElement){
 			// $FlowFixMe
 			this.contentElement.innerHTML = page.render();
+			// $FlowFixMe
+			page.mount(this.contentElement);
 		}
-		page.mount();
 	}
 }
