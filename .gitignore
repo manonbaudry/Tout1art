@@ -1,5 +1,6 @@
 # Vim
 *~
+*.swp
 
 # IntelIJ
 .idea
@@ -10,3 +11,7 @@ target/
 
 # npm
 node_modules/
+
+# file produce by webpack
+main.bundle.js
+main.bundle.js.map
