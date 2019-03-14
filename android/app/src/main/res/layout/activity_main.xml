@@ -2,17 +2,257 @@
 <android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/linearLayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
     tools:context=".MainActivity">
 
-    <TextView
+
+    <CheckBox
+        android:id="@+id/cbIutMain"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Hello World!"
+        android:layout_marginEnd="8dp"
+        android:text="@string/lbl_iut"
+        android:textSize="14sp"
+        app:layout_constraintBaseline_toBaselineOf="@+id/etServeur"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <EditText
+        android:id="@+id/etServeur"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
+        android:autofillHints=""
+        android:ems="10"
+        android:hint="@string/hintServer"
+        android:inputType="textPersonName"
+        android:selectAllOnFocus="true"
+        android:text="@string/default_server"
+        android:textSize="14sp"
+        app:layout_constraintEnd_toStartOf="@+id/cbIutMain"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:layout_conversion_absoluteHeight="44dp"
+        tools:layout_conversion_absoluteWidth="384dp" />
+
+
+    <Button
+        android:id="@+id/btCustom"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
+        android:onClick="doCustom"
+        android:text="@string/lbl_custom"
+        app:layout_constraintEnd_toStartOf="@+id/btRefresh"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btGetIngredientsAsDto"
+        tools:layout_conversion_absoluteHeight="48dp"
+        tools:layout_conversion_absoluteWidth="601dp" />
+
+    <Button
+        android:id="@+id/btGetIngredient"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginEnd="8dp"
+        android:onClick="doGetIngredientsAsString"
+        android:text="@string/lblGetIngredients"
+        app:layout_constraintBottom_toTopOf="@+id/btGetPizzas"
+        app:layout_constraintEnd_toStartOf="@+id/cbGetIngredient"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/etServeur"
+        app:layout_constraintVertical_chainStyle="spread_inside"
+        tools:layout_conversion_absoluteHeight="48dp"
+        tools:layout_conversion_absoluteWidth="272dp" />
+
+    <CheckBox
+        android:id="@+id/cbGetIngredient"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="8dp"
+        android:clickable="false"
+        android:text="@android:string/ok"
+        app:layout_constraintBaseline_toBaselineOf="@+id/btGetIngredient"
+        app:layout_constraintEnd_toStartOf="@+id/spIngredients"
+        tools:layout_conversion_absoluteHeight="32dp"
+        tools:layout_conversion_absoluteWidth="47dp" />
+
+
+    <Button
+        android:id="@+id/btGetPizzas"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginEnd="8dp"
+        android:onClick="doGetPizzas"
+        android:text="@string/lblGetPizzas"
+        app:layout_constraintBottom_toTopOf="@+id/btGetOnePizza"
+        app:layout_constraintEnd_toStartOf="@+id/cbGetPizzas"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btGetIngredient"
+        tools:layout_conversion_absoluteHeight="48dp"
+        tools:layout_conversion_absoluteWidth="262dp" />
+
+    <CheckBox
+        android:id="@+id/cbGetPizzas"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:clickable="false"
+        android:text="@android:string/ok"
+        app:layout_constraintBaseline_toBaselineOf="@+id/btGetPizzas"
+        app:layout_constraintBottom_toTopOf="@+id/cbGetOnePizza"
+        app:layout_constraintEnd_toEndOf="@+id/cbGetIngredient"
+        app:layout_constraintStart_toStartOf="@+id/cbGetIngredient"
+        app:layout_constraintTop_toBottomOf="@+id/cbGetIngredient"
+        tools:layout_conversion_absoluteHeight="32dp"
+        tools:layout_conversion_absoluteWidth="47dp" />
+
+
+    <Button
+        android:id="@+id/btGetOnePizza"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginEnd="8dp"
+        android:onClick="doGetOnePizza"
+        android:text="@string/lblGetOnePizza"
+        app:layout_constraintBottom_toTopOf="@+id/btPostIngredient"
+        app:layout_constraintEnd_toStartOf="@+id/cbGetOnePizza"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btGetPizzas"
+        tools:layout_conversion_absoluteHeight="48dp"
+        tools:layout_conversion_absoluteWidth="302dp" />
+
+    <CheckBox
+        android:id="@+id/cbGetOnePizza"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:clickable="false"
+        android:text="@android:string/ok"
+        app:layout_constraintBaseline_toBaselineOf="@+id/btGetOnePizza"
+        app:layout_constraintEnd_toEndOf="@+id/cbGetPizzas"
+        app:layout_constraintStart_toStartOf="@+id/cbGetPizzas"
+        tools:layout_conversion_absoluteHeight="32dp"
+        tools:layout_conversion_absoluteWidth="47dp" />
+
+
+    <Button
+        android:id="@+id/btPostIngredient"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginEnd="8dp"
+        android:onClick="doPostIngredient"
+        android:text="@string/lblPostIngredient"
+        app:layout_constraintBottom_toTopOf="@+id/btGetIngredientsAsDto"
+        app:layout_constraintEnd_toStartOf="@+id/cbGetIngredientsAsDto"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btGetOnePizza"
+        tools:layout_conversion_absoluteHeight="48dp"
+        tools:layout_conversion_absoluteWidth="334dp" />
+
+
+    <CheckBox
+        android:id="@+id/cbGetIngredientsAsDto"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:clickable="false"
+        android:text="@android:string/ok"
+        app:layout_constraintBaseline_toBaselineOf="@+id/btGetIngredientsAsDto"
+        app:layout_constraintEnd_toEndOf="@+id/cbGetIngredientsAsDto"
+        app:layout_constraintStart_toStartOf="@+id/cbGetIngredientsAsDto"
+        app:layout_constraintTop_toBottomOf="@+id/cbGetIngredientsAsDto"
+        tools:layout_conversion_absoluteHeight="32dp"
+        tools:layout_conversion_absoluteWidth="47dp" />
+
+    <Button
+        android:id="@+id/btGetIngredientsAsDto"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginEnd="8dp"
+        android:onClick="getPizzasAsDto"
+        android:text="@string/lbl_GetPizzas"
+        app:layout_constraintEnd_toStartOf="@+id/cbGetIngredientsAsDto"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btPostIngredient"
+        tools:layout_conversion_absoluteHeight="48dp"
+        tools:layout_conversion_absoluteWidth="334dp" />
+
+    <CheckBox
+        android:id="@+id/cbGetIngredientsAsDto"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:clickable="false"
+        android:text="@android:string/ok"
+        app:layout_constraintBaseline_toBaselineOf="@+id/btPostIngredient"
+        app:layout_constraintBottom_toTopOf="@+id/cbGetIngredientsAsDto"
+        app:layout_constraintEnd_toEndOf="@+id/cbGetOnePizza"
+        app:layout_constraintStart_toStartOf="@+id/cbGetOnePizza"
+        app:layout_constraintTop_toBottomOf="@+id/cbGetOnePizza"
+        tools:layout_conversion_absoluteHeight="32dp"
+        tools:layout_conversion_absoluteWidth="47dp" />
+
+    <EditText
+        android:id="@+id/tvDisplay"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginBottom="8dp"
+        android:autofillHints=""
+        android:ems="10"
+        android:fontFamily="monospace"
+        android:hint="@string/hintDisplay"
+        android:inputType="none"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btCustom"
+        app:layout_constraintVertical_bias="0.531" />
+
+    <Spinner
+        android:id="@+id/spIngredients"
+        android:layout_width="142dp"
+        android:layout_height="0dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginBottom="8dp"
+        app:layout_constraintBottom_toTopOf="@+id/btSearch"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/etServeur" />
+
+    <ImageButton
+        android:id="@+id/btSearch"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="8dp"
+        android:layout_marginBottom="8dp"
+        android:clickable="false"
+        android:contentDescription="@string/lblSearch"
+        app:layout_constraintBottom_toTopOf="@+id/tvDisplay"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:srcCompat="@android:drawable/ic_search_category_default" />
+
+    <ImageButton
+        android:id="@+id/btRefresh"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginBottom="8dp"
+        app:layout_constraintBottom_toBottomOf="@+id/btSearch"
+        app:layout_constraintEnd_toStartOf="@+id/btSearch"
+        app:layout_constraintTop_toBottomOf="@+id/spIngredients"
+        app:srcCompat="@android:drawable/ic_input_add" />
 
 </android.support.constraint.ConstraintLayout>
