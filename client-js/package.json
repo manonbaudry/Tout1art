@@ -1,23 +1,38 @@
 {
-  "name": "client-js",
+  "name": "pizzaland",
   "version": "1.0.0",
-  "description": "Client riche en Javascript",
-  "repository": {
-    "type": "git",
-    "url": "https://git-iut.univ-lille1.fr/thomas.clavier/squelette-projet-s4"
-  },
-  "private": false,
-  "license": "GPL-3.0-or-later",
+  "description": "TP de JS",
+  "main": "index.js",
   "scripts": {
     "test": "NODE_PATH=./src mocha --recursive",
-    "test:watch": "NODE_PATH=./src mocha --watch"
+    "test:watch": "NODE_PATH=./src mocha --watch",
+    "build": "webpack --mode=production",
+    "watch": "webpack --mode=development --watch"
   },
-  "dependencies": {},
-  "engines": {
-    "node": "*",
-    "npm": "*"
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/kumquats/cours-javascript.git"
   },
+  "author": "Thomas Fritsch <tf@kumquats.fr>",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/kumquats/cours-javascript/issues"
+  },
+  "homepage": "https://github.com/kumquats/cours-javascript#readme",
   "devDependencies": {
-    "mocha": "*"
+    "@babel/cli": "^7.2.3",
+    "@babel/core": "^7.2.2",
+    "@babel/plugin-proposal-class-properties": "^7.3.0",
+    "@babel/plugin-proposal-private-methods": "^7.3.2",
+    "@babel/preset-env": "^7.3.1",
+    "@babel/preset-flow": "^7.0.0",
+    "babel-loader": "^8.0.5",
+    "flow-bin": "^0.92.1",
+    "mocha": "^6.0.2",
+    "webpack": "^4.29.3",
+    "webpack-cli": "^3.2.3"
+  },
+  "dependencies": {
+    "jquery": "^3.3.1"
   }
 }
