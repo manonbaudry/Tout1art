@@ -5,7 +5,7 @@ module.exports = {
 	entry: './src/main.js',
 	// Fichier de sortie
 	output: {
-		path: path.resolve(__dirname, './build'),
+		path: path.resolve(__dirname, '../server/src/main/resources/static/build'),
 		filename: 'main.bundle.js'
 	},
 	module: {
