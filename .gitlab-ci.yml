@@ -20,3 +20,10 @@ test::javascript:
     - cd client-js
     - npm install
     - npm test
+
+test::java:
+  stage: 🔍test
+  image: openjdk:8-jdk
+  script:
+    - cd server
+    - mvn package
