@@ -1,0 +1,16 @@
+POST http://localhost:8080/api/v1/ingredients
+Accept: */*
+Cache-Control: no-cache
+Content-type:application/json
+
+{ "noms" : "noix"  }
+###
+POST http://localhost:8080/api/v1/ingredients
+
+HTTP/1.1 406 Not Acceptable
+Content-Length: 0
+
+<Response body is empty>
+
+Response code: 406 (Not Acceptable); Time: 69ms; Content length: 0 bytes
+

@@ -1,0 +1,27 @@
+GET http://localhost:8080/api/v1/pizzas/2/ingredients
+Accept: */*
+Cache-Control: no-cache
+
+<> 2019-01-28T083853.200.json
+<> 2019-01-28T083740.200.json
+
+###
+#GET http://localhost:8080/api/v1/pizzas/2/ingredients
+#
+#HTTP/1.1 200 OK
+#Content-Type: application/json
+#Content-Length: 50
+#
+#[
+#  {
+#    "id": 1,
+#    "nom": "tomate"
+#  },
+#  {
+#    "id": 3,
+#    "nom": "fromage"
+#  }
+#]
+#
+#Response code: 200 (OK); Time: 35ms; Content length: 50 bytes
+

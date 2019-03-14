@@ -1,0 +1,21 @@
+PUT http://localhost:8080/api/v1/ingredients/1
+Accept: */*
+Cache-Control: no-cache
+Content-type:application/json
+
+{ "id" : 1 , "nom" : "tomatoes"  }
+
+###
+PUT http://localhost:8080/api/v1/ingredients/1
+
+HTTP/1.1 200 OK
+Content-Type: application/json
+Content-Length: 25
+
+{
+  "id": 1,
+  "nom": "tomatoes"
+}
+
+Response code: 200 (OK); Time: 66ms; Content length: 25 bytes
+
