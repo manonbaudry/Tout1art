@@ -17,4 +17,6 @@ test::javascript:
   stage: 🔍test
   image: node
   script:
-    - cd client-js && npm test
+    - cd client-js
+    - npm install
+    - npm test
