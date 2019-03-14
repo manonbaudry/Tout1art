@@ -1,3 +1,163 @@
 <resources>
-    <string name="app_name">Android Application</string>
+    <string name="app_name">Android Rest Client</string>
+
+    <string name="lbl_test_rest">Test Pizzaland</string>
+    <string name="lblGetIngredients">Get Ingredients (StringRequest)</string>
+    <string name="lblGetPizzas">Get Pizzas (JsonArrayRequest)</string>
+    <string name="lblGetOnePizza">Get One Pizzas (JsonObjectRequest)</string>
+    <string name="lblPostIngredient">Post One IngredientJsonObjectRequest)</string>
+    <string name="lbl_GetPizzas">Get Pizzas (as DTO)</string>
+
+    <string name="lblHote">Serveur:</string>
+    <string name="lbl_custom_request">Requête personnalisée</string>
+    <string name="lbl_host">Serveur:</string>
+    <string name="lbl_port">Port:</string>
+    <string name="lbl_path">Path:</string>
+    <string name="lbl_send">Envoyer</string>
+    <string name="lbl_custom">Personnaliser …</string>
+    <string name="lbl_request">REQUETE</string>
+    <string name="lbl_response">REPONSE</string>
+    <string name="lbl_base">Base:</string>
+    <string name="lbl_url">url:</string>
+    <string name="lbl_iut">.iut-infobio.priv.univ-lille1.fr</string>
+    <string name="lbl_query">Query:</string>
+    <string name="lblSearch">Search pizzas</string>
+    <string name="lbl_location">Location: %s</string>
+    <string name="lbl_location_empty" />
+
+    <string name="lbl_status_std">Status: %03d</string>
+    <string name="lbl_idle">Idle</string>
+    <string name="lbl_waiting">Waiting</string>
+    <string name="lbl_network_error">Network error</string>
+    <string name="lbl_internal_error">Client Error</string>
+
+    <string name="hint_server">server name or IP</string>
+    <string name="hint_json">JSON …</string>
+    <string name="hintServer">Server name or IP</string>
+    <string name="hintDisplay">Ready</string>
+
+    <string name="default_server">acajou01</string>
+    <string name="default_base">/api/v1</string>
+    <integer name="default_port">8080</integer>
+    <string name="iut_domain">.iut-infobio.priv.univ-lille1.fr</string>
+
+    <string name="msg_networkError">Network error: %s</string>
+    <string name="msg_requestError">Request error: %s</string>
+    <string name="msg_jsonFormatError">JSON format error: %s</string>
+
+    <string-array name="methods_name"> <!-- same order as Volly Request.Method constants -->
+        <item>GET</item>
+        <item>POST</item>
+        <item>PUT</item>
+        <item>DELETE</item>
+        <item>HEAD</item>
+        <item>OPTION</item>
+    </string-array>
+
+    <!-- methods constants -->
+    <integer name="GET">0</integer>
+    <integer name="POST">1</integer>
+    <integer name="PUT">2</integer>
+    <integer name="DELETE">3</integer>
+    <integer name="HEAD">4</integer>
+    <integer name="OPTION">5</integer>
+
+    <!-- global array -->
+    <array name="preset_requests">
+        <item />
+        <item>@array/preset_0</item>
+        <item>@array/preset_1</item>
+        <item>@array/preset_2</item>
+        <item>@array/preset_3</item>
+        <item>@array/preset_4</item>
+        <item>@array/preset_5</item>
+    </array>
+
+    <!-- string-array for adapters/spinner -->
+    <string-array name="preset_caption">
+        <item>@string/custom</item>
+        <item>@string/caption_0</item>
+        <item>@string/caption_1</item>
+        <item>@string/caption_2</item>
+        <item>@string/caption_3</item>
+        <item>@string/caption_4</item>
+        <item>@string/caption_5</item>
+    </string-array>
+
+    <string name="custom">Personnalisé</string>
+
+    <!-- detailled aggregation/description for each request -->
+
+    <string name="caption_0">GET ingredients</string>
+    <string name="path_0">/ingredients</string>
+    <string name="query_0" />
+    <string name="content_0" />
+    <array name="preset_0">
+        <item>@string/caption_0</item>
+        <item>@integer/GET</item>
+        <item>@string/path_0</item>
+        <item>@string/query_0</item>
+        <item>@string/content_0</item>
+    </array>
+
+    <string name="caption_1">GET an ingredient</string>
+    <string name="path_1">/ingredients/2</string>
+    <string name="query_1" />
+    <string name="content_1" />
+    <array name="preset_1">
+        <item>@string/caption_1</item>
+        <item>@integer/GET</item>
+        <item>@string/path_1</item>
+        <item>@string/query_1</item>
+        <item>@string/content_1</item>
+    </array>
+
+    <string name="caption_2">GET Pizzas</string>
+    <string name="path_2">/pizzas</string>
+    <string name="query_2" />
+    <string name="content_2" />
+    <array name="preset_2">
+        <item>@string/caption_2</item>
+        <item>@integer/GET</item>
+        <item>@string/path_2</item>
+        <item>@string/query_2</item>
+        <item>@string/content_2</item>
+    </array>
+
+    <string name="caption_3">PUT an ingredient</string>
+    <string name="path_3">/ingredients/3</string>
+    <string name="query_3" />
+    <string name="content_3">{ "nom" : "piment" }</string>
+    <array name="preset_3">
+        <item>@string/caption_3</item>
+        <item>@integer/PUT</item>
+        <item>@string/path_3</item>
+        <item>@string/query_3</item>
+        <item>@string/content_3</item>
+    </array>
+
+    <string name="caption_4">POST an ingredient</string>
+    <string name="path_4">/ingredients</string>
+    <string name="query_4" />
+    <string name="content_4">{ "nom" : "boeuf" }</string>
+    <array name="preset_4">
+        <item>@string/caption_4</item>
+        <item>@integer/POST</item>
+        <item>@string/path_4</item>
+        <item>@string/query_4</item>
+        <item>@string/content_4</item>
+    </array>
+
+    <string name="caption_5">DELETE an ingredient</string>
+    <string name="path_5">/ingredients/4</string>
+    <string name="query_5" />
+    <string name="content_5" />
+    <array name="preset_5">
+        <item>@string/caption_5</item>
+        <item>@integer/DELETE</item>
+        <item>@string/path_5</item>
+        <item>@string/query_5</item>
+        <item>@string/content_5</item>
+    </array>
+
 </resources>
