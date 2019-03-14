@@ -26,4 +26,5 @@ test::java:
   image: openjdk:8-jdk
   script:
     - cd server
+    - apt-get update && apt-get -y install maven && apt-get clean
     - mvn package
