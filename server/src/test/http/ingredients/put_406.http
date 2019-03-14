@@ -1,0 +1,35 @@
+PUT http://localhost:8080/api/v1/ingredients/1
+Accept: */*
+Cache-Control: no-cache
+Content-type:application/json
+
+{ "id" : 3 , "nom" : "fromage"  }
+
+###
+#PUT http://localhost:8080/api/v1/ingredients/1
+#
+#HTTP/1.1 406 Not Acceptable
+#Content-Type: text/plain
+#Content-Length: 15
+#
+#Inconsistent id
+#
+#Response code: 406 (Not Acceptable); Time: 31ms; Content length: 15 bytes
+
+PUT http://localhost:8080/api/v1/ingredients/-10
+Accept: */*
+Cache-Control: no-cache
+Content-type:application/json
+
+{ "id" : -10 , "nom" : "fromage"  }
+
+###
+PUT http://localhost:8080/api/v1/ingredients/-10
+
+HTTP/1.1 404 Not Found
+Content-Type: text/plain
+Content-Length: 20
+
+Ingredient not found
+
+Response code: 404 (Not Found); Time: 56ms; Content length: 20 bytes
