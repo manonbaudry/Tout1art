@@ -3,6 +3,16 @@ stages:
   - 🔍test
   - ⭐deploy
 
+cache:
+  key: "$CI_COMMIT_REF_NAME"
+  paths:
+     - .gradle/
+
+before_script:
+  - export GRADLE_USER_HOME=`pwd`/.gradle
+  - chmod +x ./gradlew
+
+
 .build:
   stage: 📦build
   image: docker:latest
@@ -28,3 +38,10 @@ test::java:
     - cd server
     - apt-get update && apt-get -y install maven && apt-get clean
     - mvn package
+
+test::android:
+  stage: 🔍test
+  image: javiersantos/android-ci
+  script:
+    - ./gradlew test
+
