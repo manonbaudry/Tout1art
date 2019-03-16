@@ -41,5 +41,7 @@ test::android:
   stage: 🔍test
   image: javiersantos/android-ci
   script:
+    - cd android
+    - chmod +x ./gradlew
     - ./gradlew test
 
