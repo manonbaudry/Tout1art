@@ -3,15 +3,14 @@ stages:
   - 🔍test
   - ⭐deploy
 
+before_script:
+  - export GRADLE_USER_HOME=$(pwd)/.gradle
+  - chmod +x ./gradle
+
 cache:
   key: "$CI_COMMIT_REF_NAME"
   paths:
      - .gradle/
-
-before_script:
-  - export GRADLE_USER_HOME=`pwd`/.gradle
-  - chmod +x ./gradlew
-
 
 .build:
   stage: 📦build
