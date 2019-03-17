@@ -2,7 +2,6 @@ package fr.ulille.iut.pizzaland;
 
 import org.glassfish.grizzly.http.server.CLStaticHttpHandler;
 import org.glassfish.grizzly.http.server.HttpServer;
-import org.glassfish.grizzly.http.server.StaticHttpHandler;
 import org.glassfish.jersey.grizzly2.httpserver.GrizzlyHttpServerFactory;
 import org.glassfish.jersey.server.ResourceConfig;
 
@@ -11,7 +10,6 @@ import java.net.URI;
 
 /**
  * Main class.
- *
  */
 public class Main {
     // Base URI the Grizzly HTTP server will listen on
@@ -21,14 +19,14 @@ public class Main {
 
     /**
      * Starts Grizzly HTTP server exposing JAX-RS resources defined in this application.
+     *
      * @param port Port to be used. Needed to prevent race conditions during // tests
      * @return the started server
      */
     public static HttpServer startServer(int port) {
         // create a resource config that scans for JAX-RS resources and providers
         // in fr.ulille.iut.pizzaland package
-        final ResourceConfig rc = new ResourceConfig().packages("fr.ulille.iut.pizzaland.ressources");
-		rc.register(new CORSFilter());
+        final ResourceConfig rc = new ApiV1();
         // Database initialisation (if any) to be settled here
 
         // create and start a new instance of grizzly http server
@@ -49,6 +47,7 @@ public class Main {
 
     /**
      * Main method.
+     *
      * @param args none
      * @throws IOException error during read
      */

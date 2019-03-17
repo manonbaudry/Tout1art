@@ -55,7 +55,14 @@
             <artifactId>junit</artifactId>
             <scope>test</scope>
         </dependency>
-                <dependency>
+        <dependency>
+            <groupId>org.glassfish.jersey.test-framework.providers</groupId>
+            <artifactId>jersey-test-framework-provider-simple</artifactId>
+            <version>${jersey.version}</version>
+            <scope>test</scope>
+        </dependency>
+
+        <dependency>
                     <groupId>org.jdbi</groupId>
                     <artifactId>jdbi3-core</artifactId>
                 </dependency>
@@ -68,7 +75,6 @@
                     <artifactId>jdbi3-guava</artifactId>
                 </dependency>
         <!-- plus fournit par défaut dans java >= 9 -->
-        <!--
                 <dependency>
                     <groupId>javax.xml.bind</groupId>
                     <artifactId>jaxb-api</artifactId>
@@ -84,7 +90,6 @@
                     <artifactId>jaxb-impl</artifactId>
                     <version>2.4.0-b180830.0438</version>
                 </dependency>
-        -->
         <!-- nécessaire pour les logs -->
         <dependency>
             <groupId>ch.qos.logback</groupId>

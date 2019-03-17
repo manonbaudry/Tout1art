@@ -1,45 +1,33 @@
 package fr.ulille.iut.pizzaland.ressources;
 
-import javax.ws.rs.client.Client;
-import javax.ws.rs.client.ClientBuilder;
-import javax.ws.rs.client.WebTarget;
-
-import fr.ulille.iut.pizzaland.Main;
+import fr.ulille.iut.pizzaland.ApiV1;
 import fr.ulille.iut.pizzaland.dao.DataAccess;
-import org.glassfish.grizzly.http.server.HttpServer;
-
-import org.junit.*;
-
 import fr.ulille.iut.pizzaland.dao.PizzaEntity;
+import org.glassfish.jersey.test.JerseyTest;
+import org.junit.After;
+import org.junit.Before;
+import org.junit.Test;
 
-import static org.junit.Assert.*;
+import javax.ws.rs.client.WebTarget;
+import javax.ws.rs.core.Application;
 
-public class MyResourceTest {
-    static ServerManager serverManager;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotNull;
 
-    @BeforeClass
-    public static void initServerManager() {        serverManager = ServerManager.getSingleton();
-
+public class MyResourceTest extends JerseyTest {
+    @Override
+    protected Application configure() {
+        return new ApiV1();
     }
 
-    @AfterClass
-    public static void shutdownServer() {
-        serverManager.shutdown();
-    }
-
-    /**
-     * Test to see that the message "Got it!" is sent in the response.
-     */
     @Test
     public void testGetIt() {
-        WebTarget target = serverManager.getWebTarget();
-        String responseMsg = target.path("myresource").request().get(String.class);
+        String responseMsg = target("myresource").request().get(String.class);
         assertEquals("Got it!", responseMsg);
     }
 
     @Test
     public void testInitH2() {
-        WebTarget target = serverManager.getWebTarget();
         DataAccess dataAccess = DataAccess.begin();
         PizzaEntity pizza = dataAccess.getPizzaById(1);
         assertNotNull(pizza);
