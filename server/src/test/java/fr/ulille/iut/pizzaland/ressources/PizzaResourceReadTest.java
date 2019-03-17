@@ -1,19 +1,15 @@
 package fr.ulille.iut.pizzaland.ressources;
 
-import fr.ulille.iut.pizzaland.Main;
+import fr.ulille.iut.pizzaland.ApiV1;
 import fr.ulille.iut.pizzaland.dto.IngredientDto;
 import fr.ulille.iut.pizzaland.dto.PizzaDto;
 import fr.ulille.iut.pizzaland.dto.PizzaShortDto;
-import org.glassfish.grizzly.http.server.HttpServer;
-import org.junit.AfterClass;
-import org.junit.Before;
-import org.junit.BeforeClass;
+import org.glassfish.jersey.test.JerseyTest;
 import org.junit.Test;
 
 import javax.ws.rs.Produces;
-import javax.ws.rs.client.Client;
-import javax.ws.rs.client.ClientBuilder;
 import javax.ws.rs.client.WebTarget;
+import javax.ws.rs.core.Application;
 import javax.ws.rs.core.GenericType;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
@@ -49,37 +45,27 @@ import static org.junit.Assert.assertEquals;
  *   4   hawaii      creme   11.0        11.5        { 5, 8 }
  */
 
-public class PizzaResourceReadTest {
-    private final static int PORT = 63100;
-
-    static ServerManager serverManager;
-
-    @BeforeClass
-    public static void initServerManager() {
-        serverManager = ServerManager.getSingleton();
-    }
-
-    @AfterClass
-    public static void shutdownServer() {
-        serverManager.shutdown();
+public class PizzaResourceReadTest extends JerseyTest {
+    @Override
+    protected Application configure() {
+        return new ApiV1();
     }
 
     @Test
     public void testGetAllPizzas() {
-        WebTarget target = serverManager.getWebTarget();
-        Response response = target.path("/pizzas")
+        Response response = target("/pizzas")
                 .request()
                 .get();
         List<PizzaShortDto> pizzas;
-        pizzas = response.readEntity(new GenericType<List<PizzaShortDto>>(){});
+        pizzas = response.readEntity(new GenericType<List<PizzaShortDto>>() {
+        });
         assertEquals(Response.Status.OK.getStatusCode(), response.getStatus());
         assertEquals(5, pizzas.size());
     }
 
     @Test
     public void testGetOnePizza() {
-        WebTarget target = serverManager.getWebTarget();
-        Response response = target.path("/pizzas/3")
+        Response response = target("/pizzas/3")
                 .request()
                 .get();
         PizzaDto pizza;
@@ -93,8 +79,7 @@ public class PizzaResourceReadTest {
 
     @Test
     public void testGetOnePizza_404() {
-        WebTarget target = serverManager.getWebTarget();
-        Response response = target.path("/pizzas/332")
+        Response response = target("/pizzas/332")
                 .request()
                 .get();
 
@@ -106,20 +91,19 @@ public class PizzaResourceReadTest {
     @Test
     @Produces(MediaType.APPLICATION_JSON)
     public void testGetAllPizzaIngredients() {
-        WebTarget target = serverManager.getWebTarget();
-        Response response = target.path("/pizzas/2/ingredients")
+        Response response = target("/pizzas/2/ingredients")
                 .request()
                 .get();
         List<IngredientDto> ingredients;
-        ingredients = response.readEntity(new GenericType<List<IngredientDto>>(){});
+        ingredients = response.readEntity(new GenericType<List<IngredientDto>>() {
+        });
         assertEquals(Response.Status.OK.getStatusCode(), response.getStatus());
         assertEquals(2, ingredients.size());
     }
 
     @Test
     public void testGetAllPizzaIngredients_404() {
-        WebTarget target = serverManager.getWebTarget();
-        Response response = target.path("/pizzas/150/ingredients")
+        Response response = target("/pizzas/150/ingredients")
                 .request()
                 .get();
         List<IngredientDto> ingredients;

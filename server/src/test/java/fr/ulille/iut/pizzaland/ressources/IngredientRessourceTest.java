@@ -1,20 +1,19 @@
 package fr.ulille.iut.pizzaland.ressources;
 
-import fr.ulille.iut.pizzaland.Main;
+import fr.ulille.iut.pizzaland.ApiV1;
 import fr.ulille.iut.pizzaland.dto.IngredientDto;
 import fr.ulille.iut.pizzaland.dto.IngredientPayloadDto;
-import org.glassfish.grizzly.http.server.HttpServer;
-import org.junit.*;
+import org.glassfish.jersey.test.JerseyTest;
+import org.junit.Test;
 
-import javax.ws.rs.client.Client;
-import javax.ws.rs.client.ClientBuilder;
 import javax.ws.rs.client.Entity;
-import javax.ws.rs.client.WebTarget;
+import javax.ws.rs.core.Application;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
-//import java.util.List;
 
 import static org.junit.Assert.assertEquals;
+
+//import java.util.List;
 
 
 /*
@@ -51,23 +50,16 @@ import static org.junit.Assert.assertEquals;
  *   4   hawaii      creme   11.0        11.5        { 5, 8 }
  */
 
-public class IngredientRessourceTest {
-    static ServerManager serverManager;
+public class IngredientRessourceTest extends JerseyTest {
 
-    @BeforeClass
-    public static void initServerManager() {
-        serverManager = ServerManager.getSingleton();
-    }
-
-    @AfterClass
-    public static void shutdownServer() {
-        serverManager.shutdown();
+    @Override
+    protected Application configure() {
+        return new ApiV1();
     }
 
     @Test
     public void testGetAllIngredients() {
-        WebTarget target = serverManager.getWebTarget();
-        Response response = target.path("/ingredients")
+        Response response = target("/ingredients")
                 .request()
                 .get();
 //        List<IngredientDto> ingredients;
@@ -78,10 +70,9 @@ public class IngredientRessourceTest {
 
     @Test
     public void testCreateIngredient() {
-        WebTarget target = serverManager.getWebTarget();
         IngredientDto ingredient = new IngredientDto();
         ingredient.setNom("Chorizo");
-        Response response = target.path("/ingredients")
+        Response response = target("/ingredients")
                 .request(MediaType.APPLICATION_JSON_TYPE)
                 .accept(MediaType.APPLICATION_JSON)
                 .post(Entity.json(ingredient));
@@ -89,15 +80,14 @@ public class IngredientRessourceTest {
 
         assertEquals(returnedEntity.getNom(), ingredient.getNom());
         assertEquals(Response.Status.CREATED.getStatusCode(), response.getStatus());
-        assertEquals((target.path("/ingredients/" + returnedEntity.getId())).getUri(), response.getLocation());
+        assertEquals((target("/ingredients/" + returnedEntity.getId())).getUri(), response.getLocation());
     }
 
     @Test
     public void testCreateIngredient_406() {
-        WebTarget target = serverManager.getWebTarget();
         IngredientDto ingredient = new IngredientDto();
         ingredient.setNom(null);
-        Response response = target.path("/ingredients")
+        Response response = target("/ingredients")
                 .request(MediaType.APPLICATION_JSON_TYPE)
                 .post(Entity.json(ingredient));
         String returned = response.readEntity(String.class);
@@ -108,10 +98,9 @@ public class IngredientRessourceTest {
 
     @Test
     public void testCreateIngredient_409() {
-        WebTarget target = serverManager.getWebTarget();
         IngredientDto ingredient = new IngredientDto();
         ingredient.setNom("fromage");
-        Response response = target.path("/ingredients")
+        Response response = target("/ingredients")
                 .request(MediaType.APPLICATION_JSON_TYPE)
                 .post(Entity.json(ingredient));
 
@@ -122,8 +111,7 @@ public class IngredientRessourceTest {
 
     @Test
     public void testGetOneIngredient() {
-        WebTarget target = serverManager.getWebTarget();
-        Response response = target.path("/ingredients/6")
+        Response response = target("/ingredients/6")
                 .request()
                 .get();
 
@@ -136,8 +124,7 @@ public class IngredientRessourceTest {
 
     @Test
     public void testGetOneIngredient_404() {
-        WebTarget target = serverManager.getWebTarget();
-        Response response = target.path("/ingredients/6000")
+        Response response = target("/ingredients/6000")
                 .request()
                 .get();
 
@@ -149,11 +136,10 @@ public class IngredientRessourceTest {
         final long ID = 8;
         final String NOM = "olives";
 
-        WebTarget target = serverManager.getWebTarget();
         IngredientDto ingredient = new IngredientDto();
         ingredient.setId(ID);
         ingredient.setNom(NOM);
-        Response response = target.path("/ingredients/8")
+        Response response = target("/ingredients/8")
                 .request(MediaType.APPLICATION_JSON_TYPE)
                 .put(Entity.json(ingredient));
         IngredientDto returnedEntity = response.readEntity(IngredientDto.class);
@@ -168,10 +154,9 @@ public class IngredientRessourceTest {
         final long ID = 80000;
         final String NOM = "olives";
 
-        WebTarget target = serverManager.getWebTarget();
         IngredientPayloadDto ingredient = new IngredientPayloadDto();
         ingredient.setNom(NOM);
-        Response response = target.path("/ingredients/" + ID)
+        Response response = target("/ingredients/" + ID)
                 .request(MediaType.APPLICATION_JSON_TYPE)
                 .put(Entity.json(ingredient));
 
@@ -185,10 +170,9 @@ public class IngredientRessourceTest {
         final long ID = 8;
         final String NOM = "lardons";
 
-        WebTarget target = serverManager.getWebTarget();
         IngredientPayloadDto ingredient = new IngredientPayloadDto();
         ingredient.setNom(NOM);
-        Response response = target.path("/ingredients/" + ID)
+        Response response = target("/ingredients/" + ID)
                 .request(MediaType.APPLICATION_JSON_TYPE)
                 .put(Entity.json(ingredient));
 
@@ -199,8 +183,7 @@ public class IngredientRessourceTest {
 
     @Test
     public void testDeleteOneIngredient() {
-        WebTarget target = serverManager.getWebTarget();
-        Response response = target.path("/ingredients/4")
+        Response response = target("/ingredients/4")
                 .request()
                 .delete();
 
@@ -209,8 +192,7 @@ public class IngredientRessourceTest {
 
     @Test
     public void testDeleteOneIngredient_404() {
-        WebTarget target = serverManager.getWebTarget();
-        Response response = target.path("/ingredients/41200")
+        Response response = target("/ingredients/41200")
                 .request()
                 .delete();
         assertEquals(Response.Status.NOT_FOUND.getStatusCode(), response.getStatus());
