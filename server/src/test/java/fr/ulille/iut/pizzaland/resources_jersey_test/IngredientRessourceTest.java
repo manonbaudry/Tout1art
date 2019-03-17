@@ -11,43 +11,6 @@ import javax.ws.rs.core.*;
 import java.util.List;
 import static org.junit.Assert.assertEquals;
 
-//import java.util.List;
-
-
-/*
- * Summary for everey test to make sure they are independent and that they may be run simultaneously
- *
- *   Initial Data (populate.sql)
- *
- *   Ingredients
- *
- *   id  nom             modified by
- *   1   tomate
- *   2   lardons
- *   3   fromage
- *   4   oeuf           testDeleteOneIngredient             DELETE
- *   5   jambon
- *   6   merguez        testGetOneIngredient                READ
- *   7   champignons
- *   8   ananas         testUpdateIngredient                UPDATE # { nom : olives }
- *   9                  testCreateIngredient                ADD { id : 9 , nom : chorizo }
- *                      testCreateIngredient_406    [406]  ABORT # null
- *                      testCreateIngredient_409    [409]  ABORT # { nom : fromage }
- *                      testGetOneIngredient_404    [404]  ABORT # { id : 6000 }
- *                      testUpdateIngredient_404    [404]  ABORT # { id : 80000 }
- *                      testUpdateIngredient_409    [409]  ABORT # { id : 8 , nom : lardons }
- *                      testDeleteOneIngredient_404 [404]  ABORT # { id : 41200 }
- *
- *   Pizzas
- *
- *   id  nom         base    prix_petite prix_grande ingredients         modified by         action
- *   1   oranaise    tomate  5.0         8.0         { 1 }
- *   2   margarita   tomate  4           7.5         { 1, 3 }
- *   3   carbonara   creme   5.5         9           { 2, 3 }
- *   4   4 saisons   tomate  10.0        15.0        { }
- *   4   hawaii      creme   11.0        11.5        { 5, 8 }
- */
-
 public class IngredientRessourceTest extends JerseyTest {
 
     @Override
