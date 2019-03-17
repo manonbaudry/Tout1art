@@ -59,7 +59,7 @@ build::java:
   script:
     - cd server
     - apt-get update && apt-get -y install maven && apt-get clean
-    - mvn package
+    - mvn package -DskipTests
   artifacts:
     paths:
       - server/target/*.jar
