@@ -29,15 +29,15 @@ test::javascript:
     - npm install
     - npm test
 
-test::java:
+.test::java:
   stage: 🔍test
   image: openjdk:8-jdk
   script:
     - cd server
     - apt-get update && apt-get -y install maven && apt-get clean
-    - mvn package
+    - mvn test
 
-test::android:
+.test::android:
   stage: 🔍test
   image: javiersantos/android-ci
   script:
@@ -45,3 +45,32 @@ test::android:
     - chmod +x ./gradlew
     - ./gradlew test
 
+build::javascript:
+  stage: 📦build
+  image: node
+  script:
+    - cd client-js
+    - npm install
+    - npm run build
+
+build::java:
+  stage: 📦build
+  image: openjdk:8-jdk
+  script:
+    - cd server
+    - apt-get update && apt-get -y install maven && apt-get clean
+    - mvn package
+  artifacts:
+    paths:
+      - server/target/*.jar
+
+build::android:
+  stage: 📦build
+  image: javiersantos/android-ci
+  script:
+    - cd android
+    - chmod +x ./gradlew
+    - ./gradlew assemble
+  artifacts:
+    paths:
+      - android/app/build/outputs/apk/
