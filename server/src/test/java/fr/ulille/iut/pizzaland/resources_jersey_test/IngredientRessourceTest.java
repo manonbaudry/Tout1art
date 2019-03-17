@@ -1,17 +1,14 @@
 package fr.ulille.iut.pizzaland.resources_jersey_test;
 
 import fr.ulille.iut.pizzaland.dto.IngredientDto;
-import fr.ulille.iut.pizzaland.dto.IngredientPayloadDto;
-import fr.ulille.iut.pizzaland.ressources.ServerManager;
-import org.junit.AfterClass;
-import org.junit.BeforeClass;
+import fr.ulille.iut.pizzaland.ressources.IngredientRessource;
+import org.glassfish.jersey.server.ResourceConfig;
+import org.glassfish.jersey.test.JerseyTest;
 import org.junit.Test;
 
 import javax.ws.rs.client.Entity;
-import javax.ws.rs.client.WebTarget;
-import javax.ws.rs.core.MediaType;
-import javax.ws.rs.core.Response;
-
+import javax.ws.rs.core.*;
+import java.util.List;
 import static org.junit.Assert.assertEquals;
 
 //import java.util.List;
@@ -51,116 +48,81 @@ import static org.junit.Assert.assertEquals;
  *   4   hawaii      creme   11.0        11.5        { 5, 8 }
  */
 
-public class IngredientRessourceTest {
-    static ServerManager serverManager;
+public class IngredientRessourceTest extends JerseyTest {
 
-    @BeforeClass
-    public static void initServerManager() {
-        serverManager = ServerManager.getSingleton();
-    }
-
-    @AfterClass
-    public static void shutdownServer() {
-        serverManager.shutdown();
+    @Override
+    protected Application configure() {
+        return new ResourceConfig(IngredientRessource.class);
     }
 
     @Test
     public void testGetAllIngredients() {
-        WebTarget target = serverManager.getWebTarget();
-        Response response = target.path("/ingredients")
-                .request()
-                .get();
-//        List<IngredientDto> ingredients;
-//        ingredients = response.readEntity(new GenericType<List<IngredientDto>>(){});
-//        assertEquals(8, ingredients.size());
-        assertEquals(Response.Status.OK.getStatusCode(), response.getStatus());
+        Response response = target("/ingredients").request().get();
+
+        assertEquals("Http response should be 200: ", Response.Status.OK.getStatusCode(), response.getStatus());
+        assertEquals("Http Content-type should be: ", MediaType.APPLICATION_JSON, response.getHeaderString(HttpHeaders.CONTENT_TYPE));
+
+        List<IngredientDto> ingredients;
+        ingredients = response.readEntity(new GenericType<List<IngredientDto>>(){});
+        assertEquals("ingredient[] size should be: ", 8, ingredients.size());
     }
 
     @Test
     public void testCreateIngredient() {
-        WebTarget target = serverManager.getWebTarget();
-        IngredientDto ingredient = new IngredientDto();
-        ingredient.setNom("Chorizo");
-        Response response = target.path("/ingredients")
-                .request(MediaType.APPLICATION_JSON_TYPE)
-                .accept(MediaType.APPLICATION_JSON)
-                .post(Entity.json(ingredient));
+        final String nom = "chorizo";
+
+        Response response = target("/ingredients").request().post(Entity.json("{ \"nom\" : \"" + nom + "\" }"));
         IngredientDto returnedEntity = response.readEntity(IngredientDto.class);
 
-        assertEquals(returnedEntity.getNom(), ingredient.getNom());
-        assertEquals(Response.Status.CREATED.getStatusCode(), response.getStatus());
-        assertEquals((target.path("/ingredients/" + returnedEntity.getId())).getUri(), response.getLocation());
+        assertEquals("Http response should be 203: ", Response.Status.CREATED.getStatusCode(), response.getStatus());
+        assertEquals("Http content should display \"" + nom + "\": ", returnedEntity.getNom(), nom);
+        assertEquals("Http location should be: ",
+                response.getHeaderString("location"),
+                target("/ingredients").getUri().toString() + "/" + returnedEntity.getId());
     }
 
     @Test
     public void testCreateIngredient_406() {
-        WebTarget target = serverManager.getWebTarget();
-        IngredientDto ingredient = new IngredientDto();
-        ingredient.setNom(null);
-        Response response = target.path("/ingredients")
-                .request(MediaType.APPLICATION_JSON_TYPE)
-                .post(Entity.json(ingredient));
-        String returned = response.readEntity(String.class);
+        Response response = target("/ingredients").request().post(Entity.json("{ \"truc\" : \"muche\" }"));
+        String content = response.readEntity(String.class);
 
-        assertEquals(Response.Status.NOT_ACCEPTABLE.getStatusCode(), response.getStatus());
-        assertEquals("name not specified", returned);
+        assertEquals("Http response should be 406: ", Response.Status.NOT_ACCEPTABLE.getStatusCode(), response.getStatus());
+        assertEquals("Http content should be: ","name not specified", content);
     }
 
     @Test
     public void testCreateIngredient_409() {
-        WebTarget target = serverManager.getWebTarget();
-        IngredientDto ingredient = new IngredientDto();
-        ingredient.setNom("fromage");
-        Response response = target.path("/ingredients")
-                .request(MediaType.APPLICATION_JSON_TYPE)
-                .post(Entity.json(ingredient));
+        final String nom = "fromage";
 
-        String returned = response.readEntity(String.class);
-        assertEquals(Response.Status.CONFLICT.getStatusCode(), response.getStatus());
-        assertEquals("Duplicated name", returned);
+        Response response = target("/ingredients").request().post(Entity.json("{ \"nom\" : \"" + nom + "\" }"));
+        String content = response.readEntity(String.class);
+
+        assertEquals("Http response should be 406: ", Response.Status.CONFLICT.getStatusCode(), response.getStatus());
+        assertEquals("Http content should be: ","Duplicated name", content);
     }
 
     @Test
-    public void testGetOneIngredient() {
-        WebTarget target = serverManager.getWebTarget();
-        Response response = target.path("/ingredients/6")
-                .request()
-                .get();
+    public void testGetOneIngredients() {
+        Response response = target("/ingredients/6").request().get();
+        IngredientDto ingredient = response.readEntity(IngredientDto.class);
 
-        IngredientDto ingredient;
-        ingredient = response.readEntity(IngredientDto.class);
-        assertEquals(Response.Status.OK.getStatusCode(), response.getStatus());
-        assertEquals("merguez", ingredient.getNom());
-        assertEquals(6, ingredient.getId());
+        assertEquals("Http response should be 200: ", Response.Status.OK.getStatusCode(), response.getStatus());
+        assertEquals("ingredient name should be: ", "merguez", ingredient.getNom());
+        assertEquals("ingredient id should be: ", 6, ingredient.getId());
     }
 
-    @Test
-    public void testGetOneIngredient_404() {
-        WebTarget target = serverManager.getWebTarget();
-        Response response = target.path("/ingredients/6000")
-                .request()
-                .get();
-
-        assertEquals(Response.Status.NOT_FOUND.getStatusCode(), response.getStatus());
-    }
 
     @Test
     public void testUpdateIngredient() {
         final long ID = 8;
         final String NOM = "olives";
 
-        WebTarget target = serverManager.getWebTarget();
-        IngredientDto ingredient = new IngredientDto();
-        ingredient.setId(ID);
-        ingredient.setNom(NOM);
-        Response response = target.path("/ingredients/8")
-                .request(MediaType.APPLICATION_JSON_TYPE)
-                .put(Entity.json(ingredient));
+        Response response = target("/ingredients/" + ID).request().put(Entity.json("{ \"id\" : \"" + ID + "\" , \"nom\" : \"" + NOM + "\" }"));
         IngredientDto returnedEntity = response.readEntity(IngredientDto.class);
 
-        assertEquals(returnedEntity.getId(), ID);
-        assertEquals(returnedEntity.getNom(), NOM);
-        assertEquals(Response.Status.OK.getStatusCode(), response.getStatus());
+        assertEquals("Http response should be 200: ", Response.Status.OK.getStatusCode(), response.getStatus());
+        assertEquals("Http content should display \"" + NOM + "\": ", returnedEntity.getNom(), NOM);
+        assertEquals("Http content should display \"" + ID + "\": ", returnedEntity.getId(), ID);
     }
 
     @Test
@@ -168,16 +130,11 @@ public class IngredientRessourceTest {
         final long ID = 80000;
         final String NOM = "olives";
 
-        WebTarget target = serverManager.getWebTarget();
-        IngredientPayloadDto ingredient = new IngredientPayloadDto();
-        ingredient.setNom(NOM);
-        Response response = target.path("/ingredients/" + ID)
-                .request(MediaType.APPLICATION_JSON_TYPE)
-                .put(Entity.json(ingredient));
+        Response response = target("/ingredients/" + ID).request().put(Entity.json("{ \"id\" : \"" + ID + "\" , \"nom\" : \"" + NOM + "\" }"));
+        String content = response.readEntity(String.class);
 
-        String returned = response.readEntity(String.class);
-        assertEquals(Response.Status.NOT_FOUND.getStatusCode(), response.getStatus());
-        assertEquals("Ingredient not found", returned);
+        assertEquals("Http response should be 404: ", Response.Status.NOT_FOUND.getStatusCode(), response.getStatus());
+        assertEquals("Http content should be: ","Ingredient not found", content);
     }
 
     @Test
@@ -185,34 +142,24 @@ public class IngredientRessourceTest {
         final long ID = 8;
         final String NOM = "lardons";
 
-        WebTarget target = serverManager.getWebTarget();
-        IngredientPayloadDto ingredient = new IngredientPayloadDto();
-        ingredient.setNom(NOM);
-        Response response = target.path("/ingredients/" + ID)
-                .request(MediaType.APPLICATION_JSON_TYPE)
-                .put(Entity.json(ingredient));
+        Response response = target("/ingredients/" + ID).request().put(Entity.json("{ \"id\" : \"" + ID + "\" , \"nom\" : \"" + NOM + "\" }"));
+        String content = response.readEntity(String.class);
 
-        String returned = response.readEntity(String.class);
-        assertEquals(Response.Status.CONFLICT.getStatusCode(), response.getStatus());
-        assertEquals("Duplicated name", returned);
+        assertEquals("Http response should be 409: ", Response.Status.CONFLICT.getStatusCode(), response.getStatus());
+        assertEquals("Http content should be: ","Duplicated name", content);
     }
 
     @Test
     public void testDeleteOneIngredient() {
-        WebTarget target = serverManager.getWebTarget();
-        Response response = target.path("/ingredients/4")
-                .request()
-                .delete();
-
-        assertEquals(Response.Status.NO_CONTENT.getStatusCode(), response.getStatus());
+        final long ID = 4;
+        Response response = target("/ingredients/" + ID).request().delete();
+        assertEquals("Http response should be 201: ", Response.Status.NO_CONTENT.getStatusCode(), response.getStatus());
     }
 
     @Test
     public void testDeleteOneIngredient_404() {
-        WebTarget target = serverManager.getWebTarget();
-        Response response = target.path("/ingredients/41200")
-                .request()
-                .delete();
-        assertEquals(Response.Status.NOT_FOUND.getStatusCode(), response.getStatus());
+        final long ID = 41200;
+        Response response = target("/ingredients/" + ID).request().delete();
+        assertEquals("Http response should be 404: ", Response.Status.NOT_FOUND.getStatusCode(), response.getStatus());
     }
 }

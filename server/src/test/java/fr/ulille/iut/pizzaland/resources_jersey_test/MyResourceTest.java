@@ -20,8 +20,7 @@ public class MyResourceTest extends JerseyTest {
 
     @Override
     protected Application configure() {
-        Application application = new ResourceConfig(MyResource.class);
-        return application;
+        return new ResourceConfig(MyResource.class);
     }
 
     /**
