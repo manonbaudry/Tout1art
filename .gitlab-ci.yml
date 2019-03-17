@@ -1,6 +1,6 @@
 stages:
-  - 📦build
   - 🔍test
+  - 📦build
   - ⭐deploy
 
 before_script:
