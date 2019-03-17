@@ -29,7 +29,7 @@ test::javascript:
     - npm install
     - npm test
 
-.test::java:
+test::java:
   stage: 🔍test
   image: openjdk:8-jdk
   script:
