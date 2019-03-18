@@ -17,7 +17,7 @@
             <!-- base en mémoire -->
 	       	<!--<property name="javax.persistence.jdbc.url" value="jdbc:h2:mem:pizzaland"/>-->
             <!--<property name="javax.persistence.jdbc.url" value="jdbc:h2:mem:pizzaland;INIT=RUNSCRIPT FROM 'populate.sql'"/>-->
-            <property name="javax.persistence.jdbc.url" value="jdbc:h2:mem:pizzaland"/>
+            <property name="javax.persistence.jdbc.url" value="jdbc:h2:~/tmp/pizzaland"/>
             <!-- base sur fichiers -->
             <!--<property name="javax.persistence.jdbc.url" value="jdbc:h2:~/tmp/pizzaland"/>-->
             <!-- credential if needed -->
