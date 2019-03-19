@@ -1,15 +1,13 @@
 package fr.ulille.iut.pizzaland.ressources;
 
-import fr.ulille.iut.pizzaland.Main;
+import fr.ulille.iut.pizzaland.ApiV1;
 import fr.ulille.iut.pizzaland.dto.PizzaCreateDto;
 import fr.ulille.iut.pizzaland.dto.PizzaDto;
-import org.glassfish.grizzly.http.server.HttpServer;
-import org.junit.*;
+import org.glassfish.jersey.test.JerseyTest;
+import org.junit.Test;
 
-import javax.ws.rs.client.Client;
-import javax.ws.rs.client.ClientBuilder;
 import javax.ws.rs.client.Entity;
-import javax.ws.rs.client.WebTarget;
+import javax.ws.rs.core.Application;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 import java.util.Arrays;
@@ -45,29 +43,22 @@ import static org.junit.Assert.assertNotNull;
  *   4   hawaii      creme   11.0        11.5        { 5, 8 }
  */
 
-public class PizzaResourceTest {
-    static ServerManager serverManager;
-
-    @BeforeClass
-    public static void initServerManager() {
-        serverManager = ServerManager.getSingleton();
+public class PizzaResourceTest extends JerseyTest {
+    @Override
+    protected Application configure() {
+        return new ApiV1();
     }
 
-    @AfterClass
-    public static void shutdownServer() {
-        serverManager.shutdown();
-    }
 
     @Test
     public void testCreatePizza() {
-        WebTarget target = serverManager.getWebTarget();
         PizzaCreateDto pizza = new PizzaCreateDto();
         pizza.setNom("Quatre saisons");
         pizza.setBase("tomate");
         pizza.setPrix_petite(3.0F);
         pizza.setPrix_grande(6.5F);
         pizza.setIngredients(Arrays.asList(1L, 3L, 5L));
-        Response response = target.path("/pizzas")
+        Response response = target("/pizzas")
                 .request(MediaType.APPLICATION_JSON_TYPE)
                 .post(Entity.json(pizza));
 
@@ -76,19 +67,18 @@ public class PizzaResourceTest {
         assertEquals(returnedEntity.getNom(), pizza.getNom());
         assertEquals(3, returnedEntity.getIngredients().size());
         assertEquals(Response.Status.CREATED.getStatusCode(), response.getStatus());
-        assertEquals((target.path("/pizzas/" + returnedEntity.getId())).getUri(), response.getLocation());
+        assertEquals((target("/pizzas/" + returnedEntity.getId())).getUri(), response.getLocation());
     }
 
     @Test
     public void testCreatePizza_406() {
-        WebTarget target = serverManager.getWebTarget();
         PizzaCreateDto pizza = new PizzaCreateDto();
 //        pizza.setNom("oranaise");
         pizza.setBase("tomate");
         pizza.setPrix_petite(3.0F);
         pizza.setPrix_grande(6.5F);
         pizza.setIngredients(Arrays.asList(1L, 3L, 5L));
-        Response response = target.path("/pizzas")
+        Response response = target("/pizzas")
                 .request(MediaType.APPLICATION_JSON_TYPE)
                 .post(Entity.json(pizza));
 
@@ -99,8 +89,7 @@ public class PizzaResourceTest {
 
     @Test
     public void testDeleteOnePizza() {
-        WebTarget target = serverManager.getWebTarget();
-        Response response = target.path("/pizzas/1")
+        Response response = target("/pizzas/1")
                 .request()
                 .delete();
 
@@ -109,8 +98,7 @@ public class PizzaResourceTest {
 
     @Test
     public void testDeleteOnePizza_notFound() {
-        WebTarget target = serverManager.getWebTarget();
-        Response response = target.path("/pizzas/608")
+        Response response = target("/pizzas/608")
                 .request()
                 .delete();
 
