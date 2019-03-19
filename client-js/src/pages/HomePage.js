@@ -6,7 +6,6 @@ import $ from 'jquery';
 
 export default class HomePage extends Page {
 	#data;
-	onDataReceived:Function = null;
 
 	constructor( data:Array<{nom:string, base:string, prix_petite:number, prix_grande:number}> ){
 		super( 'La carte' );
