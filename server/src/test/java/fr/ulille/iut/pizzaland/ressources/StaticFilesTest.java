@@ -11,6 +11,7 @@ import org.junit.Test;
 import javax.ws.rs.client.ClientBuilder;
 import javax.ws.rs.client.WebTarget;
 
+import static junit.framework.TestCase.assertTrue;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
 
@@ -33,7 +34,7 @@ public class StaticFilesTest {
 
     @Test
     public void testStaticFiles() {
-        String responseMsg = target.path("").request().get(String.class);
-        assertEquals("static content test", responseMsg);
+        String responseMsg = target.path("/index.html").request().get(String.class);
+        assertTrue(responseMsg.matches(".*static content test.*"));
     }
 }
