@@ -11,16 +11,6 @@ cache:
   paths:
      - .gradle/
 
-build:
-  stage: 📦build
-  image: docker:latest
-  services:
-    - docker:dind
-  script:
-    - docker login -u gitlab-ci-token -p $CI_JOB_TOKEN $CI_REGISTRY
-    - docker build -t $CONTAINER_NAME .
-    - docker push $CONTAINER_NAME
-
 test::javascript:
   stage: 🔍test
   image: node
@@ -74,3 +64,16 @@ build::java:
   artifacts:
     paths:
       - android/app/build/outputs/apk/
+
+build:
+  stage: 📦build
+  image: docker:latest
+  services:
+    - docker:dind
+  script:
+    - docker login -u gitlab-ci-token -p $CI_JOB_TOKEN $CI_REGISTRY
+    - docker build -t $CONTAINER_NAME .
+    - docker push $CONTAINER_NAME
+  dependencies:
+    - build::java
+    - build::javascript
