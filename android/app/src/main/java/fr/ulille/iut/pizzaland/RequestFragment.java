@@ -1,4 +1,4 @@
-package fr.ulille.iut.pizzaland.testrest.android;
+package fr.ulille.iut.pizzaland;
 
 import android.app.Activity;
 import android.content.Context;
@@ -18,7 +18,7 @@ import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.TextView;
 
-import static fr.ulille.iut.pizzaland.testrest.android.Data.CUSTOM_PRESET;
+import static fr.ulille.iut.pizzaland.Data.CUSTOM_PRESET;
 
 
 /**

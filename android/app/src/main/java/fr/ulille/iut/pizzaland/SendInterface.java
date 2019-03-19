@@ -1,4 +1,4 @@
-package fr.ulille.iut.pizzaland.testrest.android;
+package fr.ulille.iut.pizzaland;
 
 import com.android.volley.Request;
 

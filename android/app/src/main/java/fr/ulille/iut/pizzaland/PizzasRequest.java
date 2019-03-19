@@ -1,4 +1,4 @@
-package fr.ulille.iut.pizzaland.testrest.android;
+package fr.ulille.iut.pizzaland;
 
 import android.support.annotation.Nullable;
 import android.util.Log;
@@ -17,7 +17,7 @@ import java.io.UnsupportedEncodingException;
 
 import fr.ulille.iut.pizzaland.dto.PizzaShortDto;
 
-import static fr.ulille.iut.pizzaland.testrest.android.MainActivity.LOG_TAG;
+import static fr.ulille.iut.pizzaland.MainActivity.LOG_TAG;
 
 public class PizzasRequest extends Request<PizzaShortDto[]> {
     private Response.Listener<PizzaShortDto[]> listener = null;

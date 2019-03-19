@@ -1,4 +1,4 @@
-package iut.ulille.fr.androidapplication;
+package fr.ulille.iut.pizzaland;
 
 import org.junit.Test;
 

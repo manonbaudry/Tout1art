@@ -96,7 +96,7 @@
 
     <fragment
         android:id="@+id/requestFragment"
-        android:name="fr.ulille.iut.pizzaland.testrest.android.RequestFragment"
+        android:name="fr.ulille.iut.pizzaland.RequestFragment"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
@@ -110,7 +110,7 @@
 
     <fragment
         android:id="@+id/responseFragment"
-        android:name="fr.ulille.iut.pizzaland.testrest.android.ResponseFragment"
+        android:name="fr.ulille.iut.pizzaland.ResponseFragment"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:layout_marginBottom="8dp"

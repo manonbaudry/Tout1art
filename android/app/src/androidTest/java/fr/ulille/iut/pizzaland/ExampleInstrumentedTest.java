@@ -1,4 +1,4 @@
-package iut.ulille.fr.androidapplication;
+package fr.ulille.iut.pizzaland;
 
 import android.content.Context;
 import android.support.test.InstrumentationRegistry;
@@ -21,6 +21,6 @@ public class ExampleInstrumentedTest {
         // Context of the app under test.
         Context appContext = InstrumentationRegistry.getTargetContext();
 
-        assertEquals("iut.ulille.fr.androidapplication", appContext.getPackageName());
+        assertEquals("fr.ulille.iut.pizzaland", appContext.getPackageName());
     }
 }

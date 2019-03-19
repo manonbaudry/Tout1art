@@ -1,4 +1,4 @@
-package fr.ulille.iut.pizzaland.testrest.android;
+package fr.ulille.iut.pizzaland;
 
 import android.content.Context;
 import android.net.Uri;

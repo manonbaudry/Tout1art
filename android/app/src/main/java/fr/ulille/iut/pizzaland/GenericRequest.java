@@ -1,4 +1,4 @@
-package fr.ulille.iut.pizzaland.testrest.android;
+package fr.ulille.iut.pizzaland;
 
 import android.support.annotation.Nullable;
 import android.util.Log;
@@ -13,7 +13,7 @@ import org.json.JSONObject;
 
 import java.io.UnsupportedEncodingException;
 
-import static fr.ulille.iut.pizzaland.testrest.android.MainActivity.LOG_TAG;
+import static fr.ulille.iut.pizzaland.MainActivity.LOG_TAG;
 
 public class GenericRequest extends Request<PizzalandResponse> {
     private Response.Listener<PizzalandResponse> listener = null;

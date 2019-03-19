@@ -1,4 +1,4 @@
-package fr.ulille.iut.pizzaland.testrest.android;
+package fr.ulille.iut.pizzaland;
 
 import android.app.Activity;
 import android.content.Intent;
@@ -17,8 +17,8 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.Volley;
 
-import static fr.ulille.iut.pizzaland.testrest.android.MainActivity.LOG_TAG;
-import static fr.ulille.iut.pizzaland.testrest.android.MainActivity.VOLLEY_TAG;
+import static fr.ulille.iut.pizzaland.MainActivity.LOG_TAG;
+import static fr.ulille.iut.pizzaland.MainActivity.VOLLEY_TAG;
 
 public class HttpDialogActivity extends AppCompatActivity
         implements

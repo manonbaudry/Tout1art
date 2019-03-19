@@ -1,4 +1,4 @@
-package fr.ulille.iut.pizzaland.testrest.android;
+package fr.ulille.iut.pizzaland;
 
 import android.content.Context;
 import android.content.res.TypedArray;
@@ -17,7 +17,7 @@ import org.json.JSONObject;
 
 import java.io.UnsupportedEncodingException;
 
-import static fr.ulille.iut.pizzaland.testrest.android.MainActivity.LOG_TAG;
+import static fr.ulille.iut.pizzaland.MainActivity.LOG_TAG;
 
 public class Data implements Parcelable {
     // Status code Value
