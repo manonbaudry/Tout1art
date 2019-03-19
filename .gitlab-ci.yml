@@ -1,7 +1,7 @@
 stages:
   - 🔍test
   - 📦build
-  - 📦docker
+  - 🐋docker
   - ⭐deploy
 
 before_script:
@@ -67,7 +67,7 @@ build::java:
       - android/app/build/outputs/apk/
 
 build:
-  stage: 📦docker
+  stage: 🐋docker
   image: docker:latest
   services:
     - docker:dind
