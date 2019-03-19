@@ -11,7 +11,7 @@ cache:
   paths:
      - .gradle/
 
-.build:
+build:
   stage: 📦build
   image: docker:latest
   services:
@@ -64,7 +64,7 @@ build::java:
     paths:
       - server/target/*.jar
 
-build::android:
+.build::android:
   stage: 📦build
   image: javiersantos/android-ci
   script:
