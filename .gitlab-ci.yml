@@ -1,6 +1,7 @@
 stages:
   - 🔍test
   - 📦build
+  - 📦docker
   - ⭐deploy
 
 before_script:
@@ -66,7 +67,7 @@ build::java:
       - android/app/build/outputs/apk/
 
 build:
-  stage: 📦build
+  stage: 📦docker
   image: docker:latest
   services:
     - docker:dind
@@ -74,6 +75,3 @@ build:
     - docker login -u gitlab-ci-token -p $CI_JOB_TOKEN $CI_REGISTRY
     - docker build -t $CONTAINER_NAME .
     - docker push $CONTAINER_NAME
-  dependencies:
-    - build::java
-    - build::javascript
