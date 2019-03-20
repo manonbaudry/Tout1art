@@ -15,3 +15,7 @@ node_modules/
 # file produce by webpack
 main.bundle.js
 main.bundle.js.map
+# Eclipse
+server/.classpath
+server/.project
+server.settings
