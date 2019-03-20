@@ -1,3 +1,42 @@
-.navbar{
+.logo{
+width: 48px;
+margin-right: 1%;
+margin-left: 0.5%;
+}
+
+body{
+	top:0;
+	bottom:0;
+	right:0;
+	left:0;
 	text-align: center;
 }
+
+main{
+	margin: 6%;	
+}
+
+li{
+	margin-right: 10%;
+}
+
+ul{
+	margin-right: 30%;
+	margin-left: auto;
+}
+
+.title{
+	font-size: 2em;
+	color:white;
+	font-family: 'Times New Roman', Times, serif;
+}
+
+nav ul li a:hover, nav ul li a:active{
+	border-bottom: 0.12em solid #ccc;
+	padding-bottom: 0.5em;
+}
+
+header nav ul li a:focus {
+	  outline: none;
+}
+  
