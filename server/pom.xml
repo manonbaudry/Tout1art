@@ -4,7 +4,7 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>fr.ulille.iut</groupId>
-    <artifactId>pizzaland</artifactId>
+    <artifactId>squelette</artifactId>
     <packaging>jar</packaging>
     <version>1.0-SNAPSHOT</version>
     <name>pizzaland</name>
