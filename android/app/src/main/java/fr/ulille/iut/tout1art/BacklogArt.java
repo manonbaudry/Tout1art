@@ -8,6 +8,8 @@ public class BacklogArt extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main); // modifier pour layout Artisan
+        setContentView(R.layout.page_artisant); // modifier pour layout Artisan
     }
+
+
 }
