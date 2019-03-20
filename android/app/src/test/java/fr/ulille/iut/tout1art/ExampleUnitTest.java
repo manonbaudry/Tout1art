@@ -1,4 +1,4 @@
-package fr.ulille.iut.pizzaland;
+package fr.ulille.iut.tout1art;
 
 import org.junit.Test;
 
