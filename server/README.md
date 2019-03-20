@@ -8,6 +8,16 @@ Le serveur Java fourni dans ce dossier correspond à la solution du dernier TP d
 
 	***NB:*** le fichier `index.html` a besoin du fichier `main.bundle.js` pour fonctionner. Ce fichier est généré par la compilation du projet JS contenu dans le dossier `client-js` : voir [README](../client-js/README.md)
 
+##  Développement sous eclipse
+
+File 'import ' -> maven >> Existing maven projects
+Parcourir jusque le répertoire 'server'
+sélectionner le projet /pom.xml fr.ulille.iut.squelette...
+
+## Développement sous IntelliJ
+
+  ...TODO...
+  
 ## Lancement du serveur
 ```bash
 cd /chemin/vers/dossier/server/
