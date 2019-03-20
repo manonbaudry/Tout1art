@@ -20,15 +20,15 @@ public class MyResourceTest extends JerseyTest {
     @Test
     public void testGetIt() {
         String responseMsg = target("myresource").request().get(String.class);
-        assertEquals("Got it!", responseMsg);
+        assertEquals("Hello word!!", responseMsg);
     }
 
-    @Test
+   /* @Test
     public void testInitH2() {
         DataAccess dataAccess = DataAccess.begin();
         PizzaEntity pizza = dataAccess.getPizzaById(1);
         assertNotNull(pizza);
         assertEquals("oranaise", pizza.getNom());
         dataAccess.closeConnection(false);
-    }
+    }*/
 }
