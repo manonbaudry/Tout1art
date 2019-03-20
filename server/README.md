@@ -11,6 +11,101 @@ Le serveur Java fourni dans ce dossier correspond à la solution du dernier TP d
 ## Lancement du serveur
 ```bash
 cd /chemin/vers/dossier/server/
-mvn compile
-mvn exec:java
+mvn compile # compilation
+mvn exec:java # execution (version main)
+mvn package # création d'un jar exécutable
+mvn test # évaluation des tests (version test)
+```
+
+Les ressources utilisées sont spécialisées (main ou test):
+* persistence.xml (h2/fichier pour main, h2/memoire pour test)
+* log4j et logback (définition des logs)
+
+## Structure du projet:
+
+```
+├── pom.xml
+├── README.md
+├── src
+│   ├── main
+│   │   ├── java
+│   │   │   └── fr
+│   │   │       └── ulille
+│   │   │           └── iut
+│   │   │               └── pizzaland              
+│   │   │                   ├── ApiV1.java                         Application web
+│   │   │                   ├── CORSFilter.java              
+│   │   │                   ├── dao
+│   │   │                   │   ├── DataAccess.java                Facade BDD
+│   │   │                   │   ├── IngredientEntity.java       |
+│   │   │                   │   ├──  .....                      |  Entités java
+│   │   │                   │   └── PizzaEntity.java            |
+│   │   │                   ├── dto
+│   │   │                   │   ├── IngredientDto.java          |
+│   │   │                   │   ├── IngredientPayloadDto.java   |  
+│   │   │                   │   ├── PizzaCreateDto.java         |   .. Dto(s)
+│   │   │                   │   ├── PizzaDto.java               |
+│   │   │                   │   └── PizzaShortDto.java          |
+│   │   │                   ├── Main.java                          Server complet
+│   │   │                   └── ressources
+│   │   │                       ├── IngredientRessource.java    |
+│   │   │                       ├── MyResource.java             |  Ressources
+│   │   │                       ├── PizzaRessource.java         |
+│   │   │                       └── UncaughtException.java
+│   │   └── resources
+│   │       ├── log4j.properties     | 
+│   │       ├── log4j.xml            | Définition des logs
+│   │       ├── logback.xml          |
+│   │       ├── META-INF
+│   │       │   ├── persistence.xml  | Propriétés de la couche ORM (JPA) (h2, Postgres, ...)
+│   │       │   └── sql
+│   │       │       └── populate.sql | script d'intialisation de la base
+│   │       └── static               | Fichiers statiques
+│   │           ├── build
+│   │           │   ├── main.bundle.js        | Résultat de compilation js
+│   │           │   └── main.bundle.js.map    | 
+│   │           ├── css
+│   │           │   ├── flatly-bootstrap.css
+│   │           │   ├── fonts
+│   │           │   │   └── glyphicons-halflings-regular.woff2
+│   │           │   └── main.css
+│   │           ├── images
+│   │           │   ├── bg.png
+│   │           │   ├── carbonara.jpg
+│   │           │   ├── hawaienne.jpg
+│   │           │   ├── hot.svg
+│   │           │   ├── logo.svg
+│   │           │   ├── napolitaine.jpg
+│   │           │   ├── oranaise.jpg
+│   │           │   ├── regina.jpg
+│   │           │   ├── savoyarde.jpg
+│   │           │   └── spicy.jpg
+│   │           └── index.html
+│   └── test
+│       ├── http         | illustration des accés à l'API (documentation)
+│       │   ├── ingredients
+│       │   │   ├── delete_id_404.http
+│       │   │   ├── ....
+│       │   │   └── put.http
+│       │   ├── pizzas
+│       │   │   ├── delete_id_404.http
+│       │   │   ├── ....
+│       │   │   └── put.http
+│       │   └── test_serveur.http
+│       ├── java
+│       │   └── fr
+│       │       └── ulille
+│       │           └── iut
+│       │               └── pizzaland              | méthodes de test
+│       │                   ├── ressources
+│       │                   │   ├── IngredientRessourceTest.java
+│       │                   │   ├── ....
+│       │                   │   └── StaticFilesTest.java
+│       │                   └── testdao
+│       │                       ├── AllTestsDisabled.java
+│       │                       ├── ....
+│       │                       └── PizzaJpaTestDisabled.java
+│       └── resources ' Structure équivalente à la version 'main'
+│           │       .......
+│           └── static
 ```
