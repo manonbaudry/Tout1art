@@ -2,9 +2,18 @@ package fr.ulille.iut.tout1art;
 
 import android.content.Intent;
 import android.net.Uri;
+import android.provider.Settings;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
+
+import java.io.BufferedInputStream;
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.net.HttpURLConnection;
+import java.net.URL;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -21,13 +30,14 @@ public class MainActivity extends AppCompatActivity {
 
 
     // afficher le site pour le client
-    public void afficheSite(View view){
-        //startActivity(new Intent(this,BacklogSite.class));
+    public void afficheSite(View view) throws Exception{
+        //startActivity(new Intent(this,BacklogArt.class));
         String url = "http://www.google.com";
         Intent i = new Intent(Intent.ACTION_VIEW);
         i.setData(Uri.parse(url));
         startActivity(i);
     }
+
 
 }
 
