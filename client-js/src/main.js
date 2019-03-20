@@ -1,44 +1,40 @@
 // @flow
-import HomePage from './pages/HomePage.js';
-import AddPizzaPage from './pages/AddPizzaPage.js';
 import PageRenderer from './PageRenderer.js';
-import $ from 'jquery';
 import Menu from './components/Menu.js';
+import HomePage from './pages/HomePage.js';
+import ClientInscriptionPage from "./pages/ClientInscriptionPage";
+import $ from 'jquery';
 
 // configuration du PageRenderer
 PageRenderer.titleElement = document.querySelector('.pageTitle');
-PageRenderer.contentElement = document.querySelector('.pizzasContainer');
+PageRenderer.contentElement = document.querySelector('.pageContent');
 
 // déclaration des différentes page de l'app
-const homePage:HomePage = new HomePage([]);
-const addPizzaPage:AddPizzaPage = new AddPizzaPage();
+const homePage: HomePage = new HomePage([]);
+const inscriptionPage: ClientInscriptionPage = new ClientInscriptionPage();
 
 // configuration des liens du menu
-const menu:Menu = new Menu();
-const logoLink = $('a.navbar-brand');
+const menu: Menu = new Menu();
 const homeLink = $('.homeLink');
-const addPizzaLink = $('.addPizzaLink');
+const inscriptionLink = $('.inscriptionLink');
 
-logoLink.click( (event:Event) => {
-	event.preventDefault();
-	renderHome();
+homeLink.click((event: Event) => {
+    event.preventDefault();
+    renderHome();
 });
-homeLink.click( (event:Event) => {
-	event.preventDefault();
-	renderHome();
+inscriptionLink.click((event: Event) => {
+    event.preventDefault();
+    renderInscription();
 });
-addPizzaLink.click( (event:Event) => {
-	event.preventDefault();
-	renderAddPizza();
-})
 
-function renderHome():void{
-	menu.setSelectedLink(homeLink);
-	PageRenderer.renderPage(homePage);
+function renderHome(): void {
+    menu.setSelectedLink(homeLink);
+    PageRenderer.renderPage(homePage);
 }
-function renderAddPizza():void{
-	menu.setSelectedLink(addPizzaLink);
-	PageRenderer.renderPage(addPizzaPage);
+
+function renderInscription(): void {
+    menu.setSelectedLink(inscriptionLink);
+    PageRenderer.renderPage(inscriptionPage);
 }
 
 // lorsqu'on arrive sur l'appli, par défaut
