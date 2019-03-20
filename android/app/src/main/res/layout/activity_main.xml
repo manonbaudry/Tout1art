@@ -32,7 +32,6 @@
         android:layout_weight="1"
         android:background="@color/Blanc"
         android:onClick="afficheSite"
-
         />
 
 
