@@ -10,7 +10,7 @@
 
     >
     <Button
-        android:text="1"
+        android:text="Vous connecter en tant qu'artisant"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="1"
@@ -26,7 +26,7 @@
         android:background="@color/Noir" />
 
     <Button
-        android:text="2"
+        android:text="Voir le site"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="1"
