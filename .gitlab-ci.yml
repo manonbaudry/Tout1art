@@ -1,17 +1,16 @@
 stages:
-  - 📦build
   - 🔍test
+  - 📦build
+  - 🐋docker
   - ⭐deploy
 
-.build:
-  stage: 📦build
-  image: docker:latest
-  services:
-    - docker:dind
-  script:
-    - docker login -u gitlab-ci-token -p $CI_JOB_TOKEN $CI_REGISTRY
-    - docker build -t $CONTAINER_NAME .
-    - docker push $CONTAINER_NAME
+before_script:
+  - export GRADLE_USER_HOME=$(pwd)/.gradle
+
+cache:
+  key: "$CI_COMMIT_REF_NAME"
+  paths:
+     - .gradle/
 
 test::javascript:
   stage: 🔍test
@@ -27,4 +26,52 @@ test::java:
   script:
     - cd server
     - apt-get update && apt-get -y install maven && apt-get clean
-    - mvn package
+    - mvn test
+
+.test::android:
+  stage: 🔍test
+  image: javiersantos/android-ci
+  script:
+    - cd android
+    - chmod +x ./gradlew
+    - ./gradlew test
+
+build::javascript:
+  stage: 📦build
+  image: node
+  script:
+    - cd client-js
+    - npm install
+    - npm run build
+
+build::java:
+  stage: 📦build
+  image: openjdk:8-jdk
+  script:
+    - cd server
+    - apt-get update && apt-get -y install maven && apt-get clean
+    - mvn package -DskipTests
+  artifacts:
+    paths:
+      - server/target/*.jar
+
+.build::android:
+  stage: 📦build
+  image: javiersantos/android-ci
+  script:
+    - cd android
+    - chmod +x ./gradlew
+    - ./gradlew assemble
+  artifacts:
+    paths:
+      - android/app/build/outputs/apk/
+
+build:
+  stage: 🐋docker
+  image: docker:latest
+  services:
+    - docker:dind
+  script:
+    - docker login -u gitlab-ci-token -p $CI_JOB_TOKEN $CI_REGISTRY
+    - docker build -t $CI_REGISTRY_IMAGE .
+    - docker push $CI_REGISTRY_IMAGE
