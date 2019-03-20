@@ -15,7 +15,8 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void connectArt(View view){
-        startActivity(new Intent(this,BacklogArt.class));
+
+        startActivity(new Intent(this,LoginArtisan.class));
     }
 
 
