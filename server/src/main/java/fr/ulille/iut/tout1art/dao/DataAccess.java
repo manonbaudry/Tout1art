@@ -9,6 +9,7 @@ import javax.persistence.*;
 
 public class DataAccess {
     private final static Logger logger = LoggerFactory.getLogger(DataAccess.class);
+    @PersistenceContext(unitName="Tout1artPersistenceUnit")
     private EntityManager em;
     private EntityTransaction et;
 

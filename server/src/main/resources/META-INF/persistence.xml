@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <persistence xmlns="http://java.sun.com/xml/ns/persistence" version="2.0">
 
-    <persistence-unit name="Tout1aPersistenceUnit">
+    <persistence-unit name="Tout1artPersistenceUnit">
         <provider>org.eclipse.persistence.jpa.PersistenceProvider</provider>
 
         <class>fr.ulille.iut.tout1art.dao.ArtisanEntity</class>
