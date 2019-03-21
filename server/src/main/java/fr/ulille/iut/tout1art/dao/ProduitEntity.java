@@ -39,7 +39,8 @@ public class ProduitEntity {
     private String description;
     private String srcImage;
     private double prix;
-    private int idProduit;
+    private int idArtisan;
+    private String categorie;
 
     public static ProduitEntity convertFromProduitCreateDto(ProduitCreateDto produit) {
         return modelMapper.map(produit, ProduitEntity.class);
@@ -80,18 +81,25 @@ public class ProduitEntity {
 		this.prix = prix;
 	}
 
-	public int getIdProduit() {
-		return idProduit;
-	}
-
-	public void setIdProduit(int idProduit) {
-		this.idProduit = idProduit;
-	}
-
 	public void setId(long id) {
         this.id = id;
     }
-    
+	public int getIdArtisan() {
+		return idArtisan;
+	}
+
+	public void setIdArtisan(int idArtisan) {
+		this.idArtisan = idArtisan;
+	}
+
+	public String getCategorie() {
+		return categorie;
+	}
+
+	public void setCategorie(String categorie) {
+		this.categorie = categorie;
+	}
+
     @Basic
     @Column(name = "nom", nullable = false, length = -1)
 	public String getNom() {

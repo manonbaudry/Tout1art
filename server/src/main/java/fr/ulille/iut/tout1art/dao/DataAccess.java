@@ -217,6 +217,16 @@ public class DataAccess {
         em.remove(em.merge(pizza));
 	}
 
+	
+	/**
+	 * Lecture de la totalités des artisans de la base
+	 * @return La liste des pizzas
+	 */
+	public List<ProduitEntity> getAllProduits() {
+        TypedQuery<ProduitEntity> query = em.createNamedQuery("FindAllProduits", ProduitEntity.class);
+        return query.getResultList();
+	}
+	
 	public long createArtisan(ArtisanEntity artisanEntity) {
 		// TODO Auto-generated method stub
 		return 0;

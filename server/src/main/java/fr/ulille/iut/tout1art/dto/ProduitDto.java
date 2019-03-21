@@ -12,6 +12,9 @@ public class ProduitDto {
     private String nom;
     private String description; 
     private String srcImage;
+    private int idArtisan;
+    private String categorie;
+    
     public String getSrcImage() {
 		return srcImage;
 	}
@@ -54,13 +57,6 @@ public class ProduitDto {
 		this.prix = prix;
 	}
 
-	public int getIdProduit() {
-		return idProduit;
-	}
-
-	public void setIdProduit(int idProduit) {
-		this.idProduit = idProduit;
-	}
     
 	@Override
     public boolean equals(Object o) {

@@ -8,6 +8,9 @@ public class ProduitCreateDto {
     private String nom;
     private String description;
     private String srcImage;
+    private int idArtisan;
+    private String categorie;
+    
     public String getSrcImage() {
 		return srcImage;
 	}

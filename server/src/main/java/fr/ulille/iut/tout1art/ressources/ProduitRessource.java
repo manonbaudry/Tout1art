@@ -21,8 +21,9 @@ import java.util.stream.Collectors;
 import fr.ulille.iut.tout1art.dao.DataAccess;
 import fr.ulille.iut.tout1art.dao.ProduitEntity;
 import fr.ulille.iut.tout1art.dto.ProduitCreateDto;
+import fr.ulille.iut.tout1art.dto.ProduitDto;
 
-@Path("/poduit")
+@Path("/produit")
 public class ProduitRessource {
     private final static Logger logger = LoggerFactory.getLogger(ProduitRessource.class);
 
@@ -55,14 +56,14 @@ public class ProduitRessource {
         }
     }
 
-//    @GET
-//    @Produces(MediaType.APPLICATION_JSON)
-//    public List<ProduitShortDto> getAll() {
-//        DataAccess dataAccess = DataAccess.begin();
-//        List<ProduitEntity> lp = dataAccess.getAllProduits();
-//        dataAccess.closeConnection(false);
-//        return lp.stream().map(ProduitEntity::convertToSimpleDto).collect(Collectors.toList());
-//    }
+    @GET
+    @Produces(MediaType.APPLICATION_JSON)
+    public List<ProduitDto> getAll() {
+        DataAccess dataAccess = DataAccess.begin();
+        List<ProduitEntity> lp = dataAccess.getAllProduits();
+        dataAccess.closeConnection(false);
+        return lp.stream().map(ProduitEntity::convertToDto).collect(Collectors.toList());
+    }
 
     @GET
     @Path("{idProduit}")
