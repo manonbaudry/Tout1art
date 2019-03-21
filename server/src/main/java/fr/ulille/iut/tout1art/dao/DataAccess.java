@@ -235,5 +235,20 @@ public class DataAccess {
 		
 	}
 
+	public long createProduit(ProduitEntity produitEntity) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	public void deleteProduit(long idProduit) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	public ProduitEntity getProduitById(long idProduit) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 
 }
