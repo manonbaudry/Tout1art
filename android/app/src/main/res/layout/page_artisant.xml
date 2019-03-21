@@ -39,7 +39,8 @@
         android:text="@string/boutton1"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView"
-        tools:text="@string/boutton1" />
+        tools:text="@string/boutton1"
+        android:onClick="connect"/>
 
     <Button
         android:id="@+id/button3"

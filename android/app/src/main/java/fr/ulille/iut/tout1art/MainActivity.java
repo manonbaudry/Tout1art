@@ -25,6 +25,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void onTouchScreen(View view) {
+
         startActivity(new Intent(this,LoginActivity.class));
     }
 

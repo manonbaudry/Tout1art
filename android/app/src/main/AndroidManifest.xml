@@ -36,15 +36,9 @@
                 android:value=".MainActivity" />
         </activity>
         <activity
-            android:name=".LoginArtisan"
-            android:parentActivityName=".MainActivity">
-            <meta-data
-                android:name="android.support.PARENT_ACTIVITY"
-                android:value=".MainActivity" />
-        </activity>
-        <activity
             android:name=".LoginActivity"
-            android:label="@string/title_activity_login"></activity>
+            android:label="@string/title_activity_login" />
+        <activity android:name=".testCo"></activity>
     </application>
 
 </manifest>
