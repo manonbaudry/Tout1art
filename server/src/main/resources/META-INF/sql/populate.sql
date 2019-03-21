@@ -15,6 +15,7 @@ CREATE TABLE produit (
 	idp BIGINT IDENTITY NOT NULL,
 	nom VARCHAR NOT NULL,
 	description VARCHAR NOT NULL,
+	srcImage VARCHAR,
 	prix DOUBLE,
 	idArtisan INT
 	PRIMARY KEY (id));
