@@ -9,6 +9,7 @@ export default class Product {
     img: string;
 
     constructor(id: number, name: string, category: string, description: string, price: number, img: string) {
+        this.id = id;
         this.name = name;
         this.category = category;
         this.description = description;
@@ -27,6 +28,7 @@ export default class Product {
             .then((response: Response) => {
                 if (response.ok) {
                     response.json().then((json: JSON) => {
+                        console.log(json);
                         name = json.name;
                         category = json.category;
                         description = json.description;
