@@ -56,6 +56,21 @@ public class ProduitDto {
 	public void setPrix(double prix) {
 		this.prix = prix;
 	}
+	public int getIdArtisan() {
+		return idArtisan;
+	}
+
+	public void setIdArtisan(int idArtisan) {
+		this.idArtisan = idArtisan;
+	}
+
+	public String getCategorie() {
+		return categorie;
+	}
+
+	public void setCategorie(String categorie) {
+		this.categorie = categorie;
+	}
 
     
 	@Override

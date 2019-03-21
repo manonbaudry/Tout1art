@@ -216,20 +216,11 @@ public class DataAccess {
         if (pizza == null) throw new Exception();
         em.remove(em.merge(pizza));
 	}
-
-	
-	/**
-	 * Lecture de la totalités des artisans de la base
-	 * @return La liste des pizzas
-	 */
-	public List<ProduitEntity> getAllProduits() {
-        TypedQuery<ProduitEntity> query = em.createNamedQuery("FindAllProduits", ProduitEntity.class);
-        return query.getResultList();
-	}
-	
+	// ARTISANS
 	public long createArtisan(ArtisanEntity artisanEntity) {
-		// TODO Auto-generated method stub
-		return 0;
+		em.persist(artisanEntity);
+	    em.flush();
+	    return artisanEntity.getId();
 	}
 	
 	public List<ArtisanEntity> getAllArtisans() {
@@ -241,24 +232,37 @@ public class DataAccess {
         return em.find(ArtisanEntity.class,  idArtisan);
 	}
 
-	public void deleteArtisan(long idArtisan) {
-		// TODO Auto-generated method stub
-		
+	public void deleteArtisan(long idArtisan) throws Exception {
+	    ArtisanEntity artisan = em.find(ArtisanEntity.class,  idArtisan);
+        if (artisan == null) throw new Exception();
+        em.remove(em.merge(artisan));		
 	}
-
+	// PRODUITS
 	public long createProduit(ProduitEntity produitEntity) {
-		// TODO Auto-generated method stub
-		return 0;
+		em.persist(produitEntity);
+        em.flush();
+        return produitEntity.getId();
+	}
+	
+
+	/**
+	 * Lecture de la totalités des artisans de la base
+	 * @return La liste des pizzas
+	 */
+	public List<ProduitEntity> getAllProduits() {
+        TypedQuery<ProduitEntity> query = em.createNamedQuery("FindAllProduits", ProduitEntity.class);
+        return query.getResultList();
 	}
 
-	public void deleteProduit(long idProduit) {
-		// TODO Auto-generated method stub
+	public void deleteProduit(long idProduit) throws Exception {
+        ProduitEntity produit = em.find(ProduitEntity.class,  idProduit);
+        if (produit == null) throw new Exception();
+        em.remove(em.merge(produit));
 		
 	}
 
 	public ProduitEntity getProduitById(long idProduit) {
-		// TODO Auto-generated method stub
-		return null;
+        return em.find(ProduitEntity.class,  idProduit);
 	}
 
 
