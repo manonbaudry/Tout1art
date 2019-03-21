@@ -213,4 +213,21 @@ public class DataAccess {
         if (pizza == null) throw new Exception();
         em.remove(em.merge(pizza));
 	}
+
+	public long createArtisan(ArtisanEntity artisanEntity) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	public List<ArtisanEntity> getAllArtisan() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	public ArtisanEntity getArtisanById(long idArtisan) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+
 }

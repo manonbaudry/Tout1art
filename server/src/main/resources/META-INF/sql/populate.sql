@@ -1,3 +1,12 @@
+DROP TABLE IF EXISTS artisan CASCADE;
+CREATE TABLE artisan (id BIGINT IDENTITY NOT NULL, login VARCHAR UNIQUE NOT NULL, nom VARCHAR NOT NULL, prenom VARCHAR NOT NULL, adresse VARCHAR, mail VARCHAR, tel VARCHAR(10),  PRIMARY KEY (id));
+
+INSERT INTO artisan (login , mdp, nom, prenom, adresse, mail, tel) VALUES ('login', 'mdp', 'nom', 'prenom', 'adresse', 'mail', '0320000000');
+
+
+
+
+
 -- ALTER TABLE ingredientpizza DROP CONSTRAINT FK_ingredientpizza_idpizza;
 -- ALTER TABLE ingredientpizza DROP CONSTRAINT FK_ingredientpizza_idingredient;
 DROP TABLE IF EXISTS ingredientpizza CASCADE;

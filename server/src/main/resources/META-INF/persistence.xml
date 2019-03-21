@@ -5,6 +5,7 @@
         <provider>org.eclipse.persistence.jpa.PersistenceProvider</provider>
         <class>fr.ulille.iut.pizzaland.dao.IngredientEntity</class>
         <class>fr.ulille.iut.pizzaland.dao.PizzaEntity</class>
+        <class>fr.ulille.iut.pizzaland.dao.ArtisanEntity</class>
         <properties>
             <!-- Configuration postgresql -->
  	       	<!--<property name="javax.persistence.jdbc.url" value="jdbc:postgresql://localhost:5432/pizzaland"/> -->
@@ -20,7 +21,7 @@
             <!-- <property name="javax.persistence.jdbc.url" value="jdbc:h2:mem:pizzaland"/> --> <!-- h2 en mémoire -->
             <!--<property name="javax.persistence.jdbc.url" value="jdbc:h2:~/mnt/c/Users/Nicolas/Documents/N4/baseToutUnArt"/> --> <!-- h2 en fichiers -->
             <!-- base sur fichiers -->
-            <!--<property name="javax.persistence.jdbc.url" value="jdbc:h2:~/tmp/pizzaland"/>-->
+            <property name="javax.persistence.jdbc.url" value="jdbc:h2:file:~/tout1art"/>-->
             <!-- credential if needed -->
  	        <!--<property name="javax.persistence.jdbc.user" value="user"/> -->
  	        <!--<property name="javax.persistence.jdbc.password" value="password"/>         -->
