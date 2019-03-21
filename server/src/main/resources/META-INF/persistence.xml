@@ -3,9 +3,9 @@
 
     <persistence-unit name="PizzalandPersistenceUnit">
         <provider>org.eclipse.persistence.jpa.PersistenceProvider</provider>
-        <class>fr.ulille.iut.pizzaland.dao.IngredientEntity</class>
-        <class>fr.ulille.iut.pizzaland.dao.PizzaEntity</class>
-        <class>fr.ulille.iut.pizzaland.dao.ArtisanEntity</class>
+        <class>fr.ulille.iut.tout1art.dao.IngredientEntity</class>
+        <class>fr.ulille.iut.tout1art.dao.PizzaEntity</class>
+        <class>fr.ulille.iut.tout1art.dao.ArtisanEntity</class>
         <properties>
             <!-- Configuration postgresql -->
  	       	<!--<property name="javax.persistence.jdbc.url" value="jdbc:postgresql://localhost:5432/pizzaland"/> -->
