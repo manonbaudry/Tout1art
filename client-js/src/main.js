@@ -10,6 +10,11 @@ import $ from 'jquery';
 PageRenderer.titleElement = document.querySelector('.pageTitle');
 PageRenderer.contentElement = document.querySelector('.pageContent');
 
+//configuration navbar
+const buttonDropDownElement = document.querySelector('.btn').outerHTML;
+const contentDropdownElement = document.querySelector('.dropdown-menu').outerHTML;
+const containerDropdown = document.querySelector('.categorie');
+
 // déclaration des différentes page de l'app
 const homePage: HomePage = new HomePage([]);
 const inscriptionPage: ClientInscriptionPage = new ClientInscriptionPage();
@@ -38,6 +43,7 @@ function renderHome(): void {
     PageRenderer.renderPage(homePage);
 }
 
+
 function renderInscription(): void {
     Menu.setSelectedLink(inscriptionLink);
     PageRenderer.renderPage(inscriptionPage);
@@ -47,7 +53,8 @@ function renderConnection(): void {
     Menu.setSelectedLink(connectionLink);
     PageRenderer.renderPage(connectionPage);
 }
-
+console.log(buttonDropDownElement);
+console.log(contentDropdownElement);
 // lorsqu'on arrive sur l'appli, par défaut
 // on affiche la page d'accueil
 renderHome();

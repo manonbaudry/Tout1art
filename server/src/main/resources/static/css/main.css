@@ -11,15 +11,13 @@ main{
 }
 
 li{
-	margin-right: 10%;
+	margin-right:8%;
 }
 
 ul{
 	margin-right: auto;
 	margin-left: auto;
 }
-
-
 
 nav ul li a:hover, nav ul li a:active{
 	border-bottom: 0.12em solid #ccc;
@@ -29,4 +27,4 @@ nav ul li a:hover, nav ul li a:active{
 header nav ul li a:focus {
 	  outline: none;
 }
-  
+
