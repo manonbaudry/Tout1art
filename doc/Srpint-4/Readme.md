@@ -10,4 +10,5 @@ Interface artisant Android.
 
 ## Travail à faire au prochain sprint
 Affichage des produits.
+Design interface sur papier.
 Modification de la page d'accueil après en avoir parler.
