@@ -23,4 +23,10 @@
     <string name="login">login</string>
     <string name="boutton1">button</string>
     <string name="testco">test</string>
+    <string name="button1">Ajouter un produit</string>
+    <string name="button2">Consulter un produit</string>
+    <string name="button3">Gerer mes commandes</string>
+    <string name="button4">Mon compte</string>
+    <string name="Stat" />
+    <string name="button5">Statistique</string>
 </resources>
