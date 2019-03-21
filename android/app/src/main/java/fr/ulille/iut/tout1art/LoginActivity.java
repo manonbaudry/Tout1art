@@ -16,10 +16,24 @@ import android.database.Cursor;
 import android.net.Uri;
 import android.os.AsyncTask;
 
+import com.android.volley.Cache;
+import com.android.volley.Request;
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.Response.ErrorListener;
+import com.android.volley.Response.Listener;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.HttpHeaderParser;
+import com.android.volley.toolbox.JsonArrayRequest;
+import com.android.volley.toolbox.JsonObjectRequest;
+import com.android.volley.toolbox.StringRequest;
+import com.android.volley.toolbox.Volley;
+
 import android.os.Build;
 import android.os.Bundle;
 import android.provider.ContactsContract;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.KeyEvent;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -30,6 +44,11 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
+import com.android.volley.Response;
+
+import org.json.JSONArray;
+import org.json.JSONObject;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -39,7 +58,11 @@ import static android.Manifest.permission.READ_CONTACTS;
  * A login screen that offers login via email/password.
  */
 public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<Cursor> {
-
+    private RequestQueue queue;
+    boolean cancel = false;
+    Intent intent;
+    String email;
+    int id;
     /**
      * Id to identity READ_CONTACTS permission request.
      */
@@ -70,6 +93,8 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
         // Set up the login form.
         mEmailView = (AutoCompleteTextView) findViewById(R.id.email);
         populateAutoComplete();
+        queue = Volley.newRequestQueue(LoginActivity.this);
+        intent = new Intent(this,BacklogArt.class);
 
         mPasswordView = (EditText) findViewById(R.id.password);
         mPasswordView.setOnEditorActionListener(new TextView.OnEditorActionListener() {
@@ -154,10 +179,9 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
         mPasswordView.setError(null);
 
         // Store values at the time of the login attempt.
-        String email = mEmailView.getText().toString();
-        String password = mPasswordView.getText().toString();
+        email = mEmailView.getText().toString();
+        final String password = mPasswordView.getText().toString();
 
-        boolean cancel = false;
         View focusView = null;
 
         // Check for a valid password, if the user entered one.
@@ -178,6 +202,42 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
             cancel = true;
         }
 
+
+
+        String uri = "http://10.0.2.2:8080/api/v1/artisan";
+
+
+        JsonArrayRequest request = new JsonArrayRequest(
+                Request.Method.GET,
+                uri,
+                null,
+                new Response.Listener<JSONArray>() {
+                    TextView tx = findViewById(R.id.textView2);
+                    @Override
+                    public void onResponse(JSONArray response) {
+                        if(verif(response,email,password) == false){
+                            cancel = true;
+                        }else{
+                            intent.putExtra("parametres", id);
+                        }
+                    }
+                },
+                new ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                        System.out.println(error);
+                    }
+                });
+        queue.add(request);
+
+        // post email & password
+        // requete au serveur pour verifier email + mdp
+
+        /*else if(){
+
+            cancel = true;
+        }
+        */
         if (cancel) {
             // There was an error; don't attempt login and focus the first
             // form field with an error.
@@ -188,7 +248,8 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
             showProgress(true);
             mAuthTask = new UserLoginTask(email, password);
             mAuthTask.execute((Void) null);
-            startActivity(new Intent(this,BacklogArt.class));
+
+            startActivity(intent);
         }
     }
 
@@ -346,6 +407,26 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
         protected void onCancelled() {
             mAuthTask = null;
             showProgress(false);
+        }
+
+    }
+
+    public boolean verif(JSONArray response, String mail, String password){
+        try {
+            for (int i = 0; i < response.length() ; i++) {
+                JSONObject obj = response.getJSONObject(i);
+                //System.out.println("NOM : "+obj.getString("nom"));
+                if(obj.getString("mail") == mail){
+                    if(obj.getString("mdp") == password){
+                        id = obj.getInt("id");
+                        return true;
+                    }
+                }
+            }
+            return false;
+        } catch (Exception e) {
+            e.printStackTrace();
+            return false;
         }
     }
 }
