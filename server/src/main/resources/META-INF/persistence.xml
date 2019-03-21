@@ -6,6 +6,7 @@
 
         <class>fr.ulille.iut.tout1art.dao.ArtisanEntity</class>
         <class>fr.ulille.iut.tout1art.dao.ProduitEntity</class>
+        <class>fr.ulille.iut.tout1art.dao.ClientEntity</class>
         <!-- <class>fr.ulille.iut.tout1art.dao.CommandeEntity</class> -->
         
         <properties>

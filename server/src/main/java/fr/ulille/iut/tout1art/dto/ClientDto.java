@@ -1,8 +1,13 @@
 package fr.ulille.iut.tout1art.dto;
 
+import java.util.Objects;
 
- public class ArtisanCreateDto {
-    
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
+public class ClientDto {
+	private final static Logger logger = LoggerFactory.getLogger(ArtisanCreateDto.class);
+
     protected long id;
     protected String nom;
     protected String prenom; 
@@ -11,8 +16,8 @@ package fr.ulille.iut.tout1art.dto;
     protected String tel;
     protected String mdp;
     protected String login;
-    
 
+    
     public long getId() {
         return id;
     }
@@ -85,6 +90,8 @@ package fr.ulille.iut.tout1art.dto;
 		this.tel = tel;
 	}
 
+	
+	
 	/**
 	 * @return the mdp
 	 */
@@ -112,5 +119,13 @@ package fr.ulille.iut.tout1art.dto;
 	public void setLogin(String login) {
 		this.login = login;
 	}
-    
+
+	@Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        ArtisanCreateDto that = (ArtisanCreateDto) o;
+        return id == that.id &&
+                Objects.equals(nom, that.nom);
+    }
 }

@@ -1,7 +1,8 @@
 package fr.ulille.iut.tout1art.dto;
 
 
- public class ArtisanCreateDto {
+
+public class ClientCreateDto {
     
     protected long id;
     protected String nom;
@@ -58,7 +59,7 @@ package fr.ulille.iut.tout1art.dto;
 	}
 
 	/**
-	 * @return the mail
+	 * @return the mailArtisan
 	 */
 	public String getMail() {
 		return mail;

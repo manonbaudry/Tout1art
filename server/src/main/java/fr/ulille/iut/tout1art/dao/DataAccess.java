@@ -265,5 +265,25 @@ public class DataAccess {
         return em.find(ProduitEntity.class,  idProduit);
 	}
 
+	public ClientEntity getClientById(long idClient) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	public List<ClientEntity> getAllClients() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	public void deleteClient(long idClient) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	public long createClient(ClientEntity clientEntity) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
 
 }

@@ -1,28 +1,27 @@
 package fr.ulille.iut.tout1art.dao;
 
 
-
 import javax.persistence.*;
 
 import org.modelmapper.ModelMapper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import fr.ulille.iut.tout1art.dto.ArtisanCreateDto;
-import fr.ulille.iut.tout1art.dto.ArtisanDto;
+import fr.ulille.iut.tout1art.dto.ClientCreateDto;
+import fr.ulille.iut.tout1art.dto.ClientDto;
 
 import java.util.*;
 
 @Entity
-@Table(name = "artisan")
+@Table(name = "client")
 
 @NamedQueries({
-    @NamedQuery(name="FindAllArtisans", query="SELECT p from ArtisanEntity p"),
-   // @NamedQuery(name="FindArtisanByName", query="SELECT p from ArtisanEntity p where p.nom = :pnom")
+    @NamedQuery(name="FindAllClients", query="SELECT p from ClientEntity p"),
+   // @NamedQuery(name="FindClientByName", query="SELECT p from ClientEntity p where p.nom = :pnom")
 })
 
-public class ArtisanEntity {
-    private final static Logger logger = LoggerFactory.getLogger(ArtisanEntity.class);
+public class ClientEntity {
+    private final static Logger logger = LoggerFactory.getLogger(ClientEntity.class);
     private static ModelMapper modelMapper = new ModelMapper();
 
     private long id;
@@ -34,12 +33,12 @@ public class ArtisanEntity {
     private String login;
     private String mdp;
 
-    public static  ArtisanEntity convertFromArtisanCreateDto(ArtisanCreateDto artisan) {
-        return modelMapper.map(artisan, ArtisanEntity.class);
+    public static  ClientEntity convertFromClientCreateDto(ClientCreateDto client) {
+        return modelMapper.map(client, ClientEntity.class);
     }
 
-    public static ArtisanDto convertToDto(ArtisanEntity artisan) {
-		return  modelMapper.map(artisan, ArtisanDto.class);
+    public static ClientDto convertToDto(ClientEntity client) {
+		return  modelMapper.map(client, ClientDto.class);
 	}
 	
     @Id
@@ -146,7 +145,7 @@ public class ArtisanEntity {
 	public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        ArtisanEntity that = (ArtisanEntity) o;
+        ClientEntity that = (ClientEntity) o;
         return id == that.id &&
                 Objects.equals(nom, that.nom);
     }
