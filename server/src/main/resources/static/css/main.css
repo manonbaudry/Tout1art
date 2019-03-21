@@ -1,3 +1,32 @@
-.navbar{
+body{
+	top:0;
+	bottom:0;
+	right:0;
+	left:0;
 	text-align: center;
 }
+
+main{
+	margin: 6%;	
+}
+
+li{
+	margin-right: 10%;
+}
+
+ul{
+	margin-right: auto;
+	margin-left: auto;
+}
+
+
+
+nav ul li a:hover, nav ul li a:active{
+	border-bottom: 0.12em solid #ccc;
+	padding-bottom: 0.5em;
+}
+
+header nav ul li a:focus {
+	  outline: none;
+}
+  

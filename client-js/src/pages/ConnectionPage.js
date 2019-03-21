@@ -2,10 +2,12 @@
 import Page from "./Page";
 import $ from "jquery";
 
-export default class SigninPage extends Page {
+export default class ConnectionPage extends Page {
 
     constructor() {
         super('Connexion');
+        // $FlowFixMe
+        this.submit = this.submit.bind(this);
     }
 
     mount(contentElement: HTMLElement): void {
@@ -14,7 +16,6 @@ export default class SigninPage extends Page {
 
     render() {
         return `<form class="form-signin connectionPage">
-    <img class="mb-4" src="images/logo.png" alt="" width="72" height="72">
     <h1 class="h3 mb-3 font-weight-normal">Veuillez vous connecter</h1>
     <label for="inputEmail" class="sr-only">Email</label>
     <input name="email" type="email" id="inputEmail" class="form-control" placeholder="Adresse email" required
@@ -26,7 +27,7 @@ export default class SigninPage extends Page {
             <input type="checkbox" value="remember-me"> Remember me
         </label>
     </div>
-    <button class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
+    <button class="btn btn-lg btn-primary btn-block" type="submit">Se connecter</button>
 </form>`;
     }
 
