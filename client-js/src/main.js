@@ -22,10 +22,10 @@ const inscriptionPage: ClientInscriptionPage = new ClientInscriptionPage();
 const connectionPage: ConnectionPage = new ConnectionPage();
 let productPage: ProductPage;
 
-//recupération des sous sections "mobilier, luminaire et déco" navbar
+//recupération dropdown "mobilier, luminaire et déco" navbar
 const dropDownMobilier = document.querySelectorAll('.mobItem a');
 const dropDownLuminaire = document.querySelectorAll('.lumItem a');
-const dropDownDeco = document.querySelector('.decoItem a');
+const dropDownDeco = document.querySelectorAll('.decoItem a');
 
 // configuration des liens du menu
 const homeLink = $('.homeLink');
@@ -48,12 +48,11 @@ connectionLink.click((event: Event) => {
 function renderHome(): void {
     Menu.setSelectedLink(homeLink);
     PageRenderer.renderPage(homePage);
-    //updateSectionDropDown(dropDownMobilier);
     $('.productLink').click((event: Event) => {
         event.preventDefault();
-        console.log('target id :', event.currentTarget.getAttribute('id'));
         renderProduct(event.currentTarget.getAttribute('id'));
     });
+   // updateSectionDropDown(dropDownMobilier, dropDownLuminaire, dropDownDeco);
 }
 
 function renderInscription(): void {
@@ -70,7 +69,6 @@ function renderProduct(id: number): void {
     Menu.setSelectedLink(homeLink);
     // const product: ?Product = Product.get(id);
     const product = products[id - 1];
-    console.log('product after get', product);
     if (product) {
         productPage = new ProductPage(product);
     } else {
@@ -79,10 +77,34 @@ function renderProduct(id: number): void {
     PageRenderer.renderPage(productPage);
 }
 
-function updateSectionDropDown(tabSection) {
+function updateSectionDropDown(mobiliers, luminaires, decos) {
 
-    tabSection.forEach(element => {
-        element.innerHTML = "ok";
+    //ici requete pour aller chercher les sous sections dans la bdd
+    const getSecionMobiliers = null;
+    getSecionMobiliers.forEach(element => {
+
+        mobiliers.innerHTML += `<a class="dropdown-item" href="#">${element}</a>`;
+        element.click((event: Event) => {
+            event.preventDefault();
+        });
+    });
+
+    const getSectionLuminaires =null;
+    getSectionLuminaires.forEach(element => {
+
+        luminaires.innerHTML += `<a class="dropdown-item" href="#">${element}</a>`;
+        element.click((event: Event) => {
+            event.preventDefault();
+        });
+    });
+
+    const getSectionDecos = null;
+    getSectionDecos.forEach(element => {
+
+        decos.innerHTML += `<a class="dropdown-item" href="#">${element}</a>`;
+        element.click((event: Event) => {
+            event.preventDefault();
+        });
     });
 }
 

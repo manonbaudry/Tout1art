@@ -9,7 +9,6 @@ export default class NewHomePage extends Page {
     constructor(products: Array<Product>) {
         super('Accueil');
         this.products = products;
-        console.log(products);
     }
 
     render(): string {
