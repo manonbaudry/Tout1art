@@ -7,7 +7,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MainActivity"
+    tools:context=".BacklogArt"
     android:orientation="vertical"
     >
 
@@ -36,11 +36,15 @@
         android:layout_marginStart="28dp"
         android:layout_marginLeft="28dp"
         android:layout_marginTop="44dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginRight="8dp"
+        android:onClick="connect"
         android:text="@string/boutton1"
+        app:layout_constraintEnd_toStartOf="@+id/button3"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView"
-        tools:text="@string/boutton1"
-        android:onClick="connect"/>
+        tools:text="@string/boutton1" />
 
     <Button
         android:id="@+id/button3"
@@ -73,13 +77,13 @@
         android:layout_height="90dp"
         android:layout_marginStart="28dp"
         android:layout_marginLeft="28dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginBottom="48dp"
+        android:layout_marginTop="40dp"
+        android:layout_marginBottom="8dp"
         android:text="Button"
         app:layout_constraintBottom_toTopOf="@+id/button6"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/button2"
-        app:layout_constraintVertical_bias="1.0" />
+        app:layout_constraintVertical_bias="0.047" />
 
     <Button
         android:id="@+id/button6"

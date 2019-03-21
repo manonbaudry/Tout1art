@@ -1,24 +1,27 @@
 // @flow
 import PageRenderer from './PageRenderer.js';
 import Menu from './components/Menu.js';
-import HomePage from './pages/HomePage.js';
+import NewHomePage from "./pages/NewHomePage";
 import ClientInscriptionPage from "./pages/ClientInscriptionPage";
 import ConnectionPage from "./pages/ConnectionPage";
 import $ from 'jquery';
+import ProductPage from "./pages/ProductPage";
+import Product from "./Product";
 
 // configuration du PageRenderer
 PageRenderer.titleElement = document.querySelector('.pageTitle');
 PageRenderer.contentElement = document.querySelector('.pageContent');
 
-//configuration navbar
-const buttonDropDownElement = document.querySelector('.btn').outerHTML;
-const contentDropdownElement = document.querySelector('.dropdown-menu').outerHTML;
-const containerDropdown = document.querySelector('.categorie');
-
 // déclaration des différentes page de l'app
-const homePage: HomePage = new HomePage([]);
+const homePage: NewHomePage = new NewHomePage([]);
 const inscriptionPage: ClientInscriptionPage = new ClientInscriptionPage();
 const connectionPage: ConnectionPage = new ConnectionPage();
+let productPage: ProductPage;
+
+//recupération des sous sections "mobilier, luminaire et déco" navbar
+const dropDownMobilier = document.querySelectorAll('.mobItem a');
+const dropDownLuminaire = document.querySelectorAll('.lumItem a');
+const dropDownDeco = document.querySelector('.decoItem a');
 
 // configuration des liens du menu
 const homeLink = $('.homeLink');
@@ -41,8 +44,12 @@ connectionLink.click((event: Event) => {
 function renderHome(): void {
     Menu.setSelectedLink(homeLink);
     PageRenderer.renderPage(homePage);
+    //updateSectionDropDown(dropDownMobilier);
+    $('.productLink').click((event: Event) => {
+        event.preventDefault();
+        renderProduct(event.currentTarget.id);
+    });
 }
-
 
 function renderInscription(): void {
     Menu.setSelectedLink(inscriptionLink);
@@ -53,8 +60,20 @@ function renderConnection(): void {
     Menu.setSelectedLink(connectionLink);
     PageRenderer.renderPage(connectionPage);
 }
-console.log(buttonDropDownElement);
-console.log(contentDropdownElement);
+
+function renderProduct(id: number): void {
+    Menu.setSelectedLink(homeLink);
+    productPage = new ProductPage(new Product(1, 'Chaise', 'Mobilier', 'Chaise', 20, 'images/carbonara.jpg'));
+    PageRenderer.renderPage(productPage);
+}
+
+function updateSectionDropDown(tabSection){
+ 
+    tabSection.forEach(element => {
+        element.innerHTML = "ok";    
+    });
+}
+
 // lorsqu'on arrive sur l'appli, par défaut
 // on affiche la page d'accueil
 renderHome();
