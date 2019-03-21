@@ -40,7 +40,8 @@
         android:text="@string/button2"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/imageView"
-        tools:text="@string/button2" />
+        tools:text="@string/button2"
+        android:onClick="consulterProduit"/>
 
     <Button
         android:id="@+id/button4"

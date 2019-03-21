@@ -31,10 +31,17 @@
                 android:value=".MainActivity" />
         </activity>
         <activity
+            android:name=".ConsulterProduit"
+            android:parentActivityName=".BacklogArt">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".BacklogArt" />
+        </activity>
+        <activity
             android:name=".LoginActivity"
             android:label="@string/title_activity_login" />
+
         <activity android:name=".testCo" />
-        <activity android:name=".ConsulterProduit"></activity>
     </application>
 
 </manifest>

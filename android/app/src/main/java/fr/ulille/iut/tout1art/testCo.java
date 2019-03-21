@@ -31,7 +31,7 @@ public class testCo extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_test_co);
         queue = Volley.newRequestQueue(testCo.this);
-        String uri = "http://10.0.2.2:8080/api/v1/myresource";
+        String uri = "http://10.0.2.2:8080/api/v1/artisan";
 
 
         StringRequest request = new StringRequest(
