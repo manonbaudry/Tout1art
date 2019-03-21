@@ -17,7 +17,7 @@ export default class ProductPage extends Page {
     <ul>
         <li>${this.product.name}</li>
         <li>${this.product.description}</li>
-        <li>${this.product.price}</li>
+        <li>${this.product.price} €</li>
     </ul>
 </div>`
     }

@@ -39,6 +39,11 @@ connectionLink.click((event: Event) => {
 function renderHome(): void {
     Menu.setSelectedLink(homeLink);
     PageRenderer.renderPage(homePage);
+
+    $('.productLink').click((event: Event) => {
+        event.preventDefault();
+        renderProduct(event.currentTarget.id);
+    });
 }
 
 function renderInscription(): void {
@@ -60,8 +65,3 @@ function renderProduct(id: number): void {
 // lorsqu'on arrive sur l'appli, par défaut
 // on affiche la page d'accueil
 renderHome();
-
-$('.productLink').click((event: Event) => {
-    event.preventDefault();
-    renderProduct(event.currentTarget.id);
-});
