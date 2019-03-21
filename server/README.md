@@ -42,7 +42,7 @@ Les ressources utilisées sont spécialisées (main ou test):
 │   │   │   └── fr
 │   │   │       └── ulille
 │   │   │           └── iut
-│   │   │               └── pizzaland              
+│   │   │               └── tout1art              
 │   │   │                   ├── ApiV1.java                         Application web
 │   │   │                   ├── CORSFilter.java              
 │   │   │                   ├── dao
@@ -106,7 +106,7 @@ Les ressources utilisées sont spécialisées (main ou test):
 │       │   └── fr
 │       │       └── ulille
 │       │           └── iut
-│       │               └── pizzaland              | méthodes de test
+│       │               └── tout1art              | méthodes de test
 │       │                   ├── ressources
 │       │                   │   ├── IngredientRessourceTest.java
 │       │                   │   ├── ....

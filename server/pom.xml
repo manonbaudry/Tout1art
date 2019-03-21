@@ -7,7 +7,7 @@
     <artifactId>squelette</artifactId>
     <packaging>jar</packaging>
     <version>1.0-SNAPSHOT</version>
-    <name>pizzaland</name>
+    <name>tout1art</name>
 
     <dependencyManagement>
         <dependencies>
@@ -163,7 +163,7 @@
                     </execution>
                 </executions>
                 <configuration>
-                    <mainClass>fr.ulille.iut.pizzaland.Main</mainClass>
+                    <mainClass>fr.ulille.iut.tout1art.Main</mainClass>
                 </configuration>
             </plugin>
             <plugin>
@@ -173,10 +173,10 @@
                     <descriptorRefs>
                         <descriptorRef>jar-with-dependencies</descriptorRef>
                     </descriptorRefs>
-                    <finalName>pizzaland</finalName>
+                    <finalName>tout1art</finalName>
                     <archive>
                         <manifest>
-                            <mainClass>fr.ulille.iut.pizzaland.Main</mainClass>
+                            <mainClass>fr.ulille.iut.tout1art.Main</mainClass>
                         </manifest>
                     </archive>
                 </configuration>
@@ -208,7 +208,7 @@
                 <configuration>
                     <archive>
                         <manifest>
-                            <mainClass>fr.ulille.iut.pizzaland.Main</mainClass>
+                            <mainClass>fr.ulille.iut.tout1art.Main</mainClass>
                         </manifest>
                     </archive>
                 </configuration>
