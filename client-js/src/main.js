@@ -13,7 +13,11 @@ PageRenderer.titleElement = document.querySelector('.pageTitle');
 PageRenderer.contentElement = document.querySelector('.pageContent');
 
 // déclaration des différentes page de l'app
-const homePage: NewHomePage = new NewHomePage();
+const products: Array<Product> = [];
+products[0] = new Product(1, 'Chaise', 'Mobilier', 'Ceci est une chaise.', 20, 'images/carbonara.jpg');
+products[1] = new Product(2, 'Bureau', 'Mobilier', 'Ceci est un bureau.', 200, 'images/napolitaine.jpg');
+products[2] = new Product(3, 'Lampe', 'Luminaire', 'Ceci est un luminaire.', 16, 'images/hawaienne.jpg');
+const homePage: NewHomePage = new NewHomePage(products);
 const inscriptionPage: ClientInscriptionPage = new ClientInscriptionPage();
 const connectionPage: ConnectionPage = new ConnectionPage();
 let productPage: ProductPage;
@@ -47,7 +51,8 @@ function renderHome(): void {
     //updateSectionDropDown(dropDownMobilier);
     $('.productLink').click((event: Event) => {
         event.preventDefault();
-        renderProduct(event.currentTarget.id);
+        console.log('target id :', event.currentTarget.getAttribute('id'));
+        renderProduct(event.currentTarget.getAttribute('id'));
     });
 }
 
@@ -63,7 +68,8 @@ function renderConnection(): void {
 
 function renderProduct(id: number): void {
     Menu.setSelectedLink(homeLink);
-    const product: ?Product = Product.get(id);
+    // const product: ?Product = Product.get(id);
+    const product = products[id - 1];
     console.log('product after get', product);
     if (product) {
         productPage = new ProductPage(product);
@@ -73,10 +79,10 @@ function renderProduct(id: number): void {
     PageRenderer.renderPage(productPage);
 }
 
-function updateSectionDropDown(tabSection){
- 
+function updateSectionDropDown(tabSection) {
+
     tabSection.forEach(element => {
-        element.innerHTML = "ok";    
+        element.innerHTML = "ok";
     });
 }
 
