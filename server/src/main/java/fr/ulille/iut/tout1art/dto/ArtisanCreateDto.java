@@ -15,6 +15,9 @@ public class ArtisanCreateDto {
     protected String adresse;
     protected String mail;
     protected String tel;
+    protected String mdp;
+    protected String login;
+    
 
     public long getId() {
         return id;
@@ -86,6 +89,34 @@ public class ArtisanCreateDto {
 	 */
 	public void setTel(String tel) {
 		this.tel = tel;
+	}
+
+	/**
+	 * @return the mdp
+	 */
+	public String getMdp() {
+		return mdp;
+	}
+
+	/**
+	 * @param mdp the mdp to set
+	 */
+	public void setMdp(String mdp) {
+		this.mdp = mdp;
+	}
+
+	/**
+	 * @return the login
+	 */
+	public String getLogin() {
+		return login;
+	}
+
+	/**
+	 * @param login the login to set
+	 */
+	public void setLogin(String login) {
+		this.login = login;
 	}
     
 }
