@@ -41,6 +41,7 @@ public class ProduitEntity {
     private double prix;
     private int idArtisan;
     private String categorie;
+    private String sousCategorie;
 
     public static ProduitEntity convertFromProduitCreateDto(ProduitCreateDto produit) {
         return modelMapper.map(produit, ProduitEntity.class);
@@ -121,6 +122,16 @@ public class ProduitEntity {
 	public void setCategorie(String categorie) {
 		this.categorie = categorie;
 	}
+
+    @Basic
+    @Column(name = "sousCategorie", nullable = false, length = -1)
+	public String getSousCategorie() {
+		return sousCategorie;
+	}
+
+	public void setSousCategorie(String categorie) {
+		this.sousCategorie = sousCategorie;
+	}	
 /*
     @ManyToMany /*(cascade = CascadeType.ALL)*/ /* (fetch = FetchType.EAGER)
     @JoinTable(name = "ingredientpizza",

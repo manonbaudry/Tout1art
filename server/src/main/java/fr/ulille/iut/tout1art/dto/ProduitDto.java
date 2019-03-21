@@ -13,9 +13,11 @@ public class ProduitDto {
     protected String description; 
     protected String srcImage;
     protected int idArtisan;
-    protected String categorie;
 	protected double prix;
     protected int idProduit;
+    protected String categorie;
+    protected String sousCategorie;
+
     
     public String getSrcImage() {
 		return srcImage;
@@ -71,7 +73,14 @@ public class ProduitDto {
 		this.categorie = categorie;
 	}
 
-    
+	public String getSousCategorie() {
+		return sousCategorie;
+	}
+
+	public void setSousCategorie(String categorie) {
+		this.sousCategorie = sousCategorie;
+	}	
+	
 	@Override
     public boolean equals(Object o) {
         if (this == o) return true;
