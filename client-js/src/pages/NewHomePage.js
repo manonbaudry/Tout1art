@@ -13,7 +13,7 @@ export default class NewHomePage extends Page {
 
     render(): string {
         const element: HTMLElement = document.createElement('div');
-        element.innerHTML = `<div class="card">
+        element.innerHTML = `<div>
     <div class="card-body">
         <p>Ex turba vero imae sortis et paupertinae in tabernis aliqui pernoctant vinariis, non nulli velariis
             umbraculorum theatralium latent, quae Campanam imitatus lasciviam Catulus in aedilitate sua suspendit omnium
