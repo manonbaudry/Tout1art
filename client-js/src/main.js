@@ -18,6 +18,11 @@ const inscriptionPage: ClientInscriptionPage = new ClientInscriptionPage();
 const connectionPage: ConnectionPage = new ConnectionPage();
 let productPage: ProductPage;
 
+//recupération des sous sections "mobilier, luminaire et déco" navbar
+const dropDownMobilier = document.querySelectorAll('.mobItem a');
+const dropDownLuminaire = document.querySelectorAll('.lumItem a');
+const dropDownDeco = document.querySelector('.decoItem a');
+
 // configuration des liens du menu
 const homeLink = $('.homeLink');
 const inscriptionLink = $('.inscriptionLink');
@@ -39,6 +44,7 @@ connectionLink.click((event: Event) => {
 function renderHome(): void {
     Menu.setSelectedLink(homeLink);
     PageRenderer.renderPage(homePage);
+    //updateSectionDropDown(dropDownMobilier);
 }
 
 function renderInscription(): void {
@@ -55,6 +61,13 @@ function renderProduct(id: number): void {
     Menu.setSelectedLink(homeLink);
     productPage = new ProductPage(new Product(1, 'Chaise', 'Mobilier', 'Chaise', 20, 'images/carbonara.jpg'));
     PageRenderer.renderPage(productPage);
+}
+
+function updateSectionDropDown(tabSection){
+ 
+    tabSection.forEach(element => {
+        element.innerHTML = "ok";    
+    });
 }
 
 // lorsqu'on arrive sur l'appli, par défaut
