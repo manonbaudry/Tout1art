@@ -8,12 +8,14 @@ import org.slf4j.LoggerFactory;
 public class ProduitDto {
 	private final static Logger logger = LoggerFactory.getLogger(ArtisanCreateDto.class);
 
-    private long id;
-    private String nom;
-    private String description; 
-    private String srcImage;
-    private int idArtisan;
-    private String categorie;
+    protected long id;
+    protected String nom;
+    protected String description; 
+    protected String srcImage;
+    protected int idArtisan;
+    protected String categorie;
+	protected double prix;
+    protected int idProduit;
     
     public String getSrcImage() {
 		return srcImage;
@@ -22,9 +24,6 @@ public class ProduitDto {
 	public void setSrcImage(String srcImage) {
 		this.srcImage = srcImage;
 	}
-
-	private double prix;
-    private int idProduit;
     
     public long getId() {
         return id;
