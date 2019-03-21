@@ -17,18 +17,20 @@ export default class ConnectionPage extends Page {
     render() {
         return `<form class="form-signin connectionPage">
     <h1 class="h3 mb-3 font-weight-normal">Veuillez vous connecter</h1>
-    <label for="inputEmail" class="sr-only">Email</label>
-    <input name="email" type="email" id="inputEmail" class="form-control" placeholder="Adresse email" required
-           autofocus>
-    <label for="inputPassword" class="sr-only">Mot de passe</label>
-    <input name="password" type="password" id="inputPassword" class="form-control" placeholder="Mot de passe" required>
-    <div class="checkbox mb-3">
-        <label>
-            <input type="checkbox" value="remember-me"> Remember me
-        </label>
+
+    <div class="form-group">
+        <label for="exampleInputEmail1">Email address:</label>
+        <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Email address">
     </div>
-    <button class="btn btn-lg btn-primary btn-block" type="submit">Se connecter</button>
-</form>`;
+
+    <div class="form-group">
+        <label for="exampleInputName">Mot de passe:</label>
+        <input type="username" class="form-control" id="exampleInputPassword1" placeholder="Mot de passe">
+    </div>
+
+    
+    <button type="submit" class="btn btn-primary">Se connecter</button>
+    </form>`;
     }
 
     submit(event: Event) {

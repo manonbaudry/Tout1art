@@ -10,22 +10,30 @@ export default class ClientInscriptionPage extends Page {
         this.submit = this.submit.bind(this);
     }
 
-    render(): string {
-        return `<form class="clientInscriptionPage">
-    <label>
-        Email :
-        <input type="email" name="email" class="form-control">
-    </label>
-    <label>
-        Nom d'utilisateur :
-        <input type="text" name="login" class="form-control">
-    </label>
-    <label>
-        Mot de passe :
-        <input type="password" name="password" class="form-control">
-    </label>
-    <button type="submit" class="btn btn-default">S'inscrire</button>
-</form>`;
+    render():string {
+        return `<form>
+    <div class="form-group">
+        <label for="exampleInputEmail1">Email address:</label>
+        <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Email address">
+        <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
+    </div>
+
+    <div class="form-group">
+        <label for="exampleInputName">Nom utilisateur:</label>
+        <input type="username" class="form-control" id="exampleInputPassword1" placeholder="Nom utilisateur">
+    </div>
+
+    <div class="form-group">
+        <label for="exampleInputPassword1">Mot de passe:</label>
+        <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Mot de passe">
+    </div>
+
+    <div class="form-group form-check">
+        <input type="checkbox" class="form-check-input" id="exampleCheck1">
+        <label class="form-check-label" for="exampleCheck1">Check me out</label>
+    </div>
+    <button type="submit" class="btn btn-primary">Submit</button>
+    </form>`
     }
 
     mount(contentElement: HTMLElement): void {
