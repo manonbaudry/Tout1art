@@ -1,7 +1,18 @@
 package fr.ulille.iut.tout1art.dao;
 
 
-import javax.persistence.*;
+import java.util.Collection;
+import java.util.Objects;
+
+import javax.persistence.Basic;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
+import javax.persistence.Table;
 
 import org.modelmapper.ModelMapper;
 import org.slf4j.Logger;
@@ -9,11 +20,6 @@ import org.slf4j.LoggerFactory;
 
 import fr.ulille.iut.tout1art.dto.ProduitCreateDto;
 import fr.ulille.iut.tout1art.dto.ProduitDto;
-import fr.ulille.iut.tout1art.dto.PizzaCreateDto;
-import fr.ulille.iut.tout1art.dto.PizzaDto;
-import fr.ulille.iut.tout1art.dto.PizzaShortDto;
-
-import java.util.*;
 
 @Entity
 @Table(name = "produit")
@@ -30,7 +36,8 @@ public class ProduitEntity {
 
     private long id;
     private String nom;
-    private String description; 
+    private String description;
+    private String srcImage;
     private double prix;
     private int idProduit;
 
@@ -48,6 +55,38 @@ public class ProduitEntity {
 	public long getId() {
         return id;
     }
+
+	public String getDescription() {
+		return description;
+	}
+
+	public void setDescription(String description) {
+		this.description = description;
+	}
+
+	public String getSrcImage() {
+		return srcImage;
+	}
+
+	public void setSrcImage(String srcImage) {
+		this.srcImage = srcImage;
+	}
+
+	public double getPrix() {
+		return prix;
+	}
+
+	public void setPrix(double prix) {
+		this.prix = prix;
+	}
+
+	public int getIdProduit() {
+		return idProduit;
+	}
+
+	public void setIdProduit(int idProduit) {
+		this.idProduit = idProduit;
+	}
 
 	public void setId(long id) {
         this.id = id;

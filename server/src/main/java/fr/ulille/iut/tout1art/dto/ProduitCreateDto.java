@@ -6,8 +6,17 @@ public class ProduitCreateDto {
     
     private long id;
     private String nom;
-    private String description; 
-    private double prix;
+    private String description;
+    private String srcImage;
+    public String getSrcImage() {
+		return srcImage;
+	}
+
+	public void setSrcImage(String srcImage) {
+		this.srcImage = srcImage;
+	}
+
+	private double prix;
     private int idProduit;
     
     public long getId() {
@@ -41,15 +50,7 @@ public class ProduitCreateDto {
 	public void setPrix(double prix) {
 		this.prix = prix;
 	}
-
-	public int getIdProduit() {
-		return idProduit;
-	}
-
-	public void setIdProduit(int idProduit) {
-		this.idProduit = idProduit;
-	}
-    
+	
 	@Override
     public boolean equals(Object o) {
         if (this == o) return true;

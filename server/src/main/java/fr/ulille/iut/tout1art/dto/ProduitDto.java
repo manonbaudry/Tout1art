@@ -11,7 +11,16 @@ public class ProduitDto {
     private long id;
     private String nom;
     private String description; 
-    private double prix;
+    private String srcImage;
+    public String getSrcImage() {
+		return srcImage;
+	}
+
+	public void setSrcImage(String srcImage) {
+		this.srcImage = srcImage;
+	}
+
+	private double prix;
     private int idProduit;
     
     public long getId() {
