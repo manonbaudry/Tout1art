@@ -68,5 +68,9 @@ nav ul li a:focus {
     50% {color:green;}
 }
 
+p{
+	text-align: justify;
+}
+
 
 
