@@ -57,49 +57,11 @@ public class ProduitEntity {
         return id;
     }
 
-	public String getDescription() {
-		return description;
-	}
-
-	public void setDescription(String description) {
-		this.description = description;
-	}
-
-	public String getSrcImage() {
-		return srcImage;
-	}
-
-	public void setSrcImage(String srcImage) {
-		this.srcImage = srcImage;
-	}
-
-	public double getPrix() {
-		return prix;
-	}
-
-	public void setPrix(double prix) {
-		this.prix = prix;
-	}
 
 	public void setId(long id) {
         this.id = id;
     }
-	public int getIdArtisan() {
-		return idArtisan;
-	}
-
-	public void setIdArtisan(int idArtisan) {
-		this.idArtisan = idArtisan;
-	}
-
-	public String getCategorie() {
-		return categorie;
-	}
-
-	public void setCategorie(String categorie) {
-		this.categorie = categorie;
-	}
-
+	
     @Basic
     @Column(name = "nom", nullable = false, length = -1)
 	public String getNom() {
@@ -109,13 +71,56 @@ public class ProduitEntity {
 	public void setNom(String nom) {
         this.nom = nom;
     }
+	
+    @Basic
+    @Column(name = "description", nullable = false, length = -1)
+	public String getDescription() {
+		return description;
+	}
 
-	/*@Basic
-    @Column(name = "base", length = -1)
-	public String getBase() {
-        return base;
-    }*/
+	public void setDescription(String description) {
+		this.description = description;
+	}
 
+    @Basic
+    @Column(name = "srcImage", nullable = false, length = -1)
+	public String getSrcImage() {
+		return srcImage;
+	}
+
+	public void setSrcImage(String srcImage) {
+		this.srcImage = srcImage;
+	}
+
+    @Basic
+    @Column(name = "prix", nullable = false, length = -1)
+	public double getPrix() {
+		return prix;
+	}
+
+	public void setPrix(double prix) {
+		this.prix = prix;
+	}
+
+	@Basic
+    @Column(name = "idArtisan", nullable = false, length = -1)
+	public int getIdArtisan() {
+		return idArtisan;
+	}
+
+	public void setIdArtisan(int idArtisan) {
+		this.idArtisan = idArtisan;
+	}
+
+	@Basic
+    @Column(name = "categorie", nullable = false, length = -1)
+	public String getCategorie() {
+		return categorie;
+	}
+
+	public void setCategorie(String categorie) {
+		this.categorie = categorie;
+	}
 /*
     @ManyToMany /*(cascade = CascadeType.ALL)*/ /* (fetch = FetchType.EAGER)
     @JoinTable(name = "ingredientpizza",
