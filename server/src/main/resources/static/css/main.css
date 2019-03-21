@@ -15,8 +15,7 @@ li{
 }
 
 ul{
-	margin-right: auto;
-	margin-left: auto;
+	margin-left: 26%;
 }
 
 nav ul li a:hover, nav ul li a:active{
@@ -26,5 +25,9 @@ nav ul li a:hover, nav ul li a:active{
 
 header nav ul li a:focus {
 	  outline: none;
+}
+
+.categorie{
+	padding-right: 1%;
 }
 

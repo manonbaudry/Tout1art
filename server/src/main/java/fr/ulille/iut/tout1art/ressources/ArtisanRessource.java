@@ -54,17 +54,17 @@ public class ArtisanRessource {
             return Response.status(Status.CONFLICT).build();
         }
     }
-    //A faire 
+
     @GET
     @Produces(MediaType.APPLICATION_JSON)
     public List<ArtisanDto> getAll() {
         DataAccess dataAccess = DataAccess.begin();
-        List<ArtisanEntity> la = dataAccess.getAllArtisan();
+        List<ArtisanEntity> la = dataAccess.getAllArtisans();
         dataAccess.closeConnection(false);
         return la.stream().map(ArtisanEntity::convertToDto).collect(Collectors.toList());
     }
 
-    //plus tard 
+    
     @GET
     @Path("{idArtisan}")
     @Produces(MediaType.APPLICATION_JSON)
@@ -79,7 +79,6 @@ public class ArtisanRessource {
             return Response.status(Status.NOT_FOUND).entity("Artisan not found").build();
         }
     }
-
 
     @DELETE
     @Path("{idArtisan}")
