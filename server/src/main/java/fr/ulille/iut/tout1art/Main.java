@@ -27,7 +27,7 @@ public class Main {
     public static HttpServer startServer(int port) {
         // create a resource config that scans for JAX-RS resources and providers
         // in fr.ulille.iut.pizzaland package
-        final ResourceConfig rc = new ResourceConfig().packages("fr.ulille.iut.pizzaland.ressources");
+        final ResourceConfig rc = new ResourceConfig().packages("fr.ulille.iut.tout1art.ressources");
 		rc.register(new CORSFilter());
         // Database initialisation (if any) to be settled here
 

@@ -57,7 +57,7 @@ public class DataAccess {
      * Crée un objet connection et initialise une transaction BDD.
      */
     private DataAccess() {
-        EntityManagerFactory emf = Persistence.createEntityManagerFactory("PizzalandPersistenceUnit");
+        EntityManagerFactory emf = Persistence.createEntityManagerFactory("Tout1artPersistenceUnit");
         em = emf.createEntityManager();
         et = em.getTransaction();
         et.begin();
@@ -218,7 +218,7 @@ public class DataAccess {
 		// TODO Auto-generated method stub
 		return 0;
 	}
-
+	
 	public List<ArtisanEntity> getAllArtisan() {
 		// TODO Auto-generated method stub
 		return null;
@@ -227,6 +227,11 @@ public class DataAccess {
 	public ArtisanEntity getArtisanById(long idArtisan) {
 		// TODO Auto-generated method stub
 		return null;
+	}
+
+	public void deleteArtisan(long idArtisan) {
+		// TODO Auto-generated method stub
+		
 	}
 
 

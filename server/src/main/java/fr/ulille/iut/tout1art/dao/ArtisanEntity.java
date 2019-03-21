@@ -43,8 +43,6 @@ public class ArtisanEntity {
 		return  modelMapper.map(artisan, ArtisanDto.class);
 	}
 	
-	
-
     @Id
     @GeneratedValue(strategy=GenerationType.IDENTITY)
     @Column(name = "id", nullable = false)

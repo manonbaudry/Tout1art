@@ -13,21 +13,15 @@ import javax.ws.rs.core.Response.Status;
 
 import java.net.URI;
 
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
 import java.util.stream.Collectors;
 
 import fr.ulille.iut.tout1art.dao.ArtisanEntity;
 import fr.ulille.iut.tout1art.dao.DataAccess;
-import fr.ulille.iut.tout1art.dao.IngredientEntity;
-import fr.ulille.iut.tout1art.dao.PizzaEntity;
 import fr.ulille.iut.tout1art.dto.ArtisanCreateDto;
 import fr.ulille.iut.tout1art.dto.ArtisanDto;
-import fr.ulille.iut.tout1art.dto.PizzaCreateDto;
-import fr.ulille.iut.tout1art.dto.PizzaShortDto;
 
-@Path("/pizzas")
+@Path("/artisan")
 public class ArtisanRessource {
     private final static Logger logger = LoggerFactory.getLogger(ArtisanRessource.class);
 
@@ -60,7 +54,7 @@ public class ArtisanRessource {
             return Response.status(Status.CONFLICT).build();
         }
     }
-
+    //A faire 
     @GET
     @Produces(MediaType.APPLICATION_JSON)
     public List<ArtisanDto> getAll() {
@@ -70,6 +64,7 @@ public class ArtisanRessource {
         return la.stream().map(ArtisanEntity::convertToDto).collect(Collectors.toList());
     }
 
+    //plus tard 
     @GET
     @Path("{idArtisan}")
     @Produces(MediaType.APPLICATION_JSON)
@@ -84,33 +79,19 @@ public class ArtisanRessource {
             return Response.status(Status.NOT_FOUND).entity("Artisan not found").build();
         }
     }
-/*
-    @GET
-    @Path("{idArtisan}/produits")
-    @Produces(MediaType.APPLICATION_JSON)
-    public Response getProduitsArtisan(@PathParam("idArtisan") long idArtisan) {
-        DataAccess dataAccess = DataAccess.begin();
-        ArtisanEntity p = dataAccess.getArtisanById(idArtisan);
-        if (p != null) {
-            dataAccess.closeConnection(true);
-            return Response.accepted().status(Status.OK).entity(p.getProduits().stream().map(IngredientEntity::convertToDto).collect(Collectors.toList())).build();
-        } else {
-            dataAccess.closeConnection(false);
-            return Response.status(Status.NOT_FOUND).entity("Pizza not found").build();
-        }
-    }*/
+
 
     @DELETE
-    @Path("{idPizza}")
-    public Response delete(@PathParam("idPizza") long idPizza) {
+    @Path("{idArtisan}")
+    public Response delete(@PathParam("idArtisan") long idArtisan) {
         DataAccess dataAccess = DataAccess.begin();
         try {
-            dataAccess.deletePizza(idPizza);
+            dataAccess.deleteArtisan(idArtisan);
             dataAccess.closeConnection(true);
             return Response.status(Status.NO_CONTENT).build();
         } catch (Exception e) {
             dataAccess.closeConnection(false);
-            return Response.status(Status.NOT_FOUND).entity("Pizza not found").build();
+            return Response.status(Status.NOT_FOUND).entity("Artisan not found").build();
         }
     }
 }
