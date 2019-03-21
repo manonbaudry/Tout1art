@@ -21,7 +21,7 @@ export default class NewHomePage extends Page {
 <div class="card-deck">
     <div class="card">
         <a href="#" class="productLink">
-            <img src="images/logo.png" class="card-img-top" alt="">
+            <img src="images/blackSquare.png" class="card-img-top" alt="">
             <div class="card-body">
                 <h5 class="card-title">Chaise</h5>
                 <p class="card-text">This is a longer card with supporting text below as a natural lead-in to additional
@@ -34,7 +34,7 @@ export default class NewHomePage extends Page {
     </div>
     <div class="card">
         <a href="#" class="productLink">
-            <img src="images/logo.png" class="card-img-top" alt="">
+            <img src="images/blackSquare.png" class="card-img-top" alt="">
             <div class="card-body">
                 <h5 class="card-title">Bureau</h5>
                 <p class="card-text">This card has supporting text below as a natural lead-in to additional content.</p>
@@ -46,7 +46,7 @@ export default class NewHomePage extends Page {
     </div>
     <div class="card">
         <a href="#" class="productLink">
-            <img src="images/logo.png" class="card-img-top" alt="">
+            <img src="images/blackSquare.png" class="card-img-top" alt="">
             <div class="card-body">
                 <h5 class="card-title">Lampe</h5>
                 <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional

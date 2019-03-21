@@ -13,7 +13,7 @@ PageRenderer.titleElement = document.querySelector('.pageTitle');
 PageRenderer.contentElement = document.querySelector('.pageContent');
 
 // déclaration des différentes page de l'app
-const homePage: NewHomePage = new NewHomePage([]);
+const homePage: NewHomePage = new NewHomePage();
 const inscriptionPage: ClientInscriptionPage = new ClientInscriptionPage();
 const connectionPage: ConnectionPage = new ConnectionPage();
 let productPage: ProductPage;
@@ -63,7 +63,13 @@ function renderConnection(): void {
 
 function renderProduct(id: number): void {
     Menu.setSelectedLink(homeLink);
-    productPage = new ProductPage(new Product(1, 'Chaise', 'Mobilier', 'Chaise', 20, 'images/carbonara.jpg'));
+    const product: ?Product = Product.get(id);
+    console.log('product after get', product);
+    if (product) {
+        productPage = new ProductPage(product);
+    } else {
+        productPage = new ProductPage(new Product(1, 'Chaise', 'Mobilier', 'Chaise', 20, 'images/carbonara.jpg'));
+    }
     PageRenderer.renderPage(productPage);
 }
 
