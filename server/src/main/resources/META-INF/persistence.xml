@@ -3,8 +3,7 @@
 
     <persistence-unit name="Tout1aPersistenceUnit">
         <provider>org.eclipse.persistence.jpa.PersistenceProvider</provider>
-        <class>fr.ulille.iut.tout1art.dao.IngredientEntity</class>
-        <class>fr.ulille.iut.tout1art.dao.PizzaEntity</class>
+
         <class>fr.ulille.iut.tout1art.dao.ArtisanEntity</class>
         <properties>
             <!-- Configuration postgresql -->

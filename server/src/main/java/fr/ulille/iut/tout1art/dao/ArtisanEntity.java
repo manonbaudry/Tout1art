@@ -20,7 +20,7 @@ import java.util.*;
 
 @NamedQueries({
     @NamedQuery(name="FindAllArtisans", query="SELECT p from ArtisanEntity p"),
-    @NamedQuery(name="FindArtisanByName", query="SELECT p from ArtisanEntity p where p.nom = :pnom")
+   // @NamedQuery(name="FindArtisanByName", query="SELECT p from ArtisanEntity p where p.nom = :pnom")
 })
 
 public class ArtisanEntity {
@@ -63,22 +63,6 @@ public class ArtisanEntity {
         this.nom = nom;
     }
 
-	/*@Basic
-    @Column(name = "base", length = -1)
-	public String getBase() {
-        return base;
-    }*/
-
-/*
-    @ManyToMany /*(cascade = CascadeType.ALL)*/ /* (fetch = FetchType.EAGER)
-    @JoinTable(name = "ingredientpizza",
-            joinColumns = @JoinColumn(name = "idpizza", referencedColumnName = "id", nullable = false),
-            inverseJoinColumns = @JoinColumn(name = "idingredient", referencedColumnName = "id", nullable = false))
-	public Set<IngredientEntity> getIngredients() {
-        return ingredients;
-    }
-*/
-
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
@@ -87,12 +71,4 @@ public class ArtisanEntity {
                 Objects.equals(nom, that.nom);
     }
 
-    public int hashCode() {
-        return Objects.hash(id, nom);
-    }
-
-	public Collection<ArtisanDto> getProduits() {
-		// TODO Auto-generated method stub
-		return null;
-	}
 }
