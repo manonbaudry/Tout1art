@@ -19,9 +19,8 @@ import java.util.*;
 @Table(name = "artisan")
 
 @NamedQueries({
-    @NamedQuery(name="FindAllPizzas", query="SELECT p from PizzaEntity p"),
-    @NamedQuery(name="CheckPizzaName", query="SELECT count(p) from PizzaEntity p where p.nom = :pnom and p.id <> :pid"),
-    @NamedQuery(name="FindPizzaByName", query="SELECT p from PizzaEntity p where p.nom = :pnom")
+    @NamedQuery(name="FindAllArtisans", query="SELECT p from ArtisanEntity p"),
+    @NamedQuery(name="FindArtisanByName", query="SELECT p from ArtisanEntity p where p.nom = :pnom")
 })
 
 public class ArtisanEntity {
@@ -79,7 +78,6 @@ public class ArtisanEntity {
         return ingredients;
     }
 */
-
 
     public boolean equals(Object o) {
         if (this == o) return true;

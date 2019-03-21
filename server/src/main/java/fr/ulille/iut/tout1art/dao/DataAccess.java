@@ -219,14 +219,13 @@ public class DataAccess {
 		return 0;
 	}
 	
-	public List<ArtisanEntity> getAllArtisan() {
-		// TODO Auto-generated method stub
-		return null;
+	public List<ArtisanEntity> getAllArtisans() {
+		TypedQuery<ArtisanEntity> query = em.createNamedQuery("FindAllArtisans", ArtisanEntity.class);
+        return query.getResultList();
 	}
 
 	public ArtisanEntity getArtisanById(long idArtisan) {
-		// TODO Auto-generated method stub
-		return null;
+        return em.find(ArtisanEntity.class,  idArtisan);
 	}
 
 	public void deleteArtisan(long idArtisan) {

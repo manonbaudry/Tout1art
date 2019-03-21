@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <persistence xmlns="http://java.sun.com/xml/ns/persistence" version="2.0">
 
-    <persistence-unit name="Tout1artPersistenceUnit">
+    <persistence-unit name="Tout1aPersistenceUnit">
         <provider>org.eclipse.persistence.jpa.PersistenceProvider</provider>
         <class>fr.ulille.iut.tout1art.dao.IngredientEntity</class>
         <class>fr.ulille.iut.tout1art.dao.PizzaEntity</class>
@@ -21,7 +21,7 @@
             <!-- <property name="javax.persistence.jdbc.url" value="jdbc:h2:mem:pizzaland"/> --> <!-- h2 en mémoire -->
             <!--<property name="javax.persistence.jdbc.url" value="jdbc:h2:~/mnt/c/Users/Nicolas/Documents/N4/baseToutUnArt"/> --> <!-- h2 en fichiers -->
             <!-- base sur fichiers -->
-            <property name="javax.persistence.jdbc.url" value="jdbc:h2:file:~/tout1art"/>-->
+            <property name="javax.persistence.jdbc.url" value="jdbc:h2:file:~/tmp/tout1art"/>-->
             <!-- credential if needed -->
  	        <!--<property name="javax.persistence.jdbc.user" value="user"/> -->
  	        <!--<property name="javax.persistence.jdbc.password" value="password"/>         -->
