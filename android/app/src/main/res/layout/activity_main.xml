@@ -7,32 +7,14 @@
     android:layout_height="match_parent"
     tools:context=".MainActivity"
     android:orientation="vertical"
+    android:gravity="center"
+    android:onClick="onTouchScreen">
 
-    >
-    <Button
-        android:text="Vous connecter en tant qu'artisant"
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="1"
-        android:background="@color/Blanc"
-        android:onClick="connectArt"
-        />
-
-
-    <View
-        android:id="@+id/divider2"
-        android:layout_width="match_parent"
-        android:layout_height="1dp"
-        android:background="@color/Noir" />
-
-    <Button
-        android:text="Voir le site"
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="1"
-        android:background="@color/Blanc"
-        android:onClick="afficheSite"
-        />
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/app_name"
+        android:textSize="30dp"/>
 
 
 </LinearLayout>
