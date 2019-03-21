@@ -11,5 +11,5 @@ Une première page d'accueil.
 Fin du backlog.
 
 ## Travail à faire au prochain sprint
-Interface de login des artisants.
+Interface de login des artisans.
 Formulaire de connextion et d'inscription côté client.

@@ -1,7 +1,9 @@
 package fr.ulille.iut.tout1art;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.view.View;
 
 public class BacklogArt extends AppCompatActivity {
 
@@ -11,5 +13,7 @@ public class BacklogArt extends AppCompatActivity {
         setContentView(R.layout.page_artisant); // modifier pour layout Artisan
     }
 
-
+    public void connect(View view){
+        startActivity(new Intent(this,testCo.class));
+    }
 }

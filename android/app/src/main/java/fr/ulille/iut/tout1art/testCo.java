@@ -1,19 +1,18 @@
 package fr.ulille.iut.tout1art;
 
-import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
-import android.view.View;
+import android.os.Bundle;
 
-public class LoginArtisan extends AppCompatActivity {
+public class testCo extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.login_artisant);
+        setContentView(R.layout.activity_test_co);
     }
 
-    public void seeLoginBackLog(View view){
+    public static void main(String[] args){
+
 
     }
-
 }

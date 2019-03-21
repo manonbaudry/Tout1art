@@ -21,23 +21,13 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
     }
 
-    public void connectArt(View view){
+    public void onTouchScreen(View view) {
 
-        startActivity(new Intent(this,LoginArtisan.class));
+        startActivity(new Intent(this,LoginActivity.class));
     }
-
-
-    // afficher le site pour le client
-    public void afficheSite(View view) throws Exception{
-        //startActivity(new Intent(this,BacklogArt.class));
-        String url = "http://www.google.com";
-        Intent i = new Intent(Intent.ACTION_VIEW);
-        i.setData(Uri.parse(url));
-        startActivity(i);
-    }
-
 
 }
 
