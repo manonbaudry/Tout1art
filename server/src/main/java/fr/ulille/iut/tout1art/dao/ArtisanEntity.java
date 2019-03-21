@@ -56,6 +56,32 @@ public class ArtisanEntity {
         return nom;
     }
 
+
+
+    @Basic
+    @Column(name = "prenom", nullable = false, length = -1)
+	public String getPrenom() {
+		return prenom;
+	}
+
+    @Basic
+    @Column(name = "adresse", nullable = false, length = -1)
+	public String getAdresse() {
+		return adresse;
+	}
+
+    @Basic
+    @Column(name = "mail", nullable = false, length = -1)
+	public String getMail() {
+		return mail;
+	}
+
+    @Basic
+    @Column(name = "tel", nullable = false, length = -1)
+	public String getTel() {
+		return tel;
+	}
+
 	public void setNom(String nom) {
         this.nom = nom;
     }
