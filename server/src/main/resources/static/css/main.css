@@ -1,23 +1,31 @@
 body{
-	top:0;
-	bottom:0;
-	right:0;
-	left:0;
+	
 	text-align: center;
+}
+
+.logot1a{
+	width: 2.8em;
+	height: 2.8em;
+	position: relative;
 }
 
 main{
 	margin: 6%;	
+	position: relative;
 }
 
 .pageContent{
-	padding-top: 4%;
+	padding-top: 2.6%;
 }
 
 .pageContent, .pageTitle{
 	position: relative;
 	margin-left: auto;
 	margin-right: auto;
+}
+
+.pageTitle{
+	animation: colorblink 2s infinite;    
 }
 
 .form-group{
@@ -37,12 +45,15 @@ nav ul li a:hover, nav ul li a:active{
 	padding-bottom: 0.5em;
 }
 
-header nav ul li a:focus {
-	  outline: none;
+nav ul li a:focus {
+	outline: none;
 }
 
 .categorie{
-	padding-right: 1%;
+	padding-right: 0.4%;
+	position: relative;
+	margin-left: auto;
+	margin-right: auto;
 }
 
 .form-control{
@@ -52,5 +63,13 @@ header nav ul li a:focus {
 	margin-left: auto;
 	margin-right: auto;
 }
+
+
+
+
+@keyframes colorblink{
+    50% {color:green;}
+}
+
 
 
