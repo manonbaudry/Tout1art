@@ -44,7 +44,15 @@ connectionLink.click((event: Event) => {
 function renderHome(): void {
     Menu.setSelectedLink(homeLink);
     PageRenderer.renderPage(homePage);
+<<<<<<< HEAD
     //updateSectionDropDown(dropDownMobilier);
+=======
+
+    $('.productLink').click((event: Event) => {
+        event.preventDefault();
+        renderProduct(event.currentTarget.id);
+    });
+>>>>>>> 866a79f301f5602db56c168686cb25e77f96a605
 }
 
 function renderInscription(): void {
@@ -73,8 +81,3 @@ function updateSectionDropDown(tabSection){
 // lorsqu'on arrive sur l'appli, par défaut
 // on affiche la page d'accueil
 renderHome();
-
-$('.productLink').click((event: Event) => {
-    event.preventDefault();
-    renderProduct(event.currentTarget.id);
-});
