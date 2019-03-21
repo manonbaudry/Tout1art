@@ -20,4 +20,6 @@
     <string name="permission_rationale">"Contacts permissions are needed for providing email
         completions."
     </string>
+    <string name="login">login</string>
+    <string name="boutton1">button</string>
 </resources>
