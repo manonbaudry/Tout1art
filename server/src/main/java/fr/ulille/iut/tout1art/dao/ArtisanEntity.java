@@ -9,9 +9,6 @@ import org.slf4j.LoggerFactory;
 
 import fr.ulille.iut.tout1art.dto.ArtisanCreateDto;
 import fr.ulille.iut.tout1art.dto.ArtisanDto;
-import fr.ulille.iut.tout1art.dto.PizzaCreateDto;
-import fr.ulille.iut.tout1art.dto.PizzaDto;
-import fr.ulille.iut.tout1art.dto.PizzaShortDto;
 
 import java.util.*;
 
