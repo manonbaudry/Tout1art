@@ -30,6 +30,8 @@ public class ArtisanEntity {
     private String adresse;
     private String mail;
     private String tel;
+    private String login;
+    private String mdp;
 
     public static  ArtisanEntity convertFromArtisanCreateDto(ArtisanCreateDto artisan) {
         return modelMapper.map(artisan, ArtisanEntity.class);
@@ -55,8 +57,6 @@ public class ArtisanEntity {
 	public String getNom() {
         return nom;
     }
-
-
 
     @Basic
     @Column(name = "prenom", nullable = false, length = -1)
@@ -85,8 +85,64 @@ public class ArtisanEntity {
 	public void setNom(String nom) {
         this.nom = nom;
     }
+	
 
-    public boolean equals(Object o) {
+    /**
+	 * @param prenom the prenom to set
+	 */
+	public void setPrenom(String prenom) {
+		this.prenom = prenom;
+	}
+
+	/**
+	 * @param adresse the adresse to set
+	 */
+	public void setAdresse(String adresse) {
+		this.adresse = adresse;
+	}
+
+	/**
+	 * @param mail the mail to set
+	 */
+	public void setMail(String mail) {
+		this.mail = mail;
+	}
+
+	/**
+	 * @param tel the tel to set
+	 */
+	public void setTel(String tel) {
+		this.tel = tel;
+	}
+
+		
+    @Basic
+    @Column(name = "login", nullable = false, length = -1)
+	public String getLogin() {
+		return login;
+	}
+
+	/**
+	 * @param login the login to set
+	 */
+	public void setLogin(String login) {
+		this.login = login;
+	}
+
+    @Basic
+    @Column(name = "mdp", nullable = false, length = -1)
+	public String getMdp() {
+		return mdp;
+	}
+
+	/**
+	 * @param mdp the mdp to set
+	 */
+	public void setMdp(String mdp) {
+		this.mdp = mdp;
+	}
+
+	public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         ArtisanEntity that = (ArtisanEntity) o;
