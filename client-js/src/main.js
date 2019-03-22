@@ -9,12 +9,13 @@ import ProductPage from "./pages/ProductPage";
 import Product from "./Product";
 import AdminPage from "./pages/AdminPage";
 
+
 // configuration du PageRenderer
 PageRenderer.titleElement = document.querySelector('.pageTitle');
 PageRenderer.contentElement = document.querySelector('.pageContent');
 
-// déclaration des différentes page de l'app
-const products: Array<Product> = [];
+//déclaration des différentes page de l'app
+ const products: Array<Product> = [];
 for (let i = 0; i < 3; ++i) {
     products[i] = Product.get(i + 1);
     products[i].then(product => products[i] = Product.jsonToObj(product));
@@ -27,26 +28,32 @@ const connectionPage: ConnectionPage = new ConnectionPage();
 const adminPage: AdminPage = new AdminPage();
 let productPage: ProductPage;
 
+const selection: Array<Product> = [];
+const selectionPage: NewHomePage = new NewHomePage(selection);
+
+
+
+
 //recupération dropdown "mobilier, luminaire et déco" navbar
 const dropDownMobilier = document.querySelector('.mobButton');
 const dropDownLuminaire = document.querySelector('.lumButton');
 const dropDownDeco = document.querySelector('.decoButton');
 //console.log(dropDownMobilier);
 
-dropDownMobilier.addEventListener("click", function(){
-    
-    selectionCible(dropDownMobilier.innerHTML.toLocaleLowerCase());
+dropDownMobilier.addEventListener("click", function () {
+
+    selectionCible(dropDownMobilier.innerHTML.toLowerCase().trim());
 });
 
-dropDownLuminaire.addEventListener("click", function(){
-   
-    selectionCible(dropDownLuminaire.innerHTML.toLocaleLowerCase());
+dropDownLuminaire.addEventListener("click", function () {
+
+    selectionCible(dropDownLuminaire.innerHTML.toLowerCase().trim());
 });
 
 
-dropDownDeco.addEventListener("click", function(){
-    
-    selectionCible(dropDownDeco.innerHTML.toLocaleLowerCase());
+dropDownDeco.addEventListener("click", function () {
+
+    selectionCible(dropDownDeco.innerHTML.toLowerCase().trim());
 });
 
 
@@ -105,46 +112,45 @@ function renderProduct(id: number): void {
     });
 }
 
-function selectionCible(categorie){
-    const tabId = "";
-    console.log("rentre");
+function selectionCible(choix) {
+    let tabId = [];
+    let indice = 0;
+
     Product.getAll().then(json => {
-        for(let i = 0; i < json.length; i++){
-            if(json[i].categorie == categorie){
-                tabId.push(json[i]);
-                console.log("ok");
+
+        for (let i = 0; i < json.length; i++) {
+            
+            if(json[i].category == choix){
+                tabId[indice] = json[i].id;
+                indice++;
             }
         }
-    })
+
+        if (tabId.length != 0){
+            selection.length = 0;
+            for (let i = 0; i < tabId.length; ++i) {
+                selection[i] = Product.get(tabId[i]);
+                selection[i].then(product => selection[i] = Product.jsonToObj(product));
+            }
+            Promise.all(selection).then(() => renderSelection());
+        }
+    });
 }
+
+function renderSelection(): void {
+    
+    Menu.setSelectedLink(homeLink);
+    PageRenderer.renderPage(selectionPage);
+
+    $('.productLink').click((event: Event) => {
+        event.preventDefault();
+        renderProduct(event.currentTarget.getAttribute('id'));
+    });
+}
+
 
 function renderAdmin(): void {
     Menu.setSelectedLink(adminLink);
     PageRenderer.renderPage(adminPage);
 }
 
-// function selectionCible(){
-
-// }
-
-// function updateSectionDropDown(mobiliers, luminaires, decos) {
-
-
-//     //ici requete pour aller chercher les sous sections dans la bdd
-//     Product.getAll().then(json => {
-//         console.log("taille: " + json.length);
-
-//         for (let i = 0; i < json.length; i++) {
-//             console.log(json[i].categorie+" "+json[i].sousCategorie);
-//             if (json[i].categorie == 'mobilier') {
-//                 mobiliers.innerHTML += `<a class="dropdown-item" href="#">${json[i].sousCategorie}</a>`;
-//             } else if (json[i].categorie == 'luminaire') {
-//                 luminaires.innerHTML += `<a class="dropdown-item" href="#">${json[i].sousCategorie}</a>`;
-//             } else {
-//                 decos.innerHTML += `<a class="dropdown-item" href="#">${json[i].sousCategorie}</a>`;
-//             }
-//         }
-//     });
-// }
-
-//updateSectionDropDown(dropDownMobilier, dropDownLuminaire, dropDownDeco);
