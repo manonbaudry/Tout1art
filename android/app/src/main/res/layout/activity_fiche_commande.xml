@@ -58,6 +58,7 @@
         android:layout_marginRight="8dp"
         android:layout_marginBottom="48dp"
         android:text="Accepter"
+        android:onClick="accepter"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/refuser_commande"
         app:layout_constraintHorizontal_bias="0.223"
@@ -71,6 +72,7 @@
         android:layout_marginRight="52dp"
         android:layout_marginBottom="48dp"
         android:text="Refuser"
+        android:onClick="refuser"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />
 
@@ -145,4 +147,28 @@
         app:layout_constraintHorizontal_bias="0.208"
         app:layout_constraintStart_toEndOf="@+id/textView9"
         app:layout_constraintTop_toBottomOf="@+id/fiche_prix" />
+
+    <TextView
+        android:id="@+id/textView11"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="24dp"
+        android:layout_marginLeft="24dp"
+        android:layout_marginTop="20dp"
+        android:text="Délai :"
+        android:textSize="16sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView9" />
+
+    <TextView
+        android:id="@+id/fiche_delai"
+        android:layout_width="172dp"
+        android:layout_height="21dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginEnd="84dp"
+        android:layout_marginRight="84dp"
+        android:text="TextView"
+        android:textSize="16sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/fiche_description" />
 </android.support.constraint.ConstraintLayout>
