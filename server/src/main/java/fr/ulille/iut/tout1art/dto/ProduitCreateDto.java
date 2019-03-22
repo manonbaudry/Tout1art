@@ -86,7 +86,7 @@ public class ProduitCreateDto {
 		return commande;
 	}
 
-	public void setCommende(int commande) {
+	public void setCommande(int commande) {
 		this.commande = commande;
 	}	
 	

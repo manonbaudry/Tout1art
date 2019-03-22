@@ -134,11 +134,13 @@ public class ProduitEntity {
 		this.sousCategorie = sousCategorie;
 	}
 	
+	@Basic
+	@Column(name = "commande", nullable = false, length = -1)
 	public int getCommande() {
 		return commande;
 	}
 
-	public void setCommende(int commande) {
+	public void setCommande(int commande) {
 		this.commande = commande;
 	}	
 /*

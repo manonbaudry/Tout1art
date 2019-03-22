@@ -63,6 +63,7 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
     Intent intent;
     String email;
     int id;
+    View focusView = null;
     /**
      * Id to identity READ_CONTACTS permission request.
      */
@@ -182,7 +183,7 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
         email = mEmailView.getText().toString();
         final String password = mPasswordView.getText().toString();
 
-        View focusView = null;
+
 
         // Check for a valid password, if the user entered one.
         if (!TextUtils.isEmpty(password) && !isPasswordValid(password)) {
@@ -215,10 +216,14 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
                     TextView tx = findViewById(R.id.textView2);
                     @Override
                     public void onResponse(JSONArray response) {
-                        if(verif(response,email,password) == false){
+                        if(!verif(response,email,password)){
+                            System.out.println("MAUVAIS MDP OU MAIL");
+                            mEmailView.setError(getString(R.string.error_invalid_email));
+                            mPasswordView.setError(getString(R.string.error_incorrect_password));
+                            //focusView = mEmailView;
                             cancel = true;
                         }else{
-                            intent.putExtra("parametres", id);
+                            intent.putExtra("id", id);
                         }
                     }
                 },
@@ -229,7 +234,15 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
                     }
                 });
         queue.add(request);
+        /*synchronized (this) {
+            System.out.println("TTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTT");
+            try {
+                this.wait(5000);
 
+            } catch (Exception e) {
+                System.out.println("ERREUR  " + e.getMessage());
+            }
+        }*/
         // post email & password
         // requete au serveur pour verifier email + mdp
 
@@ -415,9 +428,10 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
         try {
             for (int i = 0; i < response.length() ; i++) {
                 JSONObject obj = response.getJSONObject(i);
-                //System.out.println("NOM : "+obj.getString("nom"));
+                System.out.println("NOM : "+obj.getString("nom"));
                 if(obj.getString("mail") == mail){
                     if(obj.getString("mdp") == password){
+                        System.out.println("MDP : "+obj.getString("mdp"));
                         id = obj.getInt("id");
                         return true;
                     }
@@ -425,6 +439,7 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
             }
             return false;
         } catch (Exception e) {
+            System.out.println("erreur" + e.getMessage());
             e.printStackTrace();
             return false;
         }
