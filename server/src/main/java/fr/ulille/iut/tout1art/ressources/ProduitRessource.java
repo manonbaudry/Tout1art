@@ -56,11 +56,11 @@ public class ProduitRessource {
         }
     }
     
-    @POST
+    /*@POST
     @Produces(MediaType.APPLICATION_JSON)
     public Response passerCommande(ProduitCreateDto produitDto) {
         DataAccess dataAccess = DataAccess.begin();
-        
+
         // Construction (données primitives puis composition
         ProduitEntity produitEntity = ProduitEntity.convertFromProduitCreateDto(produitDto);
 
@@ -78,7 +78,7 @@ public class ProduitRessource {
             dataAccess.closeConnection(false);
             return Response.status(Status.CONFLICT).build();
         }
-    }
+    }*/
 
     @GET
     @Produces(MediaType.APPLICATION_JSON)
