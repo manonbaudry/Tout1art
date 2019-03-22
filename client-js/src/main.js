@@ -73,7 +73,7 @@ function renderProduct(id: number): void {
     Menu.setSelectedLink(homeLink);
     let product = Product.get(id);
     product.then(json => {
-        product = Product.jsonToObj(json)
+        product = Product.jsonToObj(json);
         productPage = new ProductPage(product);
         PageRenderer.renderPage(productPage);
     });
