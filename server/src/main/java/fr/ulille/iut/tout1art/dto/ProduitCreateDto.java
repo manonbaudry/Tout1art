@@ -12,7 +12,8 @@ public class ProduitCreateDto {
     protected String categorie;
     protected String sousCategorie;
     protected int commande;
-    
+    protected int delai;
+
     
     public String getSrcImage() {
 		return srcImage;
@@ -86,6 +87,19 @@ public class ProduitCreateDto {
 
 	public void setCommande(int commande) {
 		this.commande = commande;
+	}
+	/**
+	 * @return the delai
+	 */
+	public int getDelai() {
+		return delai;
+	}
+
+	/**
+	 * @param delai the delai to set
+	 */
+	public void setDelai(int delai) {
+		this.delai = delai;
 	}
     
 }

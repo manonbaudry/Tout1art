@@ -1,9 +1,11 @@
 package fr.ulille.iut.tout1art;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.Button;
 import android.widget.LinearLayout;
-import android.widget.TextView;
 
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
@@ -20,6 +22,7 @@ import java.util.ArrayList;
 public class VoirCommande extends AppCompatActivity {
 
     private LinearLayout layout_commande;
+    private LinearLayout layout_commande_attente;
     private RequestQueue queue;
     private int idArtisan;
     private ArrayList<String> listeCommande;
@@ -27,6 +30,7 @@ public class VoirCommande extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_voir_commande);
+        this.layout_commande_attente = (LinearLayout) findViewById(R.id.layout_commande_attente);
         this.layout_commande = (LinearLayout) findViewById(R.id.layout_commande);
         queue = Volley.newRequestQueue(VoirCommande.this);
         this.idArtisan = 1;
@@ -40,15 +44,23 @@ public class VoirCommande extends AppCompatActivity {
                 JSONObject obj = response.getJSONObject(i);
                 System.out.println("NOM : "+obj.getString("nom"));
                 if(obj.getInt("idArtisan") == idArtisan){
-                    this.listeCommande.add(obj.getString("nom"));
+                    if (obj.getInt("commande") == 1){
+                        this.listeCommande.add(obj.getString("nom"));
+                    }
                 }
             }
-            for(String s : this.listeCommande){
-                System.out.println("dans la liste " + s);
-                TextView text = new TextView(this);
-                text.setText(s);
+            for(final String str : this.listeCommande){
+                System.out.println("dans la liste " + str);
+                Button text = new Button(this);
+                text.setText(str);
                 text.setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT,LinearLayout.LayoutParams.WRAP_CONTENT));
-                layout_commande.addView(text);
+                text.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        showFicheCommande(str);
+                    }
+                });
+                layout_commande_attente.addView(text);
             }
 
 
@@ -56,6 +68,13 @@ public class VoirCommande extends AppCompatActivity {
             e.printStackTrace();
         }
     }
+
+    public void showFicheCommande(String nomProduit) {
+        Intent i = new Intent(this,FicheCommande.class);
+        i.putExtra("NOM_PRODUIT",nomProduit);
+        startActivity(i);
+    }
+
 
 
     public void getCommande() {

@@ -64,6 +64,8 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
     String email;
     int id;
     View focusView = null;
+    String password;
+    boolean result;
     /**
      * Id to identity READ_CONTACTS permission request.
      */
@@ -181,7 +183,7 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
 
         // Store values at the time of the login attempt.
         email = mEmailView.getText().toString();
-        final String password = mPasswordView.getText().toString();
+        password = mPasswordView.getText().toString();
 
 
 
@@ -205,35 +207,13 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
 
 
 
-        String uri = "http://10.0.2.2:8080/api/v1/artisan";
+        /*if(!connect()){
+            cancel = true;
+
+        }
+*/
 
 
-        JsonArrayRequest request = new JsonArrayRequest(
-                Request.Method.GET,
-                uri,
-                null,
-                new Response.Listener<JSONArray>() {
-                    TextView tx = findViewById(R.id.textView2);
-                    @Override
-                    public void onResponse(JSONArray response) {
-                        if(!verif(response,email,password)){
-                            System.out.println("MAUVAIS MDP OU MAIL");
-                            mEmailView.setError(getString(R.string.error_invalid_email));
-                            mPasswordView.setError(getString(R.string.error_incorrect_password));
-                            //focusView = mEmailView;
-                            cancel = true;
-                        }else{
-                            intent.putExtra("id", id);
-                        }
-                    }
-                },
-                new ErrorListener() {
-                    @Override
-                    public void onErrorResponse(VolleyError error) {
-                        System.out.println(error);
-                    }
-                });
-        queue.add(request);
 
         /*synchronized (this) {
             System.out.println("TTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTT");
@@ -265,6 +245,43 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
 
             startActivity(intent);
         }
+    }
+
+    private boolean connect(){
+
+
+        String uri = "http://10.0.2.2:8080/api/v1/artisan";
+        result = true;
+
+        JsonArrayRequest request = new JsonArrayRequest(
+                Request.Method.GET,
+                uri,
+                null,
+                new Response.Listener<JSONArray>() {
+                    TextView tx = findViewById(R.id.textView2);
+                    @Override
+                    public void onResponse(JSONArray response) {
+                        if(!verif(response,email,password)){
+                            System.out.println("MAUVAIS MDP OU MAIL");
+                            mEmailView.setError(getString(R.string.error_invalid_email));
+                            mPasswordView.setError(getString(R.string.error_incorrect_password));
+                            //focusView = mEmailView;
+                            result = false;
+                        }else{
+                            intent.putExtra("id", id);
+                        }
+                    }
+                },
+                new ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                        System.out.println(error);
+                    }
+                });
+        queue.add(request);
+
+
+        return result;
     }
 
     private boolean isEmailValid(String email) {
