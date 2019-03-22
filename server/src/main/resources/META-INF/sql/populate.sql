@@ -13,7 +13,7 @@ INSERT INTO produit (nom, description, srcImage, prix, idArtisan, categorie, sou
 INSERT INTO produit (nom, description, srcImage, prix, idArtisan, categorie, sousCategorie, commande) VALUES ('chaise simple', 'Une chaise simple','carbonara.jpg', '10.5', '1', 'mobilier','chaise', '0');
 INSERT INTO produit (nom, description, srcImage, prix, idArtisan, categorie, sousCategorie, commande) VALUES ('vase simple', 'Un vase simple','carbonara.jpg', '3.5', '1', 'deco', 'vase', '0');
 INSERT INTO produit (nom, description, srcImage, prix, idArtisan, categorie, sousCategorie, commande) VALUES ('lampe simple', 'Une lampe simple','carbonara.jpg', '5.5', '1', 'luminaire', 'lampe', '0');
-INSERT INTO produit (nom, description, srcImage, prix, idArtisan, categorie, sousCategorie, commande) VALUES ('table base', 'Une table base','carbonara.jpg', '100', '1', 'mobilier', 'table', '0');
+INSERT INTO produit (nom, description, srcImage, prix, idArtisan, categorie, sousCategorie, commande) VALUES ('table base', 'Une table base','carbonara.jpg', '100', '1', 'mobilier', 'table', '1');
 INSERT INTO produit (nom, description, srcImage, prix, idArtisan, categorie, sousCategorie, commande) VALUES ('lampe de chevet', 'Une lampe simple de chevet','carbonara.jpg', '10.5', '1', 'luminaire', 'lampe', '0');
 
 /*
