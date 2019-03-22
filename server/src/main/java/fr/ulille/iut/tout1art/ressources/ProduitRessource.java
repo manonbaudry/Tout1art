@@ -56,29 +56,29 @@ public class ProduitRessource {
         }
     }
     
-    @POST
-    @Produces(MediaType.APPLICATION_JSON)
-    public Response passerCommande(ProduitCreateDto produitDto) {
-        DataAccess dataAccess = DataAccess.begin();
-        
-        // Construction (données primitives puis composition
-        ProduitEntity produitEntity = ProduitEntity.convertFromProduitCreateDto(produitDto);
-
-        if (produitEntity.getNom() == null) {
-            dataAccess.closeConnection(false);
-            return Response.status(Status.NOT_ACCEPTABLE).entity("name not specified").build();
-        }
-        try {
-            long id = dataAccess.createCommande(produitEntity);
-            URI instanceURI = uriInfo.getAbsolutePathBuilder().path("" + id).build();
-            dataAccess.closeConnection(true);
-            return Response.created(instanceURI).status(201).entity(ProduitEntity.convertToDto(produitEntity)).location(instanceURI).build();
-        }
-        catch ( Exception ex ) {
-            dataAccess.closeConnection(false);
-            return Response.status(Status.CONFLICT).build();
-        }
-    }
+//    @POST
+//    @Produces(MediaType.APPLICATION_JSON)
+//    public Response passerCommande(ProduitCreateDto produitDto) {
+//        DataAccess dataAccess = DataAccess.begin();
+//        
+//        // Construction (données primitives puis composition
+//        ProduitEntity produitEntity = ProduitEntity.convertFromProduitCreateDto(produitDto);
+//
+//        if (produitEntity.getNom() == null) {
+//            dataAccess.closeConnection(false);
+//            return Response.status(Status.NOT_ACCEPTABLE).entity("name not specified").build();
+//        }
+//        try {
+//            long id = dataAccess.createCommande(produitEntity);
+//            URI instanceURI = uriInfo.getAbsolutePathBuilder().path("" + id).build();
+//            dataAccess.closeConnection(true);
+//            return Response.created(instanceURI).status(201).entity(ProduitEntity.convertToDto(produitEntity)).location(instanceURI).build();
+//        }
+//        catch ( Exception ex ) {
+//            dataAccess.closeConnection(false);
+//            return Response.status(Status.CONFLICT).build();
+//        }
+//    }
 
     @GET
     @Produces(MediaType.APPLICATION_JSON)
