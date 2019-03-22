@@ -1,13 +1,24 @@
 DROP TABLE IF EXISTS artisan CASCADE;
 DROP TABLE IF EXISTS produit CASCADE;
+DROP TABLE IF EXISTS client CASCADE;
+DROP TABLE IF EXISTS commande CASCADE;
 
-CREATE TABLE artisan (id BIGINT IDENTITY NOT NULL,	login VARCHAR UNIQUE NOT NULL,	mdp VARCHAR NOT NULL,		  nom VARCHAR NOT NULL, prenom VARCHAR NOT NULL,		adresse VARCHAR,	mail VARCHAR,			tel VARCHAR(10),	PRIMARY KEY (id));
-CREATE TABLE produit (id BIGINT IDENTITY NOT NULL,	nom VARCHAR NOT NULL,			description VARCHAR NOT NULL, srcImage VARCHAR,		prix DOUBLE,idArtisan INTEGER,  categorie VARCHAR,  sousCategorie VARCHAR,  commande INTEGER,	PRIMARY KEY (id));
+
+CREATE TABLE artisan  (id BIGINT IDENTITY NOT NULL,	login VARCHAR UNIQUE NOT NULL,	mdp VARCHAR NOT NULL,		  nom VARCHAR NOT NULL, prenom VARCHAR NOT NULL,		adresse VARCHAR,	mail VARCHAR,			tel VARCHAR(10),	PRIMARY KEY (id));
+CREATE TABLE produit  (id BIGINT IDENTITY NOT NULL,	nom VARCHAR NOT NULL,			description VARCHAR NOT NULL, srcImage VARCHAR,		prix DOUBLE,idArtisan INTEGER,  categorie VARCHAR,  sousCategorie VARCHAR,  commande INTEGER,	PRIMARY KEY (id));
+CREATE TABLE client   (id BIGINT IDENTITY NOT NULL,	login VARCHAR UNIQUE NOT NULL,	mdp VARCHAR NOT NULL,		  nom VARCHAR NOT NULL, prenom VARCHAR NOT NULL,		adresse VARCHAR,	mail VARCHAR,			tel VARCHAR(10),	PRIMARY KEY (id));
+CREATE TABLE commande (id BIGINT IDENTITY NOT NULL,	idProduit INTEGER, 				idClient INTEGER,			  statu VARCHAR,	  		PRIMARY KEY (id));
 
 ALTER TABLE produit ADD FOREIGN KEY (idArtisan)  REFERENCES artisan(id);
+ALTER TABLE commande ADD FOREIGN KEY (idProduit)  REFERENCES produit(id);
+ALTER TABLE commande ADD FOREIGN KEY (idClient)  REFERENCES client(id);
 
-INSERT INTO artisan (login , mdp, nom, prenom, adresse, mail, tel) VALUES ('login',		'123456789A',	'nom',		'prenom',	'adresse',		'mail@toto.fr',		'0320000000');
-INSERT INTO artisan (login , mdp, nom, prenom, adresse, mail, tel) VALUES ('login2',	'123456789A',	'nom2',		'prenom2',	'adresse2',		'mail2@toto.fr',	'0320000001');
+
+INSERT INTO artisan (login , mdp, nom, prenom, adresse, mail, tel) VALUES ('artisan1',	'123456789ABC',		'nom',		'prenom',	'adresse',		'mail@toto.fr',		'0320000000');
+INSERT INTO artisan (login , mdp, nom, prenom, adresse, mail, tel) VALUES ('artisan2',	'123456789ABC',		'nom2',		'prenom2',	'adresse2',		'mail2@toto.fr',	'0320000001');
+
+INSERT INTO client (login , mdp, nom, prenom, adresse, mail, tel) VALUES ('client1',	'123456789ABC',		'nom',		'prenom',	'adresse',		'mail@toto.fr',		'0320000000');
+INSERT INTO client (login , mdp, nom, prenom, adresse, mail, tel) VALUES ('client2',	'123456789ABC',		'nom2',		'prenom2',	'adresse2',		'mail2@toto.fr',	'0320000001');
 
 INSERT INTO produit (nom, description, srcImage, prix, idArtisan, categorie, sousCategorie, commande) VALUES ('table simple',	 'Une table simple',	'images/table.jpg',		'10.5',	 '1',	 'mobilier',	'table',	'0');
 INSERT INTO produit (nom, description, srcImage, prix, idArtisan, categorie, sousCategorie, commande) VALUES ('chaise simple',	 'Une chaise simple',	'images/chaise.jpg',	'10.5',	 '1',	 'mobilier',	'chaise',	'0');
@@ -15,6 +26,8 @@ INSERT INTO produit (nom, description, srcImage, prix, idArtisan, categorie, sou
 INSERT INTO produit (nom, description, srcImage, prix, idArtisan, categorie, sousCategorie, commande) VALUES ('lampe simple',	 'Une lampe simple',	'images/lampe.jpg', 	'5.5',	 '1',	 'luminaire',	'lampe',	'0');
 INSERT INTO produit (nom, description, srcImage, prix, idArtisan, categorie, sousCategorie, commande) VALUES ('table base', 	 'Une table base',		'images/table.jpg',		'100',	 '1',	 'mobilier',	'table',	'1');
 INSERT INTO produit (nom, description, srcImage, prix, idArtisan, categorie, sousCategorie, commande) VALUES ('lampe de chevet', 'Une lampe de chevet', 'images/lampe.jpg',		'10.5',	 '1',	 'luminaire',	'lampe', 	'0');
+
+INSERT INTO commande (idProduit, idClient) VALUES ('5','1', '0');
 
 /* 
 DROP TABLE IF EXISTS ingredientpizza CASCADE;

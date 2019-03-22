@@ -1,25 +1,33 @@
 package fr.ulille.iut.tout1art.dao;
 
 
-import javax.persistence.*;
+import java.util.Collection;
+import java.util.Objects;
+
+import javax.persistence.Basic;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
+import javax.persistence.Table;
 
 import org.modelmapper.ModelMapper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import fr.ulille.iut.tout1art.dto.PizzaCreateDto;
-import fr.ulille.iut.tout1art.dto.PizzaDto;
-import fr.ulille.iut.tout1art.dto.PizzaShortDto;
-
-import java.util.*;
+import fr.ulille.iut.tout1art.dto.CommandeCreateDto;
+import fr.ulille.iut.tout1art.dto.CommandeDto;
 
 @Entity
-@Table(name = "pizza")
+@Table(name = "commande")
 
 @NamedQueries({
-    @NamedQuery(name="FindAllPizzas", query="SELECT p from PizzaEntity p"),
-    @NamedQuery(name="CheckPizzaName", query="SELECT count(p) from PizzaEntity p where p.nom = :pnom and p.id <> :pid"),
-    @NamedQuery(name="FindPizzaByName", query="SELECT p from PizzaEntity p where p.nom = :pnom")
+    @NamedQuery(name="FindAllCommande", query="SELECT p from CommandeEntity p"),
+    @NamedQuery(name="CheckCommandeName", query="SELECT count(p) from CommandeEntity p where p.nom = :pnom and p.id <> :pid"),
+    @NamedQuery(name="FindCommandeByName", query="SELECT p from CommandeEntity p where p.nom = :pnom")
 })
 
 public class CommandeEntity {
@@ -28,23 +36,22 @@ public class CommandeEntity {
 
     private long id;
     private String nom;
-    private String base; // crème, tomate
-    private float prix_petite;
-    private float prix_grande;
-    private Set<IngredientEntity> ingredients = new HashSet<>();
+    private String description;
+    private String srcImage;
+    private double prix;
+    private int idArtisan;
+    private String categorie;
+    private String sousCategorie;
+    private int commande;
 
-    public static  PizzaEntity convertFromPizzaCreateDto(PizzaCreateDto pizza) {
-        return modelMapper.map(pizza, PizzaEntity.class);
+    public static CommandeEntity convertFromCommandeCreateDto(CommandeCreateDto commande) {
+        return modelMapper.map(commande, CommandeEntity.class);
     }
 
-    public static PizzaDto convertToDto(PizzaEntity pizza) {
-		return  modelMapper.map(pizza, PizzaDto.class);
+    public static CommandeDto convertToDto(CommandeEntity commande) {
+		return  modelMapper.map(commande, CommandeDto.class);
 	}
 	
-	public static PizzaShortDto convertToSimpleDto(PizzaEntity pizza) {
-        return  modelMapper.map(pizza, PizzaShortDto.class);
-	}
-
     @Id
     @GeneratedValue(strategy=GenerationType.IDENTITY)
     @Column(name = "id", nullable = false)
@@ -52,10 +59,11 @@ public class CommandeEntity {
         return id;
     }
 
+
 	public void setId(long id) {
         this.id = id;
     }
-    
+	
     @Basic
     @Column(name = "nom", nullable = false, length = -1)
 	public String getNom() {
@@ -65,63 +73,101 @@ public class CommandeEntity {
 	public void setNom(String nom) {
         this.nom = nom;
     }
+	
+    @Basic
+    @Column(name = "description", nullable = false, length = -1)
+	public String getDescription() {
+		return description;
+	}
+
+	public void setDescription(String description) {
+		this.description = description;
+	}
 
     @Basic
-    @Column(name = "base", length = -1)
-	public String getBase() {
-        return base;
-    }
+    @Column(name = "srcImage", nullable = false, length = -1)
+	public String getSrcImage() {
+		return srcImage;
+	}
 
-	public void setBase(String base) {
-        this.base = base;
-    }
-
-    @Basic
-    @Column(name = "prix_petite", precision = 0)
-	public float getPrix_petite() {
-        return prix_petite;
-    }
-
-	public void setPrix_petite(float prix_petite) {
-        this.prix_petite = prix_petite;
-    }
+	public void setSrcImage(String srcImage) {
+		this.srcImage = srcImage;
+	}
 
     @Basic
-    @Column(name = "prix_grande", nullable = true, precision = 0)
-	public float getPrix_grande() {
-        return prix_grande;
-    }
+    @Column(name = "prix", nullable = false, length = -1)
+	public double getPrix() {
+		return prix;
+	}
 
-	public void setPrix_grande(float prix_grande) {
-        this.prix_grande = prix_grande;
-    }
+	public void setPrix(double prix) {
+		this.prix = prix;
+	}
 
-    @ManyToMany /*(cascade = CascadeType.ALL)*/ /* (fetch = FetchType.EAGER) */
+	@Basic
+    @Column(name = "idArtisan", nullable = false, length = -1)
+	public int getIdArtisan() {
+		return idArtisan;
+	}
+
+	public void setIdArtisan(int idArtisan) {
+		this.idArtisan = idArtisan;
+	}
+
+	@Basic
+    @Column(name = "categorie", nullable = false, length = -1)
+	public String getCategorie() {
+		return categorie;
+	}
+
+	public void setCategorie(String categorie) {
+		this.categorie = categorie;
+	}
+
+    @Basic
+    @Column(name = "sousCategorie", nullable = false, length = -1)
+	public String getSousCategorie() {
+		return sousCategorie;
+	}
+
+	public void setSousCategorie(String sousCategorie) {
+		this.sousCategorie = sousCategorie;
+	}
+	
+	@Basic
+	@Column(name = "commande", nullable = false, length = -1)
+	public int getCommande() {
+		return commande;
+	}
+
+	public void setCommande(int commande) {
+		this.commande = commande;
+	}	
+/*
+    @ManyToMany /*(cascade = CascadeType.ALL)*/ /* (fetch = FetchType.EAGER)
     @JoinTable(name = "ingredientpizza",
             joinColumns = @JoinColumn(name = "idpizza", referencedColumnName = "id", nullable = false),
             inverseJoinColumns = @JoinColumn(name = "idingredient", referencedColumnName = "id", nullable = false))
 	public Set<IngredientEntity> getIngredients() {
         return ingredients;
     }
+*/
 
-	public void setIngredients(Set<IngredientEntity> ingredients) {
-        this.ingredients = ingredients;
-    }
 
-	public String toString() {
-		return "PizzaDto [id=" + id + ", nom=" + nom + ", base=" + base + ", prix_petite=" + prix_petite
-				+ ", prix_grande=" + prix_grande + ", ingredients=" + ingredients + "]";
-	}
-/*
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        PizzaEntity that = (PizzaEntity) o;
+        CommandeEntity that = (CommandeEntity) o;
         return id == that.id &&
                 Objects.equals(nom, that.nom);
     }
-*/
+
     public int hashCode() {
         return Objects.hash(id, nom);
     }
+
+	public Collection<CommandeDto> getCommandes() {
+		// TODO Auto-generated method stub
+		return null;
+	}
 }

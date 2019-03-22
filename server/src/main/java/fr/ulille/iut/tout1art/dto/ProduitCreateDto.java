@@ -1,7 +1,5 @@
 package fr.ulille.iut.tout1art.dto;
 
-import java.util.Objects;
-
 public class ProduitCreateDto {
     
     protected long id;
@@ -88,15 +86,6 @@ public class ProduitCreateDto {
 
 	public void setCommande(int commande) {
 		this.commande = commande;
-	}	
-	
-	@Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        ArtisanCreateDto that = (ArtisanCreateDto) o;
-        return id == that.id &&
-                Objects.equals(nom, that.nom);
-    }
+	}
     
 }
