@@ -18,6 +18,7 @@ public class ProduitDto {
     protected String categorie;
     protected String sousCategorie;
     protected int commande;
+    protected int delai;
 
     
     public String getSrcImage() {
@@ -90,6 +91,21 @@ public class ProduitDto {
 		this.commande = commande;
 	}	
 	
+	
+	/**
+	 * @return the delai
+	 */
+	public int getDelai() {
+		return delai;
+	}
+
+	/**
+	 * @param delai the delai to set
+	 */
+	public void setDelai(int delai) {
+		this.delai = delai;
+	}
+
 	@Override
     public boolean equals(Object o) {
         if (this == o) return true;
