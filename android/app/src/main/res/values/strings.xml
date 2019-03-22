@@ -30,5 +30,6 @@
     <string name="Stat">Statistiques</string>
     <string name="Produits">Mes produits</string>
     <string name="button5">Statistique</string>
-    <string name="commande">Mes commandes</string>
+    <string name="commande">Mes commandes en cours</string>
+    <string name="commande_attente">Mes commandes en attentes</string>
 </resources>
