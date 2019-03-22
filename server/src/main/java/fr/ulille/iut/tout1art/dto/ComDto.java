@@ -11,6 +11,7 @@ public class ComDto {
     protected long id;
     protected int idPoduit;
     protected int idClient;
+    protected int idArtisan;
     protected String statu;
     
 
@@ -53,6 +54,21 @@ public class ComDto {
 		this.idClient = idClient;
 	}
 
+	/**
+	 * @return the idArtisan
+	 */
+	public int getIdArtisan() {
+		return idArtisan;
+	}
+
+	/**
+	 * @param idArtisan the idArtisan to set
+	 */
+	public void setIdArtisan(int idArtisan) {
+		this.idArtisan = idArtisan;
+	}
+
+	
 	/**
 	 * @return the statu
 	 */

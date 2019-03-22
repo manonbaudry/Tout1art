@@ -26,6 +26,7 @@ import fr.ulille.iut.tout1art.dto.ComDto;
 
 @NamedQueries({
     @NamedQuery(name="FindAllComs", query="SELECT p from ComEntity p")
+    //@NamedQuery(name="GetProduitByArtisan", query="SELECT * FROM ProduitEntity p WHERE p.idArtisan = :pid AND p.id IN (SELECT c.idProduit FROM ComEntity c)")
 })
 
 public class ComEntity {
@@ -35,6 +36,7 @@ public class ComEntity {
     private long id;
     private int idPoduit;
     private int idClient;
+    private int idArtisan;
     private String statu;
     
     public static  ComEntity convertFromComCreateDto(ComCreateDto commander) {
@@ -65,7 +67,7 @@ public class ComEntity {
 		return idPoduit;
 	}
 
-	/**
+    /**
 	 * @param idPoduit the idPoduit to set
 	 */
 	public void setIdPoduit(int idPoduit) {
@@ -76,6 +78,19 @@ public class ComEntity {
 	@Column(name = "idClient", nullable = false, length = -1)
 	public int getIdClient() {
 		return idClient;
+	}
+
+	/**
+	 * @param idPoduit the idPoduit to set
+	 */
+	public void setIdArtisan(int idArtisan) {
+	this.idArtisan = idArtisan;
+	}
+
+	@Basic
+	@Column(name = "idArtisan", nullable = false, length = -1)
+	public int getIdArtisan() {
+		return idArtisan;
 	}
 
 	/**

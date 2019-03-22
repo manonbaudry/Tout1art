@@ -275,13 +275,20 @@ public class DataAccess {
 
 		/**
 		 * Lecture de la totalités des artisans de la base
-		 * @return La liste des pizzas
+		 * @return La liste des artisans
 		 */
 		public List<ComEntity> getAllComs() {
 	        TypedQuery<ComEntity> query = em.createNamedQuery("FindAllComs", ComEntity.class);
 	        return query.getResultList();
 		}
 
+		
+		public List<ProduitEntity> getProduitByArtisan(int idArtisan) {
+	        TypedQuery<ProduitEntity> query = em.createNamedQuery("GetProduitByArtisan", ProduitEntity.class);
+	        query.setParameter("pidArtisan", idArtisan);
+	        return query.getResultList();
+		}
+		
 		public void deleteCom(long idCom) throws Exception {
 	        ComEntity Com = em.find(ComEntity.class,  idCom);
 	        if (Com == null) throw new Exception();

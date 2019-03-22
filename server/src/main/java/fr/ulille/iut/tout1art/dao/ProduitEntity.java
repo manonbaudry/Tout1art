@@ -25,10 +25,10 @@ import fr.ulille.iut.tout1art.dto.ProduitDto;
 @Table(name = "produit")
 
 @NamedQueries({
-    @NamedQuery(name="FindAllProduits", query="SELECT p from ProduitEntity p"),
-    @NamedQuery(name="CheckProduitName", query="SELECT count(p) from ProduitEntity p where p.nom = :pnom and p.id <> :pid"),
-    @NamedQuery(name="FindProduitByName", query="SELECT p from ProduitEntity p where p.nom = :pnom")
-})
+    @NamedQuery(name="FindAllProduits", query="SELECT p FROM ProduitEntity p"),
+    @NamedQuery(name="CheckProduitName", query="SELECT count(p) FROM ProduitEntity p where p.nom = :pnom and p.id <> :pid"),
+    @NamedQuery(name="FindProduitByName", query="SELECT p FROM ProduitEntity p where p.nom = :pnom")
+    })
 
 public class ProduitEntity {
     private final static Logger logger = LoggerFactory.getLogger(ProduitEntity.class);

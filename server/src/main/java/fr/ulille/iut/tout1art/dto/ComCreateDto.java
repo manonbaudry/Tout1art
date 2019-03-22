@@ -5,6 +5,7 @@ public class ComCreateDto {
     protected long id;
     protected int idPoduit;
     protected int idClient;
+    protected int idArtisan;
     protected String statu;
     
     
@@ -16,11 +17,26 @@ public class ComCreateDto {
         this.id = id;
     }
 
-	/**
+    /**
 	 * @return the idPoduit
 	 */
 	public int getIdPoduit() {
 		return idPoduit;
+	}
+
+	
+	/**
+	 * @return the idArtisan
+	 */
+	public int getIdArtisan() {
+		return idArtisan;
+	}
+
+	/**
+	 * @param idArtisan the idArtisan to set
+	 */
+	public void setIdArtisan(int idArtisan) {
+		this.idArtisan = idArtisan;
 	}
 
 	/**

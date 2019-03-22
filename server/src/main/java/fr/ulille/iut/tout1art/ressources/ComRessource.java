@@ -18,8 +18,10 @@ import java.util.stream.Collectors;
 
 import fr.ulille.iut.tout1art.dao.ComEntity;
 import fr.ulille.iut.tout1art.dao.DataAccess;
+import fr.ulille.iut.tout1art.dao.ProduitEntity;
 import fr.ulille.iut.tout1art.dto.ComCreateDto;
 import fr.ulille.iut.tout1art.dto.ComDto;
+import fr.ulille.iut.tout1art.dto.ProduitDto;
 
 @Path("/com")
 public class ComRessource {
@@ -62,6 +64,16 @@ public class ComRessource {
         List<ComEntity> la = dataAccess.getAllComs();
         dataAccess.closeConnection(false);
         return la.stream().map(ComEntity::convertToDto).collect(Collectors.toList());
+    }
+    
+    @GET
+    @Path("artisan/{idArtisan}")
+    @Produces(MediaType.APPLICATION_JSON)
+    public List<ProduitDto> getProduitByArtisan(@PathParam("idArtisan") int idArtisan) {
+        DataAccess dataAccess = DataAccess.begin();
+        List<ProduitEntity> la = dataAccess.getProduitByArtisan(idArtisan);
+        dataAccess.closeConnection(false);
+        return la.stream().map(ProduitEntity::convertToDto).collect(Collectors.toList());
     }
 
     
