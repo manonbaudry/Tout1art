@@ -12,13 +12,15 @@ export default class ProductPage extends Page {
     }
 
     render(): string {
-        return `<div class="row">
-    <img src="${this.product.img}"/>
-    <ul>
-        <li>${this.product.name}</li>
-        <li>${this.product.description}</li>
-        <li>${this.product.price} €</li>
-    </ul>
+        return `<div class="container">
+    <div class="row">
+        <img src="${this.product.img}" class="col"/>
+        <div class="col">
+            <h3>${this.product.name}</h3>
+            <p>${this.product.description}</p>
+            <p>Prix : ${this.product.price}</p>
+        </div>
+    </div>
 </div>`
     }
 }
