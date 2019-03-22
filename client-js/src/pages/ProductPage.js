@@ -35,22 +35,25 @@ export default class ProductPage extends Page {
 
     click(event: Event) {
         event.preventDefault();
-        fetch(`http://127.0.0.1:8080/api/v1/produit/${this.product.id}`, {
-            method: "PUT",
-            body: JSON.stringify({id: this.product.id, commande: 1}),
+
+        fetch(`http://localhost:8080/api/v1/com`, {
+            method: 'POST',
             headers: {
-                "Content-Type": "application/json"
+                'Content-Type': 'application/json'
             },
-            credentials: "same-origin"
-        }).then(function (response) {
-            console.log(response);
-            if (response.status === 200) {
-                alert('Votre commande a été envoyé avec succès!!')
+            credentials: 'same-origin',
+            body: JSON.stringify({
+                idArtisan: 1,
+                idClient: 1,
+                idProduit: this.product.id,
+                statut: 'En attente'
+            })
+        }).then((response: Response) => {
+            if (response.ok) {
+                alert('Votre commande a été envoyé avec succès.');
             } else {
                 alert('Une erreur est survenue lors de la commande.');
             }
-        }, function (error) {
-            console.log(error.message); //=> String
-        })
+        }).catch((error: TypeError) => console.log('Erreur de fetch post commande : ', error.message));
     }
 }

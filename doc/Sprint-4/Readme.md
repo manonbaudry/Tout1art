@@ -2,13 +2,14 @@
 
 ## Travail effectué
 Interface login Artisan.
-Formulaire de connextion client.
+Formulaire de connexion client.
 Formulaire d'inscription client.
+
 ## Résultats
-Les 3 premières page du site : Accueil, Connextion, Inscription.
+Les 3 premières page du site : Accueil, Connexion, Inscription.
 Interface artisan Android.
 
 ## Travail à faire au prochain sprint
 Affichage des produits.
 Design interface sur papier.
-Modification de la page d'accueil après en avoir parler.
+Modification de la page d'accueil après en avoir parlé.
