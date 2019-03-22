@@ -285,5 +285,10 @@ public class DataAccess {
 		return 0;
 	}
 
+	public long createCommande(ProduitEntity produitEntity) {
+
+		return 0;
+	}
+
 
 }
