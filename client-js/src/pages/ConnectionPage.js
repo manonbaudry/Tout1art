@@ -19,18 +19,19 @@ export default class ConnectionPage extends Page {
     <h1 class="h3 mb-3 font-weight-normal">Veuillez vous connecter</h1>
 
     <div class="form-group">
-        <label for="exampleInputEmail1">Email address:</label>
-        <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Email address">
+        <label for="exampleInputEmail">Adresse email :</label>
+        <input type="email" class="form-control" id="exampleInputEmail" aria-describedby="emailHelp"
+               placeholder="Adresse email">
     </div>
 
     <div class="form-group">
-        <label for="exampleInputName">Mot de passe:</label>
-        <input type="username" class="form-control" id="exampleInputPassword1" placeholder="Mot de passe">
+        <label for="exampleInputPassword">Mot de passe:</label>
+        <input type="password" class="form-control" id="exampleInputPassword" placeholder="Mot de passe">
     </div>
 
-    
+
     <button type="submit" class="btn btn-primary">Se connecter</button>
-    </form>`;
+</form>`;
     }
 
     submit(event: Event) {

@@ -14,9 +14,9 @@ PageRenderer.contentElement = document.querySelector('.pageContent');
 
 // déclaration des différentes page de l'app
 const products: Array<Product> = [];
-products[0] = new Product(1, 'Chaise', 'Mobilier', 'Ceci est une chaise.', 20, 'images/carbonara.jpg');
-products[1] = new Product(2, 'Bureau', 'Mobilier', 'Ceci est un bureau.', 200, 'images/napolitaine.jpg');
-products[2] = new Product(3, 'Lampe', 'Luminaire', 'Ceci est un luminaire.', 16, 'images/hawaienne.jpg');
+products[0] = Product.get(1);
+products[1] = Product.get(2);
+products[2] = Product.get(3);
 const homePage: NewHomePage = new NewHomePage(products);
 const inscriptionPage: ClientInscriptionPage = new ClientInscriptionPage();
 const connectionPage: ConnectionPage = new ConnectionPage();
@@ -67,8 +67,8 @@ function renderConnection(): void {
 
 function renderProduct(id: number): void {
     Menu.setSelectedLink(homeLink);
-    // const product: ?Product = Product.get(id);
-    const product = products[id - 1];
+    const product: ?Product = Product.get(id);
+    console.log('product after get', product);
     if (product) {
         productPage = new ProductPage(product);
     } else {

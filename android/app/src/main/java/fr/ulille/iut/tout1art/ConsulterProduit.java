@@ -42,8 +42,8 @@ public class ConsulterProduit extends AppCompatActivity {
         try {
             for (int i = 0; i < response.length() ; i++) {
                 JSONObject obj = response.getJSONObject(i);
-                System.out.println("NOM : "+obj.getString("nom"))
-;                if(obj.getInt("idArtisan") == idArtisan){
+                System.out.println("NOM : "+obj.getString("nom"));
+                if(obj.getInt("idArtisan") == idArtisan){
                     this.nomProduit.add(obj.getString("nom"));
                 }
             }

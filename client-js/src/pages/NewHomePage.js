@@ -37,7 +37,7 @@ export default class NewHomePage extends Page {
     static makeThumbnail(product: Product): string {
         return `<div class="card">
     <a href="#" class="productLink" id="${product.id}">
-        <img src="${product.img}" class="card-img-top" alt="${product.name}" width="200px">
+        <img src="${product.img}" class="card-img-top" alt="${product.name}">
         <div class="card-body">
             <h5 class="card-title">${product.name}</h5>
             <p class="card-text">${product.description}</p>
