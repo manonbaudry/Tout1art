@@ -59,7 +59,7 @@ public class MonCompte extends AppCompatActivity {
                 JSONObject obj = response.getJSONObject(i);
                 System.out.println("NOM : "+obj.getString("nom"));
                 if(obj.getInt("id") == id){
-                    str += obj.getInt("id" + "\n");
+                    //str += obj.getInt("id" + "\n");
                     str += obj.getString("nom" + "\n");
                     str += obj.getString("prenom" + "\n");
                     str += obj.getString("adresse" + "\n");
