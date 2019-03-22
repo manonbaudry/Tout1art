@@ -24,4 +24,8 @@ public class BacklogArt extends AppCompatActivity {
     public void consulterProduit(View view){
         startActivity(new Intent(this,ConsulterProduit.class));
     }
+
+    public void voirCommande(View view){
+        startActivity(new Intent(this,VoirCommande.class));
+    }
 }
