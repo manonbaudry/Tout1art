@@ -7,6 +7,7 @@ import ConnectionPage from "./pages/ConnectionPage";
 import $ from 'jquery';
 import ProductPage from "./pages/ProductPage";
 import Product from "./Product";
+import AdminPage from "./pages/AdminPage";
 
 // configuration du PageRenderer
 PageRenderer.titleElement = document.querySelector('.pageTitle');
@@ -23,6 +24,7 @@ Promise.all(products).then(() => renderHome());
 const homePage: NewHomePage = new NewHomePage(products);
 const inscriptionPage: ClientInscriptionPage = new ClientInscriptionPage();
 const connectionPage: ConnectionPage = new ConnectionPage();
+const adminPage: AdminPage = new AdminPage();
 let productPage: ProductPage;
 
 //recupération dropdown "mobilier, luminaire et déco" navbar
@@ -53,6 +55,7 @@ dropDownDeco.addEventListener("click", function(){
 const homeLink = $('.homeLink');
 const inscriptionLink = $('.inscriptionLink');
 const connectionLink = $('.connectionLink');
+const adminLink = $('.adminLink');
 
 homeLink.click((event: Event) => {
     event.preventDefault();
@@ -65,6 +68,10 @@ inscriptionLink.click((event: Event) => {
 connectionLink.click((event: Event) => {
     event.preventDefault();
     renderConnection();
+});
+adminLink.click((event: Event) => {
+    event.preventDefault();
+    renderAdmin();
 });
 
 function renderHome(): void {
@@ -111,9 +118,18 @@ function selectionCible(categorie){
     })
 }
 
+function renderAdmin(): void {
+    Menu.setSelectedLink(adminLink);
+    PageRenderer.renderPage(adminPage);
+}
+
+// function selectionCible(){
+
+// }
+
 // function updateSectionDropDown(mobiliers, luminaires, decos) {
 
-   
+
 //     //ici requete pour aller chercher les sous sections dans la bdd
 //     Product.getAll().then(json => {
 //         console.log("taille: " + json.length);
