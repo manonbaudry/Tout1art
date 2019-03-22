@@ -12,7 +12,7 @@ public class ComDto {
     protected int idProduit;
     protected int idClient;
     protected int idArtisan;
-    protected String statu;
+    protected String statut;
     
 
     
@@ -27,17 +27,17 @@ public class ComDto {
     
 
 	/**
-	 * @return the idPoduit
+	 * @return the idProduit
 	 */
 	public int getIdProduit() {
 		return idProduit;
 	}
 
 	/**
-	 * @param idPoduit the idPoduit to set
+	 * @param idProduit the idProduit to set
 	 */
-	public void setIdProduit(int idPoduit) {
-		this.idProduit = idPoduit;
+	public void setIdProduit(int idProduit) {
+		this.idProduit = idProduit;
 	}
 
 	/**
@@ -70,17 +70,17 @@ public class ComDto {
 
 	
 	/**
-	 * @return the statu
+	 * @return the statut
 	 */
-	public String getStatu() {
-		return statu;
+	public String getStatut() {
+		return statut;
 	}
 
 	/**
-	 * @param statu the statu to set
+	 * @param statut the statut to set
 	 */
-	public void setStatu(String statu) {
-		this.statu = statu;
+	public void setStatut(String statut) {
+		this.statut = statut;
 	}
 
 

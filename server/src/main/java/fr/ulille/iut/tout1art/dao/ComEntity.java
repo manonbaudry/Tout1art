@@ -37,7 +37,7 @@ public class ComEntity {
     private int idProduit;
     private int idClient;
     private int idArtisan;
-    private String statu;
+    private String statut;
     
     public static  ComEntity convertFromComCreateDto(ComCreateDto commander) {
         return modelMapper.map(commander, ComEntity.class);
@@ -68,7 +68,7 @@ public class ComEntity {
 	}
 
     /**
-	 * @param idPoduit the idPoduit to set
+	 * @param idProduit the idProduit to set
 	 */
 	public void setIdProduit(int idProduit) {
 		this.idProduit = idProduit;
@@ -81,7 +81,7 @@ public class ComEntity {
 	}
 
 	/**
-	 * @param idProduit the idPoduit to set
+	 * @param idProduit the idProduit to set
 	 */
 	public void setIdArtisan(int idArtisan) {
 	this.idArtisan = idArtisan;
@@ -101,16 +101,16 @@ public class ComEntity {
 	}
 
 	@Basic
-	@Column(name = "statu", nullable = false, length = -1)
-	public String getStatu() {
-		return statu;
+	@Column(name = "statut", nullable = false, length = -1)
+	public String getStatut() {
+		return statut;
 	}
 
 	/**
-	 * @param statu the statu to set
+	 * @param statut the statut to set
 	 */
-	public void setStatu(String statu) {
-		this.statu = statu;
+	public void setStatut(String statut) {
+		this.statut = statut;
 	}
 
 /*

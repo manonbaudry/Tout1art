@@ -302,8 +302,7 @@ public class DataAccess {
 
 
 	public ClientEntity getClientById(long idClient) {
-		// TODO Auto-generated method stub
-		return null;
+        return em.find(ClientEntity.class,  idClient);
 	}
 
 	public List<ClientEntity> getAllClients() {
@@ -311,19 +310,16 @@ public class DataAccess {
 	     return query.getResultList();
 	}
 
-	public void deleteClient(long idClient) {
-		// TODO Auto-generated method stub
-		
+	public void deleteClient(long idClient) throws Exception {
+		 ComEntity client = em.find(ComEntity.class,  idClient);
+	     if (client == null) throw new Exception();
+	     em.remove(em.merge(client));
 	}
 
 	public long createClient(ClientEntity clientEntity) {
-		// TODO Auto-generated method stub
-		return 0;
-	}
-
-	public long createCommande(ProduitEntity produitEntity) {
-
-		return 0;
+		em.persist(clientEntity);
+        em.flush();
+        return clientEntity.getId();
 	}
 
 	public void updateProduit(ProduitEntity produit) throws PizzaNameExistsException {

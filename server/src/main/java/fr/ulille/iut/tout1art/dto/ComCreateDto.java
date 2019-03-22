@@ -6,7 +6,7 @@ public class ComCreateDto {
     private int idProduit;
     private int idClient;
     private int idArtisan;
-    private String statu;
+    private String statutt;
     
     
     public long getId() {
@@ -18,7 +18,7 @@ public class ComCreateDto {
     }
 
     /**
-	 * @return the idPoduit
+	 * @return the idProduit
 	 */
 	public int getIdProduit() {
 		return idProduit;
@@ -40,10 +40,10 @@ public class ComCreateDto {
 	}
 
 	/**
-	 * @param idPoduit the idPoduit to set
+	 * @param idProduit the idProduit to set
 	 */
-	public void setIdProduit(int idPoduit) {
-		this.idProduit = idPoduit;
+	public void setIdProduit(int idProduit) {
+		this.idProduit = idProduit;
 	}
 
 	/**
@@ -61,16 +61,16 @@ public class ComCreateDto {
 	}
 
 	/**
-	 * @return the statu
+	 * @return the statutt
 	 */
-	public String getStatu() {
-		return statu;
+	public String getStatut() {
+		return statutt;
 	}
 
 	/**
-	 * @param statu the statu to set
+	 * @param statut the statutt to set
 	 */
-	public void setStatu(String statu) {
-		this.statu = statu;
+	public void setStatut(String statut) {
+		this.statutt = statut;
 	}
 }

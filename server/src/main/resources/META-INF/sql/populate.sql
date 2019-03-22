@@ -7,7 +7,7 @@ DROP TABLE IF EXISTS com CASCADE;
 CREATE TABLE artisan  (id BIGINT IDENTITY NOT NULL,	login VARCHAR UNIQUE NOT NULL,	mdp VARCHAR NOT NULL,		  nom VARCHAR NOT NULL, prenom VARCHAR NOT NULL,		adresse VARCHAR,	mail VARCHAR,			tel VARCHAR(10),	PRIMARY KEY (id));
 CREATE TABLE produit  (id BIGINT IDENTITY NOT NULL,	nom VARCHAR NOT NULL,			description VARCHAR NOT NULL, srcImage VARCHAR,		prix DOUBLE, idArtisan INTEGER, categorie VARCHAR,  sousCategorie VARCHAR,  commande INTEGER, delai INTEGER,	PRIMARY KEY (id));
 CREATE TABLE client   (id BIGINT IDENTITY NOT NULL,	login VARCHAR UNIQUE NOT NULL,	mdp VARCHAR NOT NULL,		  nom VARCHAR NOT NULL, prenom VARCHAR NOT NULL,		adresse VARCHAR,	mail VARCHAR,			tel VARCHAR(10),	PRIMARY KEY (id));
-CREATE TABLE com 	  (id BIGINT IDENTITY NOT NULL,	idProduit INTEGER, 				idClient INTEGER,			  idArtisan INTEGER,	statu VARCHAR,					PRIMARY KEY (id));
+CREATE TABLE com 	  (id BIGINT IDENTITY NOT NULL,	idProduit INTEGER, 				idClient INTEGER,			  idArtisan INTEGER,	statut VARCHAR,					PRIMARY KEY (id));
 
 ALTER TABLE produit ADD FOREIGN KEY (idArtisan)  REFERENCES artisan(id);
 ALTER TABLE com ADD FOREIGN KEY (idProduit)  REFERENCES produit(id);
@@ -25,9 +25,9 @@ INSERT INTO produit (nom, description, srcImage, prix, idArtisan, categorie, sou
 INSERT INTO produit (nom, description, srcImage, prix, idArtisan, categorie, sousCategorie, commande, delai) VALUES ('chaise simple',	 'Une chaise simple',	'images/chaise.jpg',	'10.5',	 '1',	 'mobilier',	'chaise',	'0','3');
 INSERT INTO produit (nom, description, srcImage, prix, idArtisan, categorie, sousCategorie, commande, delai) VALUES ('vase simple',	 'Un vase simple',		'images/vase.jpg',	 	'3.5',	 '1',	 'deco',	 	'vase',	 	'0', '5');
 INSERT INTO produit (nom, description, srcImage, prix, idArtisan, categorie, sousCategorie, commande, delai) VALUES ('lampe simple',	 'Une lampe simple',	'images/lampe.jpg', 	'5.5',	 '1',	 'luminaire',	'lampe',	'0', '7');
-INSERT INTO produit (nom, description, srcImage, prix, idArtisan, categorie, sousCategorie, commande, delai) VALUES ('table base', 	 'Une table base',		'images/table.jpg',		'100',	 '1',	 'mobilier',	'table',	'1','4');
+INSERT INTO produit (nom, description, srcImage, prix, idArtisan, categorie, sousCategorie, commande, delai) VALUES ('table basse', 	 'Une table base',		'images/table.jpg',		'100',	 '1',	 'mobilier',	'table',	'1','4');
 INSERT INTO produit (nom, description, srcImage, prix, idArtisan, categorie, sousCategorie, commande, delai) VALUES ('lampe de chevet', 'Une lampe de chevet', 'images/lampe.jpg',		'10.5',	 '2',	 'luminaire',	'lampe', 	'0','42');
 
-INSERT INTO com (idProduit, idClient, idArtisan, statu) VALUES ('5','1', '1', 'En cours');
-INSERT INTO com (idProduit, idClient, idArtisan, statu) VALUES ('3','1', '1', 'En cours');
-INSERT INTO com (idProduit, idClient, idArtisan, statu) VALUES ('6','2', '1', 'En cours');
+INSERT INTO com (idProduit, idClient, idArtisan, statut) VALUES ('5','1', '1', 'En cours');
+INSERT INTO com (idProduit, idClient, idArtisan, statut) VALUES ('3','1', '1', 'En cours');
+INSERT INTO com (idProduit, idClient, idArtisan, statut) VALUES ('6','2', '2', 'En cours');
