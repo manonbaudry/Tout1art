@@ -25,8 +25,7 @@ public class MonCompte extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_mon_compte);
         queue = Volley.newRequestQueue(MonCompte.this);
-        id = 2;
-        this.layout = (LinearLayout) findViewById(R.id.layout_mon_compte);
+        id = 1;
         getArtisan();
 
     }
@@ -60,20 +59,28 @@ public class MonCompte extends AppCompatActivity {
                 System.out.println("NOM : "+obj.getString("nom"));
                 if(obj.getInt("id") == id){
                     //str += obj.getInt("id" + "\n");
-                    str += obj.getString("nom" ) + "nom: \n";
-                    str += obj.getString("prenom") + "prenom: \n";
-                    str += obj.getString("adresse") + "adresse: \n";
-                    str += obj.getString("mail") + "mail: \n";
-                    str += obj.getString("tel") + "tel: \n";
+                    TextView mail = findViewById(R.id.caseMail);
+                    mail.setText(obj.getString("mail"));
+                    TextView mdp = findViewById(R.id.caseMdp);
+                    mdp.setText(obj.getString("mdp"));
+                    TextView nom = findViewById(R.id.caseNom);
+                    nom.setText(obj.getString("nom"));
+                    TextView prenom = findViewById(R.id.casePrenom);
+                    prenom.setText(obj.getString("prenom"));
+                    TextView tel = findViewById(R.id.caseTelephone);
+                    tel.setText(obj.getString("tel"));
+                    TextView addresse = findViewById(R.id.caseAdresse);
+                    addresse.setText(obj.getString("adresse"));
+                    //str += obj.getString("nom" ) + "nom: \n";
+                    //str += obj.getString("prenom") + "prenom: \n";
+                    //str += obj.getString("adresse") + "adresse: \n";
+                    //str += obj.getString("mail") + "mail: \n";
+                    //str += obj.getString("tel") + "tel: \n";
 
                 }
             }
 
             System.out.println("LE TXT "+str);
-            TextView text = findViewById(R.id.info);
-            text.setText(str);
-            text.setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT,LinearLayout.LayoutParams.WRAP_CONTENT));
-            layout.addView(text);
 
         } catch (Exception e) {
             e.printStackTrace();
