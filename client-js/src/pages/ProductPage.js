@@ -37,12 +37,13 @@ export default class ProductPage extends Page {
         event.preventDefault();
         fetch(`http://127.0.0.1:8080/api/v1/produit/${this.product.id}`, {
             method: "PUT",
-            //body: JSON.stringify(product.toLiteral()),
-            //headers: {
-            //  "Content-Type": "application/json"
-            //},
-            //credentials: "same-origin"
+            body: JSON.stringify({null: "null"}),
+            headers: {
+                "Content-Type": "application/json"
+            },
+            credentials: "same-origin"
         }).then(function (response) {
+            console.log(response);
             if (response.status === 200) {
                 alert('Votre commande a été envoyé avec succès!!')
             } else {
