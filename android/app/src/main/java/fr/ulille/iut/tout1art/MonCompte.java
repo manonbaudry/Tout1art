@@ -19,13 +19,14 @@ import org.json.JSONObject;
 public class MonCompte extends AppCompatActivity {
     int id;
     private RequestQueue queue;
-
+    private LinearLayout layout;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_mon_compte);
         queue = Volley.newRequestQueue(MonCompte.this);
         id = 2;
+        this.layout = (LinearLayout) findViewById(R.id.layout_mon_compte);
         getArtisan();
 
     }
@@ -37,7 +38,6 @@ public class MonCompte extends AppCompatActivity {
                 uri,
                 null,
                 new Response.Listener<JSONArray>() {
-                    TextView tx = findViewById(R.id.textView2);
                     @Override
                     public void onResponse(JSONArray response) {
                         showArt(response);
@@ -60,11 +60,11 @@ public class MonCompte extends AppCompatActivity {
                 System.out.println("NOM : "+obj.getString("nom"));
                 if(obj.getInt("id") == id){
                     //str += obj.getInt("id" + "\n");
-                    str += obj.getString("nom" + "\n");
-                    str += obj.getString("prenom" + "\n");
-                    str += obj.getString("adresse" + "\n");
-                    str += obj.getString("mail" + "\n");
-                    str += obj.getString("tel" + "\n");
+                    str += obj.getString("nom" ) + "nom: \n";
+                    str += obj.getString("prenom") + "prenom: \n";
+                    str += obj.getString("adresse") + "adresse: \n";
+                    str += obj.getString("mail") + "mail: \n";
+                    str += obj.getString("tel") + "tel: \n";
 
                 }
             }
@@ -73,7 +73,7 @@ public class MonCompte extends AppCompatActivity {
             TextView text = findViewById(R.id.info);
             text.setText(str);
             text.setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT,LinearLayout.LayoutParams.WRAP_CONTENT));
-                //layout.addView(text);
+            layout.addView(text);
 
         } catch (Exception e) {
             e.printStackTrace();
