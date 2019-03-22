@@ -332,5 +332,14 @@ public class DataAccess {
 		
 	}
 
+	public void updateCommande(ComEntity commande) throws PizzaNameExistsException {
+	    try {
+            em.merge(commande);
+            em.flush();
+        } catch (javax.persistence.PersistenceException e){
+            throw new PizzaNameExistsException();
+        }
+	}
+
 
 }

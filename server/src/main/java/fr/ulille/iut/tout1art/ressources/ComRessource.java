@@ -104,4 +104,26 @@ public class ComRessource {
             return Response.status(Status.NOT_FOUND).entity("Com not found").build();
         }
     }
+    
+    
+    @PUT
+    @Path("/{id}")
+    @Produces(MediaType.APPLICATION_JSON)
+    public Response update(@PathParam("id") long id, ComEntity commande) {
+        DataAccess dataAccess = DataAccess.begin();
+        ComEntity commandeBDD = dataAccess.getComById(id);
+        if (commandeBDD == null) {
+            return Response.status(Status.NOT_FOUND).entity("Produit not found").build();
+        } else {
+            try {
+                commandeBDD.setStatut(commande.getStatut());
+                dataAccess.updateCommande(commandeBDD);
+                dataAccess.closeConnection(true);
+                return Response.ok(commandeBDD).build(); //  .created(instanceURI).build();
+            } catch (Exception ex) {
+                dataAccess.closeConnection(false);
+                return Response.status(Status.CONFLICT).entity("Duplicated name").build();
+            }
+        }
+    }
 }

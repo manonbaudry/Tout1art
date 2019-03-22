@@ -1,7 +1,6 @@
 package fr.ulille.iut.tout1art.dao;
 
 
-import java.util.Collection;
 import java.util.Objects;
 
 import javax.persistence.Basic;
