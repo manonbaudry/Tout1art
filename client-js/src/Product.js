@@ -33,6 +33,16 @@ export default class Product {
             .catch((error: TypeError) => console.log('Erreur de fetch', error.message));
     }
 
+    static getAll(): Promise<{category: string, sousCategorie: string }> {
+        return fetch(`http://localhost:8080/api/v1/produit`)
+            .then((response: Response) => response.json())
+            .then((json: JSON) => {
+
+                return json;
+            })
+            .catch((error: TypeError) => console.log('Erreur de fetch', error.message));
+    }
+
     static jsonToObj(product) {
         return new Product(product.id, product.name, product.category, product.description, product.price, product.img);
     }
