@@ -1,13 +1,14 @@
-# Sprint 4
+# Sprint 5
 
 ## Travail effectué
-Affichage des produits.
-Design interface sur papier.
-Modification de la page d'accueil après en avoir parler.
+création de la page d'acceuil avec 3 produits du site
+
 ## Résultats
-Les 3 premières page du site : Accueil, Connextion, Inscription.
-Interface artisan Android.
+affichage de la page d'accueil
+affichage de la page de produit
 
 ## Travail à faire au prochain sprint
-Affichage des produits.
-Modification de la page d'accueil après en avoir parler.
+faire le lien entre les produits et la base de donnée 
+faire une recherche par catégorie 
+l'artisan voit ses produits
+

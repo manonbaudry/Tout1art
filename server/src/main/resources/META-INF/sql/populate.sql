@@ -14,7 +14,7 @@ ALTER TABLE com ADD FOREIGN KEY (idProduit)  REFERENCES produit(id);
 ALTER TABLE com ADD FOREIGN KEY (idClient)  REFERENCES client(id);
 
 
-INSERT INTO artisan (login , mdp, nom, prenom, adresse, mail, tel) VALUES ('artisan1',	'123456789ABC',		'nom',		'prenom',	'adresse',		'mail@toto.fr',		'0320000000');
+INSERT INTO artisan (login , mdp, nom, prenom, adresse, mail, tel) VALUES ('artisan1',	'azerty',		'nom',		'prenom',	'adresse',		'mail@toto.fr',		'0320000000');
 INSERT INTO artisan (login , mdp, nom, prenom, adresse, mail, tel) VALUES ('artisan2',	'123456789ABC',		'nom2',		'prenom2',	'adresse2',		'mail2@toto.fr',	'0320000001');
 INSERT INTO artisan (login , mdp, nom, prenom, adresse, mail, tel) VALUES ('admin',	'root',		'admin',		'Franck',	'adresse',		'mail@toto.fr',		'0320000000');
 
