@@ -13,10 +13,6 @@ public class BacklogArt extends AppCompatActivity {
         setContentView(R.layout.page_artisant); // modifier pour layout Artisan
     }
 
-    public void connect(View view){
-        startActivity(new Intent(this,testCo.class));
-    }
-
     public void monCompte(View view){
         startActivity(new Intent(this,MonCompte.class));
     }

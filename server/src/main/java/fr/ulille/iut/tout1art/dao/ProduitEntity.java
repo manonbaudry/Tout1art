@@ -43,6 +43,7 @@ public class ProduitEntity {
     private String categorie;
     private String sousCategorie;
     private int commande;
+    private int delai;
 
     public static ProduitEntity convertFromProduitCreateDto(ProduitCreateDto produit) {
         return modelMapper.map(produit, ProduitEntity.class);
@@ -143,6 +144,9 @@ public class ProduitEntity {
 	public void setCommande(int commande) {
 		this.commande = commande;
 	}	
+	
+	
+	
 /*
     @ManyToMany /*(cascade = CascadeType.ALL)*/ /* (fetch = FetchType.EAGER)
     @JoinTable(name = "ingredientpizza",
@@ -154,7 +158,24 @@ public class ProduitEntity {
 */
 
 
-    public boolean equals(Object o) {
+    /**
+	 * @return the delai
+	 */
+
+	@Basic
+	@Column(name = "delai", nullable = false, length = -1)
+	public int getDelai() {
+		return delai;
+	}
+
+	/**
+	 * @param delai the delai to set
+	 */
+	public void setDelai(int delai) {
+		this.delai = delai;
+	}
+
+	public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         ProduitEntity that = (ProduitEntity) o;
