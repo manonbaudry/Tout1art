@@ -13,12 +13,12 @@ import javax.ws.rs.core.Response.Status;
 
 import java.net.URI;
 
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
 import java.util.stream.Collectors;
 
+import fr.ulille.iut.tout1art.dao.CommandeEntity;
 import fr.ulille.iut.tout1art.dao.DataAccess;
+import fr.ulille.iut.tout1art.dao.IngredientEntity;
 import fr.ulille.iut.tout1art.dao.ProduitEntity;
 import fr.ulille.iut.tout1art.dto.ProduitCreateDto;
 import fr.ulille.iut.tout1art.dto.ProduitDto;
@@ -55,30 +55,27 @@ public class ProduitRessource {
             return Response.status(Status.CONFLICT).build();
         }
     }
-    
-//    @POST
-//    @Produces(MediaType.APPLICATION_JSON)
-//    public Response passerCommande(ProduitCreateDto produitDto) {
-//        DataAccess dataAccess = DataAccess.begin();
-//
-//        // Construction (données primitives puis composition
-//        ProduitEntity produitEntity = ProduitEntity.convertFromProduitCreateDto(produitDto);
-//
-//        if (produitEntity.getNom() == null) {
-//            dataAccess.closeConnection(false);
-//            return Response.status(Status.NOT_ACCEPTABLE).entity("name not specified").build();
-//        }
-//        try {
-//            long id = dataAccess.createCommande(produitEntity);
-//            URI instanceURI = uriInfo.getAbsolutePathBuilder().path("" + id).build();
-//            dataAccess.closeConnection(true);
-//            return Response.created(instanceURI).status(201).entity(ProduitEntity.convertToDto(produitEntity)).location(instanceURI).build();
-//        }
-//        catch ( Exception ex ) {
-//            dataAccess.closeConnection(false);
-//            return Response.status(Status.CONFLICT).build();
-//        }
-//    }
+  
+    @PUT
+    @Path("/{id}")
+    @Produces(MediaType.APPLICATION_JSON)
+    public Response update(@PathParam("id") long id, ProduitEntity produit) {
+        DataAccess dataAccess = DataAccess.begin();
+        ProduitEntity produitBDD = dataAccess.getProduitById(id);
+        if (produitBDD == null) {
+            return Response.status(Status.NOT_FOUND).entity("Produit not found").build();
+        } else {
+            try {
+                produitBDD.setCommande(produit.getCommande());
+                dataAccess.updateProduit(produitBDD);
+                dataAccess.closeConnection(true);
+                return Response.ok(produitBDD).build(); //  .created(instanceURI).build();
+            } catch (Exception ex) {
+                dataAccess.closeConnection(false);
+                return Response.status(Status.CONFLICT).entity("Duplicated name").build();
+            }
+        }
+    }
 
     @GET
     @Produces(MediaType.APPLICATION_JSON)

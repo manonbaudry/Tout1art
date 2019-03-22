@@ -290,5 +290,15 @@ public class DataAccess {
 		return 0;
 	}
 
+	public void updateProduit(ProduitEntity produit) throws PizzaNameExistsException {
+	    try {
+            em.merge(produit);
+            em.flush();
+        } catch (javax.persistence.PersistenceException e){
+            throw new PizzaNameExistsException();
+        }
+		
+	}
+
 
 }
