@@ -29,21 +29,24 @@ let productPage: ProductPage;
 const dropDownMobilier = document.querySelector('.mobButton');
 const dropDownLuminaire = document.querySelector('.lumButton');
 const dropDownDeco = document.querySelector('.decoButton');
+//console.log(dropDownMobilier);
 
-dropDownMobilier.click((event: Event) => {
-    event.preventDefault();
-    selectionCible($('.mobButton').innerHTML);
+dropDownMobilier.addEventListener("click", function(){
+    
+    selectionCible(dropDownMobilier.innerHTML.toLocaleLowerCase());
 });
 
-dropDownLuminaire.click((event: Event) => {
-    event.preventDefault();
-    selectionCible($('.lumButton').innerHTML);
+dropDownLuminaire.addEventListener("click", function(){
+   
+    selectionCible(dropDownLuminaire.innerHTML.toLocaleLowerCase());
 });
 
-dropDownDeco.click((event: Event) => {
-    event.preventDefault();
-    selectionCible($('.decoButton').innerHTML);
+
+dropDownDeco.addEventListener("click", function(){
+    
+    selectionCible(dropDownDeco.innerHTML.toLocaleLowerCase());
 });
+
 
 
 // configuration des liens du menu
@@ -95,9 +98,18 @@ function renderProduct(id: number): void {
     });
 }
 
-// function selectionCible(){
-
-// }
+function selectionCible(categorie){
+    const tabId = "";
+    console.log("rentre");
+    Product.getAll().then(json => {
+        for(let i = 0; i < json.length; i++){
+            if(json[i].categorie == categorie){
+                tabId.push(json[i]);
+                console.log("ok");
+            }
+        }
+    })
+}
 
 // function updateSectionDropDown(mobiliers, luminaires, decos) {
 
@@ -118,5 +130,5 @@ function renderProduct(id: number): void {
 //         }
 //     });
 // }
-console.log(dropDownMobilier.innerHTML.toLocaleLowerCase());
+
 //updateSectionDropDown(dropDownMobilier, dropDownLuminaire, dropDownDeco);
