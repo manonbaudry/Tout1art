@@ -21,11 +21,16 @@ INSERT INTO artisan (login , mdp, nom, prenom, adresse, mail, tel) VALUES ('admi
 INSERT INTO client (login , mdp, nom, prenom, adresse, mail, tel) VALUES ('client1',	'123456789ABC',		'nom',		'prenom',	'adresse',		'mail@toto.fr',		'0320000000');
 INSERT INTO client (login , mdp, nom, prenom, adresse, mail, tel) VALUES ('client2',	'123456789ABC',		'nom2',		'prenom2',	'adresse2',		'mail2@toto.fr',	'0320000001');
 
-INSERT INTO produit (nom, description, srcImage, prix, idArtisan, categorie, sousCategorie, commande, delai) VALUES ('table simple',	 'Une table simple',	'images/table.jpg',		'10.5',	 '1',	 'mobilier',	'table',	'0', '1');
+INSERT INTO produit (nom, description, srcImage, prix, idArtisan, categorie, sousCategorie, commande, delai) VALUES ('table simple',	 'Une table simple',	'images/tableSimple.jpg',		'10.5',	 '1',	 'mobilier',	'table',	'0', '1');
+INSERT INTO produit (nom, description, srcImage, prix, idArtisan, categorie, sousCategorie, commande, delai) VALUES ('table moderne',	 'Une table simple',	'images/tableModerne.jpg',		'150',	 '1',	 'mobilier',	'table',	'0', '1');
+INSERT INTO produit (nom, description, srcImage, prix, idArtisan, categorie, sousCategorie, commande, delai) VALUES ('table complexe',	 'Une table simple',	'images/tableComplexe.jpg',		'120',	 '1',	 'mobilier',	'table',	'0', '1');
 INSERT INTO produit (nom, description, srcImage, prix, idArtisan, categorie, sousCategorie, commande, delai) VALUES ('chaise simple',	 'Une chaise simple',	'images/chaise.jpg',	'10.5',	 '1',	 'mobilier',	'chaise',	'0','3');
+INSERT INTO produit (nom, description, srcImage, prix, idArtisan, categorie, sousCategorie, commande, delai) VALUES ('chaise noire',	 'Une chaise simple',	'images/chaiseNoire.jpg',	'10.5',	 '1',	 'mobilier',	'chaise',	'0','3');
+INSERT INTO produit (nom, description, srcImage, prix, idArtisan, categorie, sousCategorie, commande, delai) VALUES ('chaise blanche',	 'Une chaise simple',	'images/chaiseBlanche.jpg',	'10.5',	 '1',	 'mobilier',	'chaise',	'0','3');
 INSERT INTO produit (nom, description, srcImage, prix, idArtisan, categorie, sousCategorie, commande, delai) VALUES ('vase simple',	 'Un vase simple',		'images/vase.jpg',	 	'3.5',	 '1',	 'deco',	 	'vase',	 	'0', '5');
 INSERT INTO produit (nom, description, srcImage, prix, idArtisan, categorie, sousCategorie, commande, delai) VALUES ('lampe simple',	 'Une lampe simple',	'images/lampe.jpg', 	'5.5',	 '1',	 'luminaire',	'lampe',	'0', '7');
-INSERT INTO produit (nom, description, srcImage, prix, idArtisan, categorie, sousCategorie, commande, delai) VALUES ('table basse', 	 'Une table base',		'images/table.jpg',		'100',	 '1',	 'mobilier',	'table',	'1','4');
+INSERT INTO produit (nom, description, srcImage, prix, idArtisan, categorie, sousCategorie, commande, delai) VALUES ('table basse', 	 'Une table base 1',		'images/tableBasseSimple.jpg',		'100',	 '1',	 'mobilier',	'table',	'1','4');
+INSERT INTO produit (nom, description, srcImage, prix, idArtisan, categorie, sousCategorie, commande, delai) VALUES ('table basse', 	 'Une table base 2',		'images/tableBasseComplexe.jpg',		'100',	 '1',	 'mobilier',	'table',	'1','4');
 INSERT INTO produit (nom, description, srcImage, prix, idArtisan, categorie, sousCategorie, commande, delai) VALUES ('lampe de chevet', 'Une lampe de chevet', 'images/lampe.jpg',		'10.5',	 '2',	 'luminaire',	'lampe', 	'0','42');
 
 INSERT INTO com (idProduit, idClient, idArtisan, statut) VALUES ('5','1', '1', 'En cours');
