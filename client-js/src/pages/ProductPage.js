@@ -37,7 +37,7 @@ export default class ProductPage extends Page {
         event.preventDefault();
         fetch(`http://127.0.0.1:8080/api/v1/produit/${this.product.id}`, {
             method: "PUT",
-            body: JSON.stringify({null: "null"}),
+            body: JSON.stringify({id: this.product.id, commande: 1}),
             headers: {
                 "Content-Type": "application/json"
             },
