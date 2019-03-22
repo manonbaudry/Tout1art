@@ -43,12 +43,24 @@ export default class Product {
             .catch((error: TypeError) => console.log('Erreur de fetch', error.message));
     }
 
-    static getAll(): Promise<{category: string, sousCategorie: string }> {
+    static getAll(): Promise<{ id: number, name: string, category: string, subCategory: string, description: string, price: number, img: string, ordered: boolean }> {
         return fetch(`http://localhost:8080/api/v1/produit`)
             .then((response: Response) => response.json())
             .then((json: JSON) => {
+                const array = [];
+                for (let i = 0; i < json.length; ++i) {
+                    const id: number = json[i].id;
+                    const name: string = json[i].nom;
+                    const category: string = json[i].categorie;
+                    const subCategory: string = json[i].sousCategorie;
+                    const description: string = json[i].description;
+                    const price: number = json[i].prix;
+                    const img: string = json[i].srcImage;
+                    const ordered: boolean = json[i].commande;
 
-                return json;
+                    array[i] = {id, name, category, subCategory, description, price, img, ordered};
+                }
+                return array;
             })
             .catch((error: TypeError) => console.log('Erreur de fetch', error.message));
     }

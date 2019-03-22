@@ -14,6 +14,7 @@ export default class AdminPage extends Page {
             for (let i = 0; i < json.length; ++i) {
                 this.products[i] = Product.jsonToObj(productsJson[i]);
             }
+            console.log(this.products);
         });
     }
 
@@ -24,8 +25,10 @@ export default class AdminPage extends Page {
 <div class="card-body"></div>`;
 
         const cardBody = card.querySelector('.card-body');
+        /*console.log('before while');
         while (this.products.length === 0) {
         }
+        console.log('after while');*/
         this.products.forEach(value => {
             cardBody.innerHTML += AdminPage.makeOrder(value);
         });
