@@ -264,6 +264,35 @@ public class DataAccess {
 	public ProduitEntity getProduitById(long idProduit) {
         return em.find(ProduitEntity.class,  idProduit);
 	}
+	
+	//Com
+		public long createCom(ComEntity ComEntity) {
+			em.persist(ComEntity);
+	        em.flush();
+	        return ComEntity.getId();
+		}
+		
+
+		/**
+		 * Lecture de la totalités des artisans de la base
+		 * @return La liste des pizzas
+		 */
+		public List<ComEntity> getAllComs() {
+	        TypedQuery<ComEntity> query = em.createNamedQuery("FindAllComs", ComEntity.class);
+	        return query.getResultList();
+		}
+
+		public void deleteCom(long idCom) throws Exception {
+	        ComEntity Com = em.find(ComEntity.class,  idCom);
+	        if (Com == null) throw new Exception();
+	        em.remove(em.merge(Com));
+			
+		}
+
+		public ComEntity getComById(long idCom) {
+	        return em.find(ComEntity.class,  idCom);
+		}
+
 
 	public ClientEntity getClientById(long idClient) {
 		// TODO Auto-generated method stub
@@ -271,8 +300,8 @@ public class DataAccess {
 	}
 
 	public List<ClientEntity> getAllClients() {
-		// TODO Auto-generated method stub
-		return null;
+		 TypedQuery<ClientEntity> query = em.createNamedQuery("FindAllClients", ClientEntity.class);
+	     return query.getResultList();
 	}
 
 	public void deleteClient(long idClient) {

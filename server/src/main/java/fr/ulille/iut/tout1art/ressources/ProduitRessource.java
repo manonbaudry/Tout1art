@@ -15,10 +15,7 @@ import java.net.URI;
 
 import java.util.List;
 import java.util.stream.Collectors;
-
-import fr.ulille.iut.tout1art.dao.CommandeEntity;
 import fr.ulille.iut.tout1art.dao.DataAccess;
-import fr.ulille.iut.tout1art.dao.IngredientEntity;
 import fr.ulille.iut.tout1art.dao.ProduitEntity;
 import fr.ulille.iut.tout1art.dto.ProduitCreateDto;
 import fr.ulille.iut.tout1art.dto.ProduitDto;
@@ -66,7 +63,7 @@ public class ProduitRessource {
             return Response.status(Status.NOT_FOUND).entity("Produit not found").build();
         } else {
             try {
-                produitBDD.setCommande(1);
+                produitBDD.setCommande(produit.getCommande());
                 dataAccess.updateProduit(produitBDD);
                 dataAccess.closeConnection(true);
                 return Response.ok(produitBDD).build(); //  .created(instanceURI).build();

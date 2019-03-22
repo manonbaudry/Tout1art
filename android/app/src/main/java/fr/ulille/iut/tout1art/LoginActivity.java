@@ -64,6 +64,8 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
     String email;
     int id;
     View focusView = null;
+    String password;
+    boolean result;
     /**
      * Id to identity READ_CONTACTS permission request.
      */
@@ -181,12 +183,12 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
 
         // Store values at the time of the login attempt.
         email = mEmailView.getText().toString();
-        final String password = mPasswordView.getText().toString();
+        password = mPasswordView.getText().toString();
 
 
 
         // Check for a valid password, if the user entered one.
-        if (!TextUtils.isEmpty(password) && !isPasswordValid(password)) {
+        if (TextUtils.isEmpty(password) || !isPasswordValid(password)) {
             mPasswordView.setError(getString(R.string.error_invalid_password));
             focusView = mPasswordView;
             cancel = true;
@@ -203,10 +205,14 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
             cancel = true;
         }
 
+        connect();
+    }
+
+    private boolean connect(){
 
 
         String uri = "http://10.0.2.2:8080/api/v1/artisan";
-
+        result = true;
 
         JsonArrayRequest request = new JsonArrayRequest(
                 Request.Method.GET,
@@ -221,9 +227,22 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
                             mEmailView.setError(getString(R.string.error_invalid_email));
                             mPasswordView.setError(getString(R.string.error_incorrect_password));
                             //focusView = mEmailView;
-                            cancel = true;
+                            result = false;
                         }else{
                             intent.putExtra("id", id);
+                            if (cancel) {
+                                // There was an error; don't attempt login and focus the first
+                                // form field with an error.
+                                focusView.requestFocus();
+                            } else {
+                                // Show a progress spinner, and kick off a background task to
+                                // perform the user login attempt.
+                                showProgress(true);
+                                mAuthTask = new UserLoginTask(email, password);
+                                mAuthTask.execute((Void) null);
+
+                                startActivity(intent);
+                            }
                         }
                     }
                 },
@@ -235,36 +254,8 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
                 });
         queue.add(request);
 
-        /*synchronized (this) {
-            System.out.println("TTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTT");
-            try {
-                this.wait(5000);
 
-            } catch (Exception e) {
-                System.out.println("ERREUR  " + e.getMessage());
-            }
-        }*/
-        // post email & password
-        // requete au serveur pour verifier email + mdp
-
-        /*else if(){
-
-            cancel = true;
-        }
-        */
-        if (cancel) {
-            // There was an error; don't attempt login and focus the first
-            // form field with an error.
-            focusView.requestFocus();
-        } else {
-            // Show a progress spinner, and kick off a background task to
-            // perform the user login attempt.
-            showProgress(true);
-            mAuthTask = new UserLoginTask(email, password);
-            mAuthTask.execute((Void) null);
-
-            startActivity(intent);
-        }
+        return result;
     }
 
     private boolean isEmailValid(String email) {
@@ -430,8 +421,8 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
             for (int i = 0; i < response.length() ; i++) {
                 JSONObject obj = response.getJSONObject(i);
                 System.out.println("NOM : "+obj.getString("nom"));
-                if(obj.getString("mail") == mail){
-                    if(obj.getString("mdp") == password){
+                if(obj.getString("mail").equals(mail)){
+                    if(obj.getString("mdp").equals(password)){
                         System.out.println("MDP : "+obj.getString("mdp"));
                         id = obj.getInt("id");
                         return true;
