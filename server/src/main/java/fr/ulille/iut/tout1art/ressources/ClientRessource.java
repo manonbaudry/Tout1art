@@ -41,8 +41,7 @@ public class ClientRessource {
         if (clientEntity.getNom() == null) {
             dataAccess.closeConnection(false);
             return Response.status(Status.NOT_ACCEPTABLE).entity("name not specified").build();
-        }
-
+        } 
         try {
             long id = dataAccess.createClient(clientEntity);
             URI instanceURI = uriInfo.getAbsolutePathBuilder().path("" + id).build();
