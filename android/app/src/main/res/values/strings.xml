@@ -30,4 +30,5 @@
     <string name="Stat">Statistiques</string>
     <string name="Produits">Mes produits</string>
     <string name="button5">Statistique</string>
+    <string name="commande">Mes commandes</string>
 </resources>

@@ -38,9 +38,15 @@
                 android:value=".BacklogArt" />
         </activity>
         <activity
+            android:name=".VoirCommande"
+            android:parentActivityName=".BacklogArt">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".BacklogArt" />
+        </activity>
+        <activity
             android:name=".LoginActivity"
             android:label="@string/title_activity_login" />
-
         <activity android:name=".testCo" />
     </application>
 

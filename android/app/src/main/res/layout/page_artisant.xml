@@ -71,7 +71,8 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/button2"
         app:layout_constraintVertical_bias="0.255"
-        tools:text="@string/button3" />
+        tools:text="@string/button3"
+        android:onClick="voirCommande"/>
 
     <Button
         android:id="@+id/button6"
