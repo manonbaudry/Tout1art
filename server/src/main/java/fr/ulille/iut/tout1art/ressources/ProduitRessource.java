@@ -66,7 +66,7 @@ public class ProduitRessource {
             return Response.status(Status.NOT_FOUND).entity("Produit not found").build();
         } else {
             try {
-                produitBDD.setCommande(produit.getCommande());
+                produitBDD.setCommande(1);
                 dataAccess.updateProduit(produitBDD);
                 dataAccess.closeConnection(true);
                 return Response.ok(produitBDD).build(); //  .created(instanceURI).build();
