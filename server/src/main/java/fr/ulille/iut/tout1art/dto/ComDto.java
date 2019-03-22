@@ -9,7 +9,7 @@ public class ComDto {
 	private final static Logger logger = LoggerFactory.getLogger(ArtisanCreateDto.class);
 
     protected long id;
-    protected int idPoduit;
+    protected int idProduit;
     protected int idClient;
     protected int idArtisan;
     protected String statu;
@@ -29,15 +29,15 @@ public class ComDto {
 	/**
 	 * @return the idPoduit
 	 */
-	public int getIdPoduit() {
-		return idPoduit;
+	public int getIdProduit() {
+		return idProduit;
 	}
 
 	/**
 	 * @param idPoduit the idPoduit to set
 	 */
-	public void setIdPoduit(int idPoduit) {
-		this.idPoduit = idPoduit;
+	public void setIdProduit(int idPoduit) {
+		this.idProduit = idPoduit;
 	}
 
 	/**
@@ -83,12 +83,5 @@ public class ComDto {
 		this.statu = statu;
 	}
 
-	@Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        ComCreateDto that = (ComCreateDto) o;
-        return id == that.id &&
-                Objects.equals(id, that.id);
-    }
+
 }

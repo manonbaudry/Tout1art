@@ -44,7 +44,6 @@ public class ComRessource {
             dataAccess.closeConnection(false);
             return Response.status(Status.NOT_ACCEPTABLE).entity("name not specified").build();
         }
-
         try {
             long id = dataAccess.createCom(comEntity);
             URI instanceURI = uriInfo.getAbsolutePathBuilder().path("" + id).build();

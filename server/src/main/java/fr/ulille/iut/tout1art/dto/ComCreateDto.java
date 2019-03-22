@@ -2,11 +2,11 @@ package fr.ulille.iut.tout1art.dto;
 
 public class ComCreateDto {
 
-    protected long id;
-    protected int idPoduit;
-    protected int idClient;
-    protected int idArtisan;
-    protected String statu;
+    private long id;
+    private int idProduit;
+    private int idClient;
+    private int idArtisan;
+    private String statu;
     
     
     public long getId() {
@@ -20,8 +20,8 @@ public class ComCreateDto {
     /**
 	 * @return the idPoduit
 	 */
-	public int getIdPoduit() {
-		return idPoduit;
+	public int getIdProduit() {
+		return idProduit;
 	}
 
 	
@@ -42,8 +42,8 @@ public class ComCreateDto {
 	/**
 	 * @param idPoduit the idPoduit to set
 	 */
-	public void setIdPoduit(int idPoduit) {
-		this.idPoduit = idPoduit;
+	public void setIdProduit(int idPoduit) {
+		this.idProduit = idPoduit;
 	}
 
 	/**

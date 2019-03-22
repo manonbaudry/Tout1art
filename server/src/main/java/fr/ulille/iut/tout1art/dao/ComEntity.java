@@ -34,7 +34,7 @@ public class ComEntity {
     private static ModelMapper modelMapper = new ModelMapper();
 
     private long id;
-    private int idPoduit;
+    private int idProduit;
     private int idClient;
     private int idArtisan;
     private String statu;
@@ -63,15 +63,15 @@ public class ComEntity {
 
     @Basic
     @Column(name = "idProduit", nullable = false, length = -1)
-	public int getIdPoduit() {
-		return idPoduit;
+	public int getIdProduit() {
+		return idProduit;
 	}
 
     /**
 	 * @param idPoduit the idPoduit to set
 	 */
-	public void setIdPoduit(int idPoduit) {
-		this.idPoduit = idPoduit;
+	public void setIdProduit(int idProduit) {
+		this.idProduit = idProduit;
 	}
 
 	@Basic
@@ -81,7 +81,7 @@ public class ComEntity {
 	}
 
 	/**
-	 * @param idPoduit the idPoduit to set
+	 * @param idProduit the idPoduit to set
 	 */
 	public void setIdArtisan(int idArtisan) {
 	this.idArtisan = idArtisan;
@@ -132,8 +132,5 @@ public class ComEntity {
                 Objects.equals(id, that.id);
     }
 
-	public Collection<ComDto> getCommandes() {
-		// TODO Auto-generated method stub
-		return null;
-	}
+	
 }
