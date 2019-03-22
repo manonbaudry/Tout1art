@@ -9,13 +9,12 @@ import ProductPage from "./pages/ProductPage";
 import Product from "./Product";
 import AdminPage from "./pages/AdminPage";
 
-
 // configuration du PageRenderer
 PageRenderer.titleElement = document.querySelector('.pageTitle');
 PageRenderer.contentElement = document.querySelector('.pageContent');
 
-//déclaration des différentes page de l'app
- const products: Array<Product> = [];
+// déclaration des différentes page de l'app
+const products: Array<Product> = [];
 for (let i = 0; i < 3; ++i) {
     products[i] = Product.get(i + 1);
     products[i].then(product => products[i] = Product.jsonToObj(product));
@@ -38,7 +37,6 @@ const selectionPage: NewHomePage = new NewHomePage(selection);
 const dropDownMobilier = document.querySelector('.mobButton');
 const dropDownLuminaire = document.querySelector('.lumButton');
 const dropDownDeco = document.querySelector('.decoButton');
-//console.log(dropDownMobilier);
 
 dropDownMobilier.addEventListener("click", function () {
 
@@ -82,7 +80,6 @@ adminLink.click((event: Event) => {
 });
 
 function renderHome(): void {
-    console.log(products);
     Menu.setSelectedLink(homeLink);
     PageRenderer.renderPage(homePage);
 
@@ -119,7 +116,7 @@ function selectionCible(choix) {
     Product.getAll().then(json => {
 
         for (let i = 0; i < json.length; i++) {
-            
+
             if(json[i].category == choix){
                 tabId[indice] = json[i].id;
                 indice++;
@@ -138,7 +135,7 @@ function selectionCible(choix) {
 }
 
 function renderSelection(): void {
-    
+
     Menu.setSelectedLink(homeLink);
     PageRenderer.renderPage(selectionPage);
 

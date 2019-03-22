@@ -11,10 +11,8 @@ export default class AdminPage extends Page {
         this.products = [];
         const productsJson = Product.getAll();
         productsJson.then(json => {
-            for (let i = 0; i < json.length; ++i) {
-                this.products[i] = Product.jsonToObj(productsJson[i]);
-            }
-            console.log(this.products);
+            let i = 0;
+            json.forEach(product => this.products[i++] = Product.jsonToObj(product));
         });
     }
 
@@ -25,17 +23,15 @@ export default class AdminPage extends Page {
 <div class="card-body"></div>`;
 
         const cardBody = card.querySelector('.card-body');
-        /*console.log('before while');
-        while (this.products.length === 0) {
-        }
-        console.log('after while');*/
+        cardBody.innerHTML = '';
         this.products.forEach(value => {
-            cardBody.innerHTML += AdminPage.makeOrder(value);
+            let innerHTML = AdminPage.makeOrder(value);
+            cardBody.innerHTML += innerHTML;
         });
-        return card;
+        return card.outerHTML;
     }
 
     static makeOrder(product: Product): string {
-        return `<p>Commande de ${product.name}</p>`;
+        return product.ordered ? `<p>Commande de ${product.name}</p>` : '';
     }
 }
