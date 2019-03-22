@@ -10,6 +10,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 
+import com.android.volley.AuthFailureError;
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
@@ -111,16 +112,7 @@ public class FicheCommande extends AppCompatActivity {
                     }
                 }
         ) {
-
-            @Override
-            protected Map<String, String> getParams()
-            {
-                Map<String, String>  params = new HashMap<String, String>();
-                params.put("statut", "Refuser");
-
-                return params;
-            }
-
+            
         };
         queue.add(putRequest);
     }
