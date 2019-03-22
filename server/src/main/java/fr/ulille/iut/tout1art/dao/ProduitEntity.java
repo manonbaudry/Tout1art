@@ -42,6 +42,7 @@ public class ProduitEntity {
     private int idArtisan;
     private String categorie;
     private String sousCategorie;
+    private int commande;
 
     public static ProduitEntity convertFromProduitCreateDto(ProduitCreateDto produit) {
         return modelMapper.map(produit, ProduitEntity.class);
@@ -129,8 +130,16 @@ public class ProduitEntity {
 		return sousCategorie;
 	}
 
-	public void setSousCategorie(String categorie) {
+	public void setSousCategorie(String sousCategorie) {
 		this.sousCategorie = sousCategorie;
+	}
+	
+	public int getCommande() {
+		return commande;
+	}
+
+	public void setCommende(int commande) {
+		this.commande = commande;
 	}	
 /*
     @ManyToMany /*(cascade = CascadeType.ALL)*/ /* (fetch = FetchType.EAGER)

@@ -17,6 +17,7 @@ public class ProduitDto {
     protected int idProduit;
     protected String categorie;
     protected String sousCategorie;
+    protected int commande;
 
     
     public String getSrcImage() {
@@ -77,8 +78,16 @@ public class ProduitDto {
 		return sousCategorie;
 	}
 
-	public void setSousCategorie(String categorie) {
+	public void setSousCategorie(String sousCategorie) {
 		this.sousCategorie = sousCategorie;
+	}	
+	
+	public int getCommande() {
+		return commande;
+	}
+
+	public void setCommende(int commande) {
+		this.commande = commande;
 	}	
 	
 	@Override

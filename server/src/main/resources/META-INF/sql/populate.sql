@@ -2,19 +2,19 @@ DROP TABLE IF EXISTS artisan CASCADE;
 DROP TABLE IF EXISTS produit CASCADE;
 
 CREATE TABLE artisan (id BIGINT IDENTITY NOT NULL, login VARCHAR UNIQUE NOT NULL,mdp VARCHAR NOT NULL,nom VARCHAR NOT NULL,prenom VARCHAR NOT NULL,adresse VARCHAR,mail VARCHAR,tel VARCHAR(10),PRIMARY KEY (id));
-CREATE TABLE produit (id BIGINT IDENTITY NOT NULL,nom VARCHAR NOT NULL,description VARCHAR NOT NULL,srcImage VARCHAR,prix DOUBLE,idArtisan INTEGER,categorie VARCHAR,sousCategorie VARCHAR,PRIMARY KEY (id));
+CREATE TABLE produit (id BIGINT IDENTITY NOT NULL,nom VARCHAR NOT NULL,description VARCHAR NOT NULL,srcImage VARCHAR,prix DOUBLE,idArtisan INTEGER,categorie VARCHAR,sousCategorie VARCHAR,commande INTEGER,PRIMARY KEY (id));
 
 ALTER TABLE produit ADD FOREIGN KEY (idArtisan)  REFERENCES artisan(id);
 
 INSERT INTO artisan (login , mdp, nom, prenom, adresse, mail, tel) VALUES ('login', '123456789A', 'nom', 'prenom', 'adresse', 'mail@toto.fr', '0320000000');
 INSERT INTO artisan (login , mdp, nom, prenom, adresse, mail, tel) VALUES ('login2', '123456789A', 'nom2', 'prenom2', 'adresse2', 'mail2@toto.fr', '0320000001');
 
-INSERT INTO produit (nom, description, srcImage, prix, idArtisan, categorie, sousCategorie) VALUES ('table simple', 'Une table simple','carbonara.jpg', '10.5', '1', 'mobilier','table');
-INSERT INTO produit (nom, description, srcImage, prix, idArtisan, categorie, sousCategorie) VALUES ('chaise simple', 'Une chaise simple','carbonara.jpg', '10.5', '1', 'mobilier','chaise');
-INSERT INTO produit (nom, description, srcImage, prix, idArtisan, categorie, sousCategorie) VALUES ('vase simple', 'Un vase simple','carbonara.jpg', '3.5', '1', 'deco', 'vase');
-INSERT INTO produit (nom, description, srcImage, prix, idArtisan, categorie, sousCategorie) VALUES ('lampe simple', 'Une lampe simple','carbonara.jpg', '5.5', '1', 'luminaire', 'lampe');
-INSERT INTO produit (nom, description, srcImage, prix, idArtisan, categorie, sousCategorie) VALUES ('table base', 'Une table base','carbonara.jpg', '100', '1', 'mobilier', 'table');
-INSERT INTO produit (nom, description, srcImage, prix, idArtisan, categorie, sousCategorie) VALUES ('lampe de chevet', 'Une lampe simple de chevet','carbonara.jpg', '10.5', '1', 'luminaire', 'lampe');
+INSERT INTO produit (nom, description, srcImage, prix, idArtisan, categorie, sousCategorie, commande) VALUES ('table simple', 'Une table simple','carbonara.jpg', '10.5', '1', 'mobilier','table', '0');
+INSERT INTO produit (nom, description, srcImage, prix, idArtisan, categorie, sousCategorie, commande) VALUES ('chaise simple', 'Une chaise simple','carbonara.jpg', '10.5', '1', 'mobilier','chaise', '0');
+INSERT INTO produit (nom, description, srcImage, prix, idArtisan, categorie, sousCategorie, commande) VALUES ('vase simple', 'Un vase simple','carbonara.jpg', '3.5', '1', 'deco', 'vase', '0');
+INSERT INTO produit (nom, description, srcImage, prix, idArtisan, categorie, sousCategorie, commande) VALUES ('lampe simple', 'Une lampe simple','carbonara.jpg', '5.5', '1', 'luminaire', 'lampe', '0');
+INSERT INTO produit (nom, description, srcImage, prix, idArtisan, categorie, sousCategorie, commande) VALUES ('table base', 'Une table base','carbonara.jpg', '100', '1', 'mobilier', 'table', '0');
+INSERT INTO produit (nom, description, srcImage, prix, idArtisan, categorie, sousCategorie, commande) VALUES ('lampe de chevet', 'Une lampe simple de chevet','carbonara.jpg', '10.5', '1', 'luminaire', 'lampe', '0');
 
 /*
 DROP TABLE IF EXISTS ingredientpizza CASCADE;
