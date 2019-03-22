@@ -21,7 +21,7 @@
         android:layout_marginTop="36dp"
         android:layout_marginEnd="8dp"
         android:layout_marginRight="8dp"
-        android:onClick="connect"
+        android:onClick="addProduit"
         android:text="@string/button1"
         app:layout_constraintEnd_toStartOf="@+id/button3"
         app:layout_constraintHorizontal_bias="0.0"
