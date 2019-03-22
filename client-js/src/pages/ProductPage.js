@@ -20,12 +20,12 @@ export default class ProductPage extends Page {
             <h3>${this.product.name}</h3>
             <p>${this.product.description}</p>
             <p>Prix : ${this.product.price}</p>
-            <button type="button" class="btn btn-primary sendCommand" data-toggle="button" aria-pressed="false" autocomplete="off">
-            Commander
+            <button type="button" class="btn btn-primary sendCommand" data-toggle="button" aria-pressed="false">
+                Commander
             </button>
         </div>
     </div>
-    </div>`
+</div>`
     }
 
 
@@ -39,15 +39,15 @@ export default class ProductPage extends Page {
             method: "PUT",
             //body: JSON.stringify(product.toLiteral()),
             //headers: {
-              //  "Content-Type": "application/json"
+            //  "Content-Type": "application/json"
             //},
             //credentials: "same-origin"
         }).then(function (response) {
-            if(response.status === 200){
+            if (response.status === 200) {
                 alert('Votre commande a été envoyé avec succès!!')
-            }  else{
-                console.log("pas bon");
-            } 
+            } else {
+                alert('Une erreur est survenue lors de la commande.');
+            }
         }, function (error) {
             console.log(error.message); //=> String
         })
