@@ -14,9 +14,12 @@ PageRenderer.contentElement = document.querySelector('.pageContent');
 
 // déclaration des différentes page de l'app
 const products: Array<Product> = [];
-products[0] = Product.get(1);
-products[1] = Product.get(2);
-products[2] = Product.get(3);
+for (let i = 0; i < 3; ++i) {
+    products[i] = Product.get(i + 1);
+    products[i].then(product => products[i] = Product.jsonToObj(product));
+}
+Promise.all(products).then(() => renderHome());
+
 const homePage: NewHomePage = new NewHomePage(products);
 const inscriptionPage: ClientInscriptionPage = new ClientInscriptionPage();
 const connectionPage: ConnectionPage = new ConnectionPage();
@@ -46,13 +49,14 @@ connectionLink.click((event: Event) => {
 });
 
 function renderHome(): void {
+    console.log(products);
     Menu.setSelectedLink(homeLink);
     PageRenderer.renderPage(homePage);
     $('.productLink').click((event: Event) => {
         event.preventDefault();
         renderProduct(event.currentTarget.getAttribute('id'));
     });
-   // updateSectionDropDown(dropDownMobilier, dropDownLuminaire, dropDownDeco);
+    // updateSectionDropDown(dropDownMobilier, dropDownLuminaire, dropDownDeco);
 }
 
 function renderInscription(): void {
@@ -67,14 +71,12 @@ function renderConnection(): void {
 
 function renderProduct(id: number): void {
     Menu.setSelectedLink(homeLink);
-    const product: ?Product = Product.get(id);
-    console.log('product after get', product);
-    if (product) {
+    let product = Product.get(id);
+    product.then(json => {
+        product = Product.jsonToObj(json)
         productPage = new ProductPage(product);
-    } else {
-        productPage = new ProductPage(new Product(1, 'Chaise', 'Mobilier', 'Chaise', 20, 'images/carbonara.jpg'));
-    }
-    PageRenderer.renderPage(productPage);
+        PageRenderer.renderPage(productPage);
+    });
 }
 
 function updateSectionDropDown(mobiliers, luminaires, decos) {
@@ -89,7 +91,7 @@ function updateSectionDropDown(mobiliers, luminaires, decos) {
         });
     });
 
-    const getSectionLuminaires =null;
+    const getSectionLuminaires = null;
     getSectionLuminaires.forEach(element => {
 
         luminaires.innerHTML += `<a class="dropdown-item" href="#">${element}</a>`;
@@ -107,7 +109,3 @@ function updateSectionDropDown(mobiliers, luminaires, decos) {
         });
     });
 }
-
-// lorsqu'on arrive sur l'appli, par défaut
-// on affiche la page d'accueil
-renderHome();

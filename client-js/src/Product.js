@@ -17,33 +17,23 @@ export default class Product {
         this.img = img;
     }
 
-    static get(id: number): ?Product {
-        let name: string;
-        let category: string;
-        let description: string;
-        let price: number;
-        let img: string;
+    static get(id: number): Promise<{ id: number, name: string, category: string, description: string, price: number, img: string }> {
+        return fetch(`http://localhost:8080/api/v1/produit/${id}`)
+            .then((response: Response) => response.json())
+            .then((json: JSON) => {
+                const id: number = json.id;
+                const name: string = json.nom;
+                const category: string = json.categorie;
+                const description: string = json.description;
+                const price: number = json.prix;
+                const img: string = json.srcImage;
 
-        fetch(`localhost:8080/api/v1/produit/${id}`)
-            .then((response: Response) => {
-                if (response.ok) {
-                    response.json().then((json: JSON) => {
-                        console.log(json);
-                        name = json.name;
-                        category = json.category;
-                        description = json.description;
-                        price = json.price;
-                        img = json.img;
-                    });
-                } else {
-                    console.log('Erreur de réponse');
-                }
+                return {id, name, category, description, price, img};
             })
             .catch((error: TypeError) => console.log('Erreur de fetch', error.message));
+    }
 
-        if (name && category && description && price && img) {
-            return new Product(id, name, category, description, price, img);
-        }
-        return null;
+    static jsonToObj(product) {
+        return new Product(product.id, product.name, product.category, product.description, product.price, product.img);
     }
 };
