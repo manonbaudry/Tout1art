@@ -1,15 +1,18 @@
-# Sprint 3
+# Sprint 11
 
 ## Travail effectué
-login de l'artisan
-affichage de ses commande 
+login de l'artisan et vérification dans la base de donnée
+affichage de ses commandes
 Création d'une vraie commande
+la BDD commande est liée à android
 
 ## Résultats
-Des postes de travail fonctionnel.
-Une première page d'accueil.
-Fin du backlog.
+Un produit peut être commandé plusieurs fois
+
+
 
 ## Travail à faire au prochain sprint
-Interface de login des artisans.
-Formulaire de connextion et d'inscription côté client.
+l'administrateur voit toutes les commandes passées
+formulaire d'ajout d'un produit par l'artisan
+recherher un produit par catégorie
+lier la BDD commande avec la page web
