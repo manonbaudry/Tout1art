@@ -188,7 +188,7 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
 
 
         // Check for a valid password, if the user entered one.
-        if (!TextUtils.isEmpty(password) && !isPasswordValid(password)) {
+        if (TextUtils.isEmpty(password) || !isPasswordValid(password)) {
             mPasswordView.setError(getString(R.string.error_invalid_password));
             focusView = mPasswordView;
             cancel = true;
@@ -205,46 +205,7 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
             cancel = true;
         }
 
-
-
-        /*if(!connect()){
-            cancel = true;
-
-        }
-*/
-
-
-
-        /*synchronized (this) {
-            System.out.println("TTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTT");
-            try {
-                this.wait(5000);
-
-            } catch (Exception e) {
-                System.out.println("ERREUR  " + e.getMessage());
-            }
-        }*/
-        // post email & password
-        // requete au serveur pour verifier email + mdp
-
-        /*else if(){
-
-            cancel = true;
-        }
-        */
-        if (cancel) {
-            // There was an error; don't attempt login and focus the first
-            // form field with an error.
-            focusView.requestFocus();
-        } else {
-            // Show a progress spinner, and kick off a background task to
-            // perform the user login attempt.
-            showProgress(true);
-            mAuthTask = new UserLoginTask(email, password);
-            mAuthTask.execute((Void) null);
-
-            startActivity(intent);
-        }
+        connect();
     }
 
     private boolean connect(){
@@ -269,6 +230,19 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
                             result = false;
                         }else{
                             intent.putExtra("id", id);
+                            if (cancel) {
+                                // There was an error; don't attempt login and focus the first
+                                // form field with an error.
+                                focusView.requestFocus();
+                            } else {
+                                // Show a progress spinner, and kick off a background task to
+                                // perform the user login attempt.
+                                showProgress(true);
+                                mAuthTask = new UserLoginTask(email, password);
+                                mAuthTask.execute((Void) null);
+
+                                startActivity(intent);
+                            }
                         }
                     }
                 },
@@ -447,8 +421,8 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
             for (int i = 0; i < response.length() ; i++) {
                 JSONObject obj = response.getJSONObject(i);
                 System.out.println("NOM : "+obj.getString("nom"));
-                if(obj.getString("mail") == mail){
-                    if(obj.getString("mdp") == password){
+                if(obj.getString("mail").equals(mail)){
+                    if(obj.getString("mdp").equals(password)){
                         System.out.println("MDP : "+obj.getString("mdp"));
                         id = obj.getInt("id");
                         return true;
