@@ -7,7 +7,7 @@ export default class NewHomePage extends Page {
     products: Array<Product>;
 
     constructor(products: Array<Product>) {
-        super('Accueil');
+        super('Qui sommes-nous?');
         this.products = products;
     }
 

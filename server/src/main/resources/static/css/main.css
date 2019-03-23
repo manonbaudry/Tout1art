@@ -65,7 +65,7 @@ nav ul li a:focus {
 }
 
 @keyframes colorblink{
-    50% {color:green;}
+    50% {color:brown;}
 }
 
 p{
