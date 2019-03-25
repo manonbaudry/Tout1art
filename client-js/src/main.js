@@ -58,6 +58,7 @@ const connectionLink = $('.connectionLink');
 const adminLink = $('.adminLink');
 const adminProductLink = $('.adminProductLink');
 
+
 homeLink.click((event: Event) => {
     event.preventDefault();
     renderHome();
@@ -78,6 +79,7 @@ adminProductLink.click((event: Event) => {
     event.preventDefault();
     renderProductAdmin();
 });
+
 
 function renderHome(): void {
     Menu.setSelectedLink(homeLink);
