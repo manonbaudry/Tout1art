@@ -3,12 +3,6 @@ body{
 	text-align: center;
 }
 
-.logot1a{
-	width: 10em;
-	height: 2.8em;
-	position: relative;
-}
-
 main{
 	margin: 6%;	
 	position: relative;
@@ -37,7 +31,11 @@ li{
 }
 
 ul{
-	margin-left: auto;
+	margin-right: 0;
+}
+
+.liste{
+	margin-right: 0;
 }
 
 nav ul li a:hover, nav ul li a:active{
@@ -54,6 +52,16 @@ nav ul li a:focus {
 	position: relative;
 	margin-left: auto;
 	margin-right: auto;
+}
+
+.imgAccueil{
+	height: 20em;
+	width: 100%;
+	display: block;
+	position: relative;
+	margin-left: auto;
+	margin-right: auto;
+
 }
 
 .form-control{
