@@ -16,13 +16,15 @@ export default class HomePage extends Page {
         const element: HTMLElement = document.createElement('div');
         element.innerHTML = `<div>
     <div class="card-body">
-    <img class="imgAccueil" src="images/Ambiance.jpg" alt="acceuil"/>
-    </br>
-        <p>Vous trouverez sur Tout1Art des créations «taillées » dans de belles matières, des réalisations dont vous serez fiers et que vous ne trouverez pas ailleurs. Elles racontent toutes une histoire : celle de l’artisan qui les ont imaginées, conçues, travaillées à la main.</p>
+        <img class="imgAccueil" src="images/Ambiance.jpg" alt="acceuil"/>
+        </br>
+        <p>Vous trouverez sur Tout1Art des créations «taillées » dans de belles matières, des réalisations dont vous
+            serez fiers et que vous ne trouverez pas ailleurs. Elles racontent toutes une histoire : celle de l’artisan
+            qui les ont imaginées, conçues, travaillées à la main.</p>
     </div>
-    </div>
-    </br>
-    <div class="card-deck"></div>`;
+</div>
+</br>
+<div class="card-deck"></div>`;
 
 
         return Promise.all(this.promises).then((products: Array<Product>) => {
