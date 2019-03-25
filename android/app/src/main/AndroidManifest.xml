@@ -54,14 +54,8 @@
         <activity
             android:name=".LoginActivity"
             android:label="@string/title_activity_login" />
-        <activity
-            android:name=".FicheCommande"
-            android:parentActivityName=".VoirCommande">
-            <meta-data
-                android:name="android.support.PARENT_ACTIVITY"
-                android:value=".BacklogArt" />
-        </activity>
-        <activity android:name=".AddProduit"></activity>
+        <activity android:name=".AddProduit" />
+        <activity android:name=".FicheProduit"></activity>
     </application>
 
 </manifest>

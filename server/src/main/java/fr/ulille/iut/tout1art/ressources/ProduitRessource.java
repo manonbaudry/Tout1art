@@ -63,12 +63,16 @@ public class ProduitRessource {
             return Response.status(Status.NOT_FOUND).entity("Produit not found").build();
         } else {
             try {
-                produitBDD.setCommande(produit.getCommande());
+            	if(produit.getDelai()!= 0)
+            		produitBDD.setDelai(produit.getDelai());
+                if(produit.getStatut()!= null)
+                	produitBDD.setStatut(produit.getStatut());
                 dataAccess.updateProduit(produitBDD);
                 dataAccess.closeConnection(true);
                 return Response.ok(produitBDD).build(); //  .created(instanceURI).build();
             } catch (Exception ex) {
                 dataAccess.closeConnection(false);
+                
                 return Response.status(Status.CONFLICT).entity("Duplicated name").build();
             }
         }
