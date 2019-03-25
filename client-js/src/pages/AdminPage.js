@@ -26,6 +26,7 @@ export default class AdminPage extends Page {
             let i = 0;
             json.forEach(order => this.orders[i++] = Order.jsonToObj(order));
             const promises: Array<Promise<string>> = [];
+            this.orders.sort(Order.compare);
             i = 0;
             this.orders.forEach(order => promises[i++] = AdminPage.makeOrder(order));
             return Promise.all(promises).then((ordersString: Array<string>) => {
