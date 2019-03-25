@@ -57,6 +57,7 @@ const inscriptionLink = $('.inscriptionLink');
 const connectionLink = $('.connectionLink');
 const adminLink = $('.adminLink');
 
+
 homeLink.click((event: Event) => {
     event.preventDefault();
     renderHome();
@@ -73,6 +74,7 @@ adminLink.click((event: Event) => {
     event.preventDefault();
     renderAdmin();
 });
+
 
 function renderHome(): void {
     Menu.setSelectedLink(homeLink);
