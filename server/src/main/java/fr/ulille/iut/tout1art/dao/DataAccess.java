@@ -336,6 +336,7 @@ public class DataAccess {
 	    try {
             //Query q = em.createNamedQuery("", );
             //q.setParameter(arg0, arg1)
+	    	em.merge(commande);
             em.flush();
         } catch (javax.persistence.PersistenceException e){
             throw new PizzaNameExistsException();

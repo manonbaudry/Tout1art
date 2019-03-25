@@ -25,7 +25,7 @@ import fr.ulille.iut.tout1art.dto.ComDto;
 
 @NamedQueries({
     @NamedQuery(name="FindAllComs", query="SELECT p from ComEntity p"),
-    //@NamedQuery(name = "UpdateCommande", query ="UPDATE CommandeEntity d SET d.statut=:statut where d.id = :id"),
+    //@NamedQuery(name = "UpdateCommande", query ="UPDATE CommandeEntity d SET d.statut = :statut where d.id = :id"),
     //@NamedQuery(name="GetProduitByArtisan", query="SELECT * FROM ProduitEntity p WHERE p.idArtisan = :pid AND p.id IN (SELECT c.idProduit FROM ComEntity c)")
 })
 
