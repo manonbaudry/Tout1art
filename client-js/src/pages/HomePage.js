@@ -45,7 +45,6 @@ export default class HomePage extends Page {
         </div>
         <div class="card-body">
             <h5 class="card-title">${product.name}</h5>
-            <p class="card-text">${product.description}</p>
             <p class="card-text">
                 <small class="text-muted">Disponible sous 2 semaines</small>
             </p>
