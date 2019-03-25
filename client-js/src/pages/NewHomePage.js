@@ -15,11 +15,7 @@ export default class NewHomePage extends Page {
         const element: HTMLElement = document.createElement('div');
         element.innerHTML = `<div>
     <div class="card-body">
-        <p>Ex turba vero imae sortis et paupertinae in tabernis aliqui pernoctant vinariis, non nulli velariis
-            umbraculorum theatralium latent, quae Campanam imitatus lasciviam Catulus in aedilitate sua suspendit omnium
-            primus; aut pugnaciter aleis certant turpi sono fragosis naribus introrsum reducto spiritu concrepantes; aut
-            quod est studiorum omnium maximum ab ortu lucis ad vesperam sole fatiscunt vel pluviis, per minutias
-            aurigarum equorumque praecipua vel delicta scrutantes.</p>
+        <p>Vous trouverez sur Tout1Art des créations «taillées » dans de belles matières, des réalisations dont vous serez fiers et que vous ne trouverez pas ailleurs. Elles racontent toutes une histoire : celle de l’artisan qui les ont imaginées, conçues, travaillées à la main.</p>
     </div>
 </div>
 <p/>
