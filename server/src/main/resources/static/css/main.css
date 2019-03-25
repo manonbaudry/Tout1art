@@ -14,7 +14,7 @@ main{
 }
 
 .pageContent{
-	padding-top: 1.8%;
+	margin-top: 0%;
 }
 
 .pageContent, .pageTitle{
@@ -73,6 +73,7 @@ nav ul li a:focus {
 p{
 	text-align: center;
 	width: 80%;
+	font-size: 1.34em;
 	margin-left: auto;
 	margin-right: auto;
 }
