@@ -4,7 +4,7 @@ body{
 }
 
 .logot1a{
-	width: 2.8em;
+	width: 10em;
 	height: 2.8em;
 	position: relative;
 }
@@ -37,7 +37,7 @@ li{
 }
 
 ul{
-	margin-left: 26%;
+	margin-left: auto;
 }
 
 nav ul li a:hover, nav ul li a:active{
