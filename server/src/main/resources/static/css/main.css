@@ -31,6 +31,7 @@ main{
 nav ul li a:hover, nav ul li a:active{
 	border-bottom: 0.12em solid #ccc;
 	padding-bottom: 0.5em;
+	color: #ca9f49 !important;
 }
 
 nav ul li a:focus {
@@ -42,11 +43,12 @@ nav ul li a:focus {
 	position: relative;
 	left: 0;
 } 
-
+/* 
 .liste{
 	
-	margin-left: 60%;
-}
+	margin-left: 54%;
+
+} */
 
 .imgAccueil{
 	height: 24em;
@@ -74,8 +76,12 @@ p{
 }
 
 .navbar{
-	background-color: #b47973 !important;
+	background-color: #403d3c !important;
 }
 
 
 
+button{
+
+	background-color: #b47971 !important;
+}
