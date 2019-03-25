@@ -113,7 +113,7 @@ public class VoirCommande extends AppCompatActivity {
                 text.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        showFicheCommande(str,id);
+                        showFicheCommandeAttente(str,id);
                     }
                 });
                 layout_commande_attente.addView(text);
@@ -133,7 +133,7 @@ public class VoirCommande extends AppCompatActivity {
                 text.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        showFicheCommande(str,id);
+                        showFicheCommandeAccepte(str,id);
                     }
                 });
                 layout_commande.addView(text);
@@ -145,13 +145,23 @@ public class VoirCommande extends AppCompatActivity {
         }
     }
 
-    public void showFicheCommande(String nomProduit,int id) {
+    public void showFicheCommandeAttente(String nomProduit,int id) {
         Intent i = new Intent(this,FicheCommandeAttente.class);
         i.putExtra("NOM_PRODUIT",nomProduit);
         i.putExtra("ID_COMMANDE",id);
         i.putExtra("id",this.idArtisan);
         startActivity(i);
     }
+
+
+    public void showFicheCommandeAccepte(String nomProduit,int id) {
+        Intent i = new Intent(this,FicheCommandeAccepte.class);
+        i.putExtra("NOM_PRODUIT",nomProduit);
+        i.putExtra("ID_COMMANDE",id);
+        i.putExtra("id",this.idArtisan);
+        startActivity(i);
+    }
+
 
 
 

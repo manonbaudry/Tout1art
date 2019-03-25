@@ -44,6 +44,13 @@
                 android:value=".BacklogArt" />
         </activity>
         <activity
+            android:name=".FicheCommandeAccepte"
+            android:parentActivityName=".BacklogArt">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".BacklogArt" />
+        </activity>
+        <activity
             android:name=".VoirCommande"
             android:parentActivityName=".BacklogArt">
             <meta-data
