@@ -5,22 +5,35 @@ import HomePage from "./HomePage";
 
 export default class CiblePage extends Page {
     promises: Array<Promise<product>>;
+    compteur: number;
 
     constructor(products: Promise<Array<Product>>) {
         super('<img class="logot1a" src="images/logoRect.png" alt="logo"></img>');
         this.promises = products;
+        this.compteur = 0;
     }
 
     render(): string | Promise<string> {
+        this.compteur = 0;
         const element: HTMLElement = document.createElement('div');
         element.innerHTML = `<div class="card-deck"></div>`;
 
 
         return Promise.all(this.promises).then((products: Array<Product>) => {
-            const deck: ?HTMLElement = element.querySelector('.card-deck');
+            let deck: ?HTMLElement = element.querySelector('.card-deck');
+
             if (deck) {
                 products.forEach((product: Product) => {
-                    deck.innerHTML += HomePage.makeThumbnail(product);
+                   if(this.compteur < 4){
+                        deck.innerHTML += HomePage.makeThumbnail(product);
+                        this.compteur++;
+                        console.log(this.compteur);
+                    }else{
+                        element.innerHTML += '<div class="card-deck"></div>';
+                        this.compteur = 0;
+                        let elements = element.querySelectorAll('.card-deck');
+                        deck = elements[elements.length -1];
+                    }
                 });
             }
             return element.outerHTML;

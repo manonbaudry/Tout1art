@@ -11,6 +11,7 @@ import AdminPage from "./pages/AdminPage";
 import AdminProductPage from "./pages/AdminProductPage";
 import CiblePage from './pages/CiblePage.js';
 
+
 // configuration du PageRenderer
 PageRenderer.titleElement = document.querySelector('.pageTitle');
 PageRenderer.contentElement = document.querySelector('.pageContent');
