@@ -37,6 +37,3 @@ INSERT INTO produit (nom, description, srcImage, prix, idArtisan, categorie, sou
 INSERT INTO produit (nom, description, srcImage, prix, idArtisan, categorie, sousCategorie, commande, delai, statut) VALUES ('table basse', 	 'Une table basse 2',		'images/tableBasseComplexe.jpg',		'100',	 '1',	 'mobilier',	'table',	'1','4','en vente');
 
 
-INSERT INTO com (idProduit, idClient, idArtisan, statut) VALUES ('5','1', '1', 'En cours');
-INSERT INTO com (idProduit, idClient, idArtisan, statut) VALUES ('3','1', '1', 'En cours');
-INSERT INTO com (idProduit, idClient, idArtisan, statut) VALUES ('6','1', '2', 'En cours');
