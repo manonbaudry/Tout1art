@@ -139,4 +139,50 @@ public class FicheCommandeAccepte extends AppCompatActivity {
 
         Toast.makeText(getApplicationContext(),"La modification a été prise en compte",Toast.LENGTH_SHORT).show();
     }
+
+
+    public void envoyer(View view){
+        String uri = "http://10.0.2.2:8080/api/v1/com/";
+        uri+=idCommande;
+        JSONObject obj=null;
+
+        try {
+            obj = new JSONObject();
+            obj.put("statut","envoye");
+        } catch(Exception e){
+            e.printStackTrace();
+        }
+
+        JsonObjectRequest putRequest = new JsonObjectRequest(Request.Method.PUT, uri,
+                obj,
+                new Response.Listener<JSONObject>()
+                {
+                    @Override
+                    public void onResponse(JSONObject response) {
+                        // response
+                        System.out.println("REUSSITE");
+                    }
+                },
+                new Response.ErrorListener()
+                {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                        // error
+                        System.out.println(error);
+                    }
+                }
+        ) {
+            @Override
+            public Map<String, String> getHeaders()
+            {
+                Map<String, String> headers = new HashMap<String, String>();
+                headers.put("Content-Type", "application/json");
+                return headers;
+            }
+        };
+        queue.add(putRequest);
+
+
+        Toast.makeText(getApplicationContext(),"Votre commande a bien été envoyée",Toast.LENGTH_SHORT).show();
+    }
 }
