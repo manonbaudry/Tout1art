@@ -8,6 +8,7 @@ import $ from 'jquery';
 import ProductPage from "./pages/ProductPage";
 import Product from "./Product";
 import AdminPage from "./pages/AdminPage";
+import AdminProductPage from "./pages/AdminProductPage";
 
 // configuration du PageRenderer
 PageRenderer.titleElement = document.querySelector('.pageTitle');
@@ -22,7 +23,6 @@ for (let i = 0; i < 3; ++i) {
 const homePage: HomePage = new HomePage(products);
 const inscriptionPage: ClientInscriptionPage = new ClientInscriptionPage();
 const connectionPage: ConnectionPage = new ConnectionPage();
-let adminPage: AdminPage = new AdminPage();
 let productPage: ProductPage;
 
 const selection: Array<Product> = [];
@@ -56,6 +56,7 @@ const homeLink = $('.homeLink');
 const inscriptionLink = $('.inscriptionLink');
 const connectionLink = $('.connectionLink');
 const adminLink = $('.adminLink');
+const adminProductLink = $('.adminProductLink');
 
 homeLink.click((event: Event) => {
     event.preventDefault();
@@ -72,6 +73,10 @@ connectionLink.click((event: Event) => {
 adminLink.click((event: Event) => {
     event.preventDefault();
     renderAdmin();
+});
+adminProductLink.click((event: Event) => {
+    event.preventDefault();
+    renderProductAdmin();
 });
 
 function renderHome(): void {
@@ -143,11 +148,14 @@ function renderSelection(): void {
     });
 }
 
-
 function renderAdmin(): void {
     Menu.setSelectedLink(adminLink);
-    adminPage = new AdminPage();
-    PageRenderer.renderPage(adminPage);
+    PageRenderer.renderPage(new AdminPage());
+}
+
+function renderProductAdmin(): void {
+    Menu.setSelectedLink(adminProductLink);
+    PageRenderer.renderPage(new AdminProductPage());
 }
 
 renderHome();
