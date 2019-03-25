@@ -34,7 +34,7 @@ public class ConsulterProduit extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_consulter_produit);
         queue = Volley.newRequestQueue(ConsulterProduit.this);
-        layout = (LinearLayout) findViewById(R.id.layout_produit);
+        layout = (LinearLayout) findViewById(R.id.scroller);
         this.nomProduit = new ArrayList<>();
         Intent intentActu = getIntent();
         idArtisan = (int) intentActu.getExtras().get("id");
@@ -57,7 +57,6 @@ public class ConsulterProduit extends AppCompatActivity {
                 Button text = new Button(this);
                 text.setBackgroundResource(R.drawable.button_bg_round_produit);
                 text.setText(s);
-                text.setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT,LinearLayout.LayoutParams.WRAP_CONTENT));
                 text.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {

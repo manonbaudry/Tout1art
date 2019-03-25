@@ -62,7 +62,7 @@
 
     <string name="button5">Statistique</string>
 
-    <string name="commande">Mes commandes en cours</string>
+    <string name="commande">Mes commandes validées</string>
     <string name="commande_attente">Mes commandes en attentes</string>
     <string name="mail">Adresse Mail :</string>
     <string name="mdp">Mot de passe :</string>

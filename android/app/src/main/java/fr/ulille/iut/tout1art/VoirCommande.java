@@ -36,8 +36,8 @@ public class VoirCommande extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_voir_commande);
-        this.layout_commande_attente = (LinearLayout) findViewById(R.id.layout_commande_attente);
-        this.layout_commande = (LinearLayout) findViewById(R.id.layout_commande);
+        this.layout_commande_attente = (LinearLayout) findViewById(R.id.cmdA);
+        this.layout_commande = (LinearLayout) findViewById(R.id.cmdV);
         queue = Volley.newRequestQueue(VoirCommande.this);
         queueProduit = Volley.newRequestQueue(VoirCommande.this);
         this.listeCommande = new ArrayList<>();
