@@ -55,8 +55,7 @@ public class NotificationEntity {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         NotificationEntity that = (NotificationEntity) o;
-        return id == that.id &&
-                Objects.equals(nom, that.nom);
+        return id == that.id;
     }
 
 	/**
