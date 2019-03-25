@@ -334,7 +334,8 @@ public class DataAccess {
 
 	public void updateCommande(ComEntity commande) throws PizzaNameExistsException {
 	    try {
-            em.merge(commande);
+            //Query q = em.createNamedQuery("", );
+            //q.setParameter(arg0, arg1)
             em.flush();
         } catch (javax.persistence.PersistenceException e){
             throw new PizzaNameExistsException();
