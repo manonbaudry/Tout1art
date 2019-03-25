@@ -33,7 +33,7 @@
         app:srcCompat="@drawable/logo_droit" />
 
     <TextView
-        android:id="@+id/num_commande"
+        android:id="@+id/num_commande_accepte"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
@@ -94,10 +94,10 @@
         android:text="Nom produit : "
         android:textSize="16sp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/num_commande" />
+        app:layout_constraintTop_toBottomOf="@+id/num_commande_accepte" />
 
     <TextView
-        android:id="@+id/fiche_nom_produit"
+        android:id="@+id/fiche_nom_produit_accepte"
         android:layout_width="134dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="20dp"
@@ -110,7 +110,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.178"
         app:layout_constraintStart_toEndOf="@+id/textView5"
-        app:layout_constraintTop_toBottomOf="@+id/num_commande" />
+        app:layout_constraintTop_toBottomOf="@+id/num_commande_accepte" />
 
     <TextView
         android:id="@+id/textView7"
@@ -125,7 +125,7 @@
         app:layout_constraintTop_toBottomOf="@+id/textView5" />
 
     <TextView
-        android:id="@+id/fiche_prix"
+        android:id="@+id/fiche_prix_accepte"
         android:layout_width="130dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
@@ -138,10 +138,10 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.287"
         app:layout_constraintStart_toEndOf="@+id/textView7"
-        app:layout_constraintTop_toBottomOf="@+id/fiche_nom_produit" />
+        app:layout_constraintTop_toBottomOf="@+id/fiche_nom_produit_accepte" />
 
     <TextView
-        android:id="@+id/fiche_description"
+        android:id="@+id/fiche_description_accepte"
         android:layout_width="230dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
@@ -154,7 +154,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.208"
         app:layout_constraintStart_toEndOf="@+id/textView9"
-        app:layout_constraintTop_toBottomOf="@+id/fiche_prix" />
+        app:layout_constraintTop_toBottomOf="@+id/fiche_prix_accepte" />
 
     <TextView
         android:id="@+id/textView11"
@@ -162,7 +162,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="24dp"
         android:layout_marginLeft="24dp"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="104dp"
         android:text="Délai :"
         android:textSize="16sp"
         app:layout_constraintStart_toStartOf="parent"
@@ -172,11 +172,11 @@
         android:id="@+id/fiche_delai"
         android:layout_width="172dp"
         android:layout_height="21dp"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="104dp"
         android:layout_marginEnd="84dp"
         android:layout_marginRight="84dp"
         android:text="TextView"
         android:textSize="16sp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/fiche_description" />
+        app:layout_constraintTop_toBottomOf="@+id/fiche_description_accepte" />
 </android.support.constraint.ConstraintLayout>

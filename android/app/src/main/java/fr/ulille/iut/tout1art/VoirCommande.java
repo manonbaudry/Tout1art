@@ -1,6 +1,7 @@
 package fr.ulille.iut.tout1art;
 
 import android.content.Intent;
+import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -36,8 +37,8 @@ public class VoirCommande extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_voir_commande);
-        this.layout_commande_attente = (LinearLayout) findViewById(R.id.layout_commande_attente);
-        this.layout_commande = (LinearLayout) findViewById(R.id.layout_commande);
+        this.layout_commande_attente = (LinearLayout) findViewById(R.id.cmdA);
+        this.layout_commande = (LinearLayout) findViewById(R.id.cmdV);
         queue = Volley.newRequestQueue(VoirCommande.this);
         queueProduit = Volley.newRequestQueue(VoirCommande.this);
         this.listeCommande = new ArrayList<>();
@@ -46,6 +47,10 @@ public class VoirCommande extends AppCompatActivity {
         this.nomId = new HashMap<>();
         Intent intentActu = getIntent();
         idArtisan = (int) intentActu.getExtras().get("id");
+        if (getSupportActionBar() != null) {
+            ActionBar actionBar = getSupportActionBar();
+            actionBar.setDisplayHomeAsUpEnabled(false);
+        }
         getProduit();
 
 
@@ -96,6 +101,7 @@ public class VoirCommande extends AppCompatActivity {
                 System.out.println("dans la liste " + str);
                 Button text = new Button(this);
                 text.setText(str);
+                text.setBackgroundResource(R.drawable.button_bg_round_produit);
                 text.setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT,LinearLayout.LayoutParams.WRAP_CONTENT));
                 int idProduit=0;
                 int idPut = 0;
@@ -113,7 +119,7 @@ public class VoirCommande extends AppCompatActivity {
                 text.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        showFicheCommande(str,id);
+                        showFicheCommandeAttente(str,id);
                     }
                 });
                 layout_commande_attente.addView(text);
@@ -122,6 +128,7 @@ public class VoirCommande extends AppCompatActivity {
                 System.out.println("dans la liste " + str);
                 Button text = new Button(this);
                 text.setText(str);
+                text.setBackgroundResource(R.drawable.button_bg_round_produit);
                 text.setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT,LinearLayout.LayoutParams.WRAP_CONTENT));
                 int idPut=0;
                 for(Integer i : this.produitNom.keySet()){
@@ -133,7 +140,7 @@ public class VoirCommande extends AppCompatActivity {
                 text.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        showFicheCommande(str,id);
+                        showFicheCommandeAccepte(str,id);
                     }
                 });
                 layout_commande.addView(text);
@@ -145,13 +152,23 @@ public class VoirCommande extends AppCompatActivity {
         }
     }
 
-    public void showFicheCommande(String nomProduit,int id) {
+    public void showFicheCommandeAttente(String nomProduit,int id) {
         Intent i = new Intent(this,FicheCommandeAttente.class);
         i.putExtra("NOM_PRODUIT",nomProduit);
         i.putExtra("ID_COMMANDE",id);
         i.putExtra("id",this.idArtisan);
         startActivity(i);
     }
+
+
+    public void showFicheCommandeAccepte(String nomProduit,int id) {
+        Intent i = new Intent(this,FicheCommandeAccepte.class);
+        i.putExtra("NOM_PRODUIT",nomProduit);
+        i.putExtra("ID_COMMANDE",id);
+        i.putExtra("id",this.idArtisan);
+        startActivity(i);
+    }
+
 
 
 

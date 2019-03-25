@@ -1,6 +1,7 @@
 package fr.ulille.iut.tout1art;
 
 import android.content.Intent;
+import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -34,11 +35,16 @@ public class ConsulterProduit extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_consulter_produit);
         queue = Volley.newRequestQueue(ConsulterProduit.this);
-        layout = (LinearLayout) findViewById(R.id.layout_produit);
+        layout = (LinearLayout) findViewById(R.id.scroller);
         this.nomProduit = new ArrayList<>();
         Intent intentActu = getIntent();
         idArtisan = (int) intentActu.getExtras().get("id");
+        if (getSupportActionBar() != null) {
+            ActionBar actionBar = getSupportActionBar();
+            actionBar.setDisplayHomeAsUpEnabled(false);
+        }
         getProduit();
+
     }
 
     public void showJsonArrayResponseProduit(JSONArray response) {
@@ -57,7 +63,6 @@ public class ConsulterProduit extends AppCompatActivity {
                 Button text = new Button(this);
                 text.setBackgroundResource(R.drawable.button_bg_round_produit);
                 text.setText(s);
-                text.setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT,LinearLayout.LayoutParams.WRAP_CONTENT));
                 text.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {

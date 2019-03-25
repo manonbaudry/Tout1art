@@ -1,6 +1,7 @@
 package fr.ulille.iut.tout1art;
 
 import android.content.Intent;
+import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -31,12 +32,16 @@ public class FicheCommandeAttente extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_fiche_commande_attente);
-        this.num_commande = (TextView) findViewById(R.id.num_commande);
-        this.prix = (TextView) findViewById(R.id.fiche_prix);
-        this.description = (TextView) findViewById(R.id.fiche_description);
-        this.nom_produit = (TextView) findViewById(R.id.fiche_nom_produit);
+        this.num_commande = (TextView) findViewById(R.id.num_commande_accepte);
+        this.prix = (TextView) findViewById(R.id.fiche_prix_accepte);
+        this.description = (TextView) findViewById(R.id.fiche_description_accepte);
+        this.nom_produit = (TextView) findViewById(R.id.fiche_nom_produit_accepte);
         this.delai = (TextView) findViewById(R.id.fiche_delai);
         queue = Volley.newRequestQueue(FicheCommandeAttente.this);
+        if (getSupportActionBar() != null) {
+            ActionBar actionBar = getSupportActionBar();
+            actionBar.setDisplayHomeAsUpEnabled(false);
+        }
         this.id=0;
         Intent in = getIntent();
         Bundle b = in.getExtras();

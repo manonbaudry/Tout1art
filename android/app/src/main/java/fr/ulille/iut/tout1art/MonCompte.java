@@ -1,6 +1,7 @@
 package fr.ulille.iut.tout1art;
 
 import android.content.Intent;
+import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.widget.LinearLayout;
@@ -36,6 +37,10 @@ public class MonCompte extends AppCompatActivity {
         queue = Volley.newRequestQueue(MonCompte.this);
         Intent intentActu = getIntent();
         id = (int) intentActu.getExtras().get("id");
+        if (getSupportActionBar() != null) {
+            ActionBar actionBar = getSupportActionBar();
+            actionBar.setDisplayHomeAsUpEnabled(false);
+        }
         getArtisan();
 
     }
