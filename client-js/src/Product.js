@@ -100,4 +100,17 @@ export default class Product {
     static jsonToObj(product) {
         return new Product(product.id, product.artisanId, product.price, product.deliveryTime, product.ordered, product.name, product.description, product.category, product.subCategory, product.img, product.status);
     }
+
+    static compare(a: Product, b: Product):number {
+        if (a === b) {
+            return 0;
+        }
+        if (a.status === b.status) {
+            return b.id - a.id;
+        }
+        if (a.status === 'en attente') {
+            return -1;
+        }
+        return 1;
+    }
 };

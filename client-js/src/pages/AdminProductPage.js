@@ -23,6 +23,7 @@ export default class AdminProductPage extends Page {
             this.products = [];
             let i = 0;
             json.forEach(product => this.products[i++] = Product.jsonToObj(product));
+            this.products.sort(Product.compare);
             const html: Array<string> = [];
             i = 0;
             this.products.forEach(product => html[i++] = AdminProductPage.makeProduct(product));
@@ -32,7 +33,7 @@ export default class AdminProductPage extends Page {
     }
 
     static makeProduct(product: Product): string {
-        return `<tr>
+        return product.status === 'refuse' ? '' : `<tr>
     <td>Produit n°${product.id}</td>
     <td>
         <p>Statut : ${product.status}</p>

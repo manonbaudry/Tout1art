@@ -46,7 +46,7 @@ export default class ProductPage extends Page {
                 idArtisan: 1,
                 idClient: 1,
                 idProduit: this.product.id,
-                statut: 'En attente'
+                statut: 'en attente'
             })
         }).then((response: Response) => {
             if (response.ok) {
