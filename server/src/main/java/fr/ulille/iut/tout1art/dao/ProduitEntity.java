@@ -46,6 +46,7 @@ public class ProduitEntity {
     private String sousCategorie;
     private int commande;
     private int delai;
+    private String statut; 
 
     public static ProduitEntity convertFromProduitCreateDto(ProduitCreateDto produit) {
         return modelMapper.map(produit, ProduitEntity.class);
@@ -177,10 +178,22 @@ public class ProduitEntity {
 		this.delai = delai;
 	}
 	
-	
-	
-	
 
+	/**
+	 * @return the statut
+	 */
+	@Basic
+	@Column(name = "statut", nullable = false, length = -1)
+	public String getStatut() {
+		return statut;
+	}
+
+	/**
+	 * @param statut the statut to set
+	 */
+	public void setStatut(String statut) {
+		this.statut = statut;
+	}
 
 	public boolean equals(Object o) {
         if (this == o) return true;
