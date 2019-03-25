@@ -109,14 +109,14 @@ public class ComRessource {
     @PUT
     @Path("/{id}")
     @Produces(MediaType.APPLICATION_JSON)
-    public Response update(@PathParam("id") long id, @QueryParam("statut") String statut) {
+    public Response update(@PathParam("id") long id, /*@QueryParam("statut") String statut*/ ComEntity commande) {
         DataAccess dataAccess = DataAccess.begin();
         ComEntity commandeBDD = dataAccess.getComById(id);
         if (commandeBDD == null) {
             return Response.status(Status.NOT_FOUND).entity("Produit not found").build();
         } else {
             try {
-                commandeBDD.setStatut(statut);
+                commandeBDD.setStatut(commande.getStatut());
                 dataAccess.updateCommande(commandeBDD);
                 dataAccess.closeConnection(true);
                 return Response.ok(commandeBDD).build(); //  .created(instanceURI).build();
