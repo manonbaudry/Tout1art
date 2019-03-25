@@ -343,5 +343,22 @@ public class DataAccess {
         }
 	}
 
+	public List<NotificationEntity> getNotifByConcerne(String concerne) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	public List<NotificationEntity> getAllNotifications() {
+        TypedQuery<NotificationEntity> query = em.createNamedQuery("FindAllNotifications", NotificationEntity.class);
+        return query.getResultList();
+	}
+
+	public long createNotification(NotificationEntity notifEntity) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+
+
 
 }

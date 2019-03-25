@@ -8,6 +8,7 @@
         <class>fr.ulille.iut.tout1art.dao.ProduitEntity</class>
         <class>fr.ulille.iut.tout1art.dao.ClientEntity</class>
  		<class>fr.ulille.iut.tout1art.dao.ComEntity</class>
+ 		<class>fr.ulille.iut.tout1art.dao.NotificationEntity</class>
          <properties>
             <!-- Configuration postgresql -->
  	       	<!--<property name="javax.persistence.jdbc.url" value="jdbc:postgresql://localhost:5432/pizzaland"/> -->

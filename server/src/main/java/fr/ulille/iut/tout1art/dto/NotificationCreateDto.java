@@ -4,7 +4,7 @@ import fr.ulille.iut.tout1art.dao.NotificationEntity;
 
 public class NotificationCreateDto {
   	protected long id;
-    protected String conserne;
+    protected String concerne;
     protected String type;
     protected String contenu;
     protected int lu;
@@ -18,17 +18,17 @@ public class NotificationCreateDto {
     }
     
 	/**
-	 * @return the conserne
+	 * @return the concerne
 	 */
-	public String getConserne() {
-		return conserne;
+	public String getConcerne() {
+		return concerne;
 	}
 
 	/**
-	 * @param conserne the conserne to set
+	 * @param concerne the concerne to set
 	 */
-	public void setConserne(String conserne) {
-		this.conserne = conserne;
+	public void setConcerne(String concerne) {
+		this.concerne = concerne;
 	}
 
 	/**

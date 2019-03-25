@@ -26,7 +26,7 @@ public class NotificationEntity {
     private static ModelMapper modelMapper = new ModelMapper();
 
     private long id;
-    private String conserne;
+    private String concerne;
     private String type;
     private String contenu;
     private int lu;
@@ -59,19 +59,19 @@ public class NotificationEntity {
     }
 
 	/**
-	 * @return the conserne
+	 * @return the concerne
 	 */
     @Basic
-    @Column(name = "conserne", nullable = false, length = -1)
-	public String getConserne() {
-		return conserne;
+    @Column(name = "concerne", nullable = false, length = -1)
+	public String getConcerne() {
+		return concerne;
 	}
 
 	/**
-	 * @param conserne the conserne to set
+	 * @param concerne the concerne to set
 	 */
-	public void setConserne(String conserne) {
-		this.conserne = conserne;
+	public void setConcerne(String concerne) {
+		this.concerne = concerne;
 	}
 
 	/**

@@ -18,10 +18,9 @@ import java.util.stream.Collectors;
 
 import fr.ulille.iut.tout1art.dao.ComEntity;
 import fr.ulille.iut.tout1art.dao.DataAccess;
-import fr.ulille.iut.tout1art.dao.ProduitEntity;
-import fr.ulille.iut.tout1art.dto.ComCreateDto;
-import fr.ulille.iut.tout1art.dto.ComDto;
-import fr.ulille.iut.tout1art.dto.ProduitDto;
+import fr.ulille.iut.tout1art.dao.NotificationEntity;
+import fr.ulille.iut.tout1art.dto.NotificationCreateDto;
+import fr.ulille.iut.tout1art.dto.NotificationDto;
 
 @Path("/notification")
 public class NotificationRessource {
@@ -34,21 +33,21 @@ public class NotificationRessource {
 
     @POST
     @Produces(MediaType.APPLICATION_JSON)
-    public Response create(ComCreateDto comDto) {
+    public Response create(NotificationCreateDto notifDto) {
         DataAccess dataAccess = DataAccess.begin();
 
         // Construction (données primitives puis composition
-        ComEntity comEntity = ComEntity.convertFromComCreateDto(comDto);
+        NotificationEntity notifEntity = NotificationEntity.convertFromNotificationCreateDto(notifDto);
 
-        if (comEntity == null) {
+        if (notifEntity == null) {
             dataAccess.closeConnection(false);
             return Response.status(Status.NOT_ACCEPTABLE).entity("name not specified").build();
         }
         try {
-            long id = dataAccess.createCom(comEntity);
+            long id = dataAccess.createNotification(notifEntity);
             URI instanceURI = uriInfo.getAbsolutePathBuilder().path("" + id).build();
             dataAccess.closeConnection(true);
-            return Response.created(instanceURI).status(201).entity(ComEntity.convertToDto(comEntity)).location(instanceURI).build();
+            return Response.created(instanceURI).status(201).entity(NotificationEntity.convertToDto(notifEntity)).location(instanceURI).build();
         }
         catch ( Exception ex ) {
             dataAccess.closeConnection(false);
@@ -58,38 +57,38 @@ public class NotificationRessource {
 
     @GET
     @Produces(MediaType.APPLICATION_JSON)
-    public List<ComDto> getAll() {
+    public List<NotificationDto> getAll() {
         DataAccess dataAccess = DataAccess.begin();
-        List<ComEntity> la = dataAccess.getAllComs();
+        List<NotificationEntity> la = dataAccess.getAllNotifications();
         dataAccess.closeConnection(false);
-        return la.stream().map(ComEntity::convertToDto).collect(Collectors.toList());
+        return la.stream().map(NotificationEntity::convertToDto).collect(Collectors.toList());
     }
-    
+  /*
     @GET
-    @Path("artisan/{idArtisan}")
+    @Path("{concerne}")
     @Produces(MediaType.APPLICATION_JSON)
-    public List<ProduitDto> getProduitByArtisan(@PathParam("idArtisan") int idArtisan) {
+    public List<NotificationDto> getNotificationByConcerne(@PathParam("concerne") String concerne) {
         DataAccess dataAccess = DataAccess.begin();
-        List<ProduitEntity> la = dataAccess.getProduitByArtisan(idArtisan);
+        List<NotificationEntity> la = dataAccess.getNotifByConcerne(concerne);
         dataAccess.closeConnection(false);
-        return la.stream().map(ProduitEntity::convertToDto).collect(Collectors.toList());
+        return la.stream().map(NotificationEntity::convertToDto).collect(Collectors.toList());
     }
-
-    
+*/
+    /*
     @GET
     @Path("{idCom}")
     @Produces(MediaType.APPLICATION_JSON)
-    public Response getByIdCom(@PathParam("idCom") long idCom) {
+    public Response getNotifByConcerne(@PathParam("concerne") String concerne) {
         DataAccess dataAccess = DataAccess.begin();
-        ComEntity ComEntity = dataAccess.getComById(idCom);
-        if ( ComEntity != null ) {
+        NotificationEntity notifEntity = dataAccess.getNotifByConcerne(concerne);
+        if ( notifEntity != null ) {
             dataAccess.closeConnection(true);
-            return Response.ok(ComEntity.convertToDto(ComEntity)).build();
+            return Response.ok(notifEntity.convertToDto(notifEntity)).build();
         } else {
             dataAccess.closeConnection(false);
             return Response.status(Status.NOT_FOUND).entity("Com not found").build();
         }
-    }
+    }*/
 
     @DELETE
     @Path("{idCom}")
