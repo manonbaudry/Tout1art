@@ -33,8 +33,8 @@ INSERT INTO produit (nom, description, srcImage, prix, idArtisan, categorie, sou
 INSERT INTO produit (nom, description, srcImage, prix, idArtisan, categorie, sousCategorie, commande, delai, statut) VALUES ('chaise blanche',	 'Une chaise simple',	'images/chaiseBlanche.jpg',	'10.5',	 '1',	 'mobilier',	'chaise',	'0','3','en vente');
 INSERT INTO produit (nom, description, srcImage, prix, idArtisan, categorie, sousCategorie, commande, delai, statut) VALUES ('vase simple',	 'Un vase simple',		'images/vase.jpg',	 	'3.5',	 '1',	 'deco',	 	'vase',	 	'0', '5','en vente');
 INSERT INTO produit (nom, description, srcImage, prix, idArtisan, categorie, sousCategorie, commande, delai, statut) VALUES ('lampe simple',	 'Une lampe simple',	'images/lampe.jpg', 	'5.5',	 '1',	 'luminaire',	'lampe',	'0', '7','en vente');
-INSERT INTO produit (nom, description, srcImage, prix, idArtisan, categorie, sousCategorie, commande, delai,statut) VALUES ('table basse', 	 'Une table base 1',		'images/tableBasseSimple.jpg',		'100',	 '1',	 'mobilier',	'table',	'1','4','en vente');
-INSERT INTO produit (nom, description, srcImage, prix, idArtisan, categorie, sousCategorie, commande, delai, statut) VALUES ('table basse', 	 'Une table base 2',		'images/tableBasseComplexe.jpg',		'100',	 '1',	 'mobilier',	'table',	'1','4','en vente');
+INSERT INTO produit (nom, description, srcImage, prix, idArtisan, categorie, sousCategorie, commande, delai,statut) VALUES ('table basse', 	 'Une table basse 1',		'images/tableBasseSimple.jpg',		'100',	 '1',	 'mobilier',	'table',	'1','4','en vente');
+INSERT INTO produit (nom, description, srcImage, prix, idArtisan, categorie, sousCategorie, commande, delai, statut) VALUES ('table basse', 	 'Une table basse 2',		'images/tableBasseComplexe.jpg',		'100',	 '1',	 'mobilier',	'table',	'1','4','en vente');
 
 
 INSERT INTO com (idProduit, idClient, idArtisan, statut) VALUES ('5','1', '1', 'En cours');
