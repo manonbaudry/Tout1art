@@ -13,12 +13,8 @@ export default class AdminProductPage extends Page {
     }
 
     render(): string | Promise<string> {
-        const card: HTMLElement = document.createElement('div');
-        card.setAttribute('class', 'card');
-        card.innerHTML = `<div class="card-title">Produits en attente de validation</div>
-<div class="card-body container"></div>`;
-
-        const cardBody = card.querySelector('.card-body');
+        const table: HTMLElement = document.createElement('table');
+        table.setAttribute('class', 'table');
 
         return this.promise.then((json) => {
             this.products = [];
@@ -27,23 +23,28 @@ export default class AdminProductPage extends Page {
             const html: Array<string> = [];
             i = 0;
             this.products.forEach(product => html[i++] = AdminProductPage.makeProduct(product));
-            html.forEach(value => cardBody.innerHTML += value);
-            return card.outerHTML;
+            html.forEach(value => table.innerHTML += value);
+            return table.outerHTML;
         });
     }
 
     static makeProduct(product: Product): string {
-        if (product.status === 'En attente') {
-            return `<div class="row">
-    <div class="col">Produit n°${product.id}</div>
-    <div class="col">
+        return `<tr>
+    <td>Produit n°${product.id}</td>
+    <td>
         <p>Statut : ${product.status}</p>
         <p>Nom : ${product.name}</p>
         <p>Prix : ${product.price}€</p>
-    </div>
-</div>
+    </td>
+    <td>
+        ${product.status === 'en attente' ? `<p>
+            <button class="accept">Accepter</button>
+        </p>
+        <p>
+            <button class="reject">Rejeter</button>
+        </p>` : ''}
+    </td>
+</tr>
 <p/>`
-        }
-        return '';
     }
 }
