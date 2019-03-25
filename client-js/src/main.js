@@ -135,9 +135,11 @@ function renderSelection(): void {
     Menu.setSelectedLink(homeLink);
     PageRenderer.renderPage(selectionPage);
 
-    $('.productLink').click((event: Event) => {
-        event.preventDefault();
-        renderProduct(event.currentTarget.getAttribute('id'));
+    selectionPage.render().then(() => {
+        $('.productLink').click((event: Event) => {
+            event.preventDefault();
+            renderProduct(event.currentTarget.getAttribute('id'));
+        });
     });
 }
 
