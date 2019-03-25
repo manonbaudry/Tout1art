@@ -1,6 +1,7 @@
 // @flow
 import Page from "./Page";
 import Product from "../Product";
+import PageRenderer from "../PageRenderer";
 
 export default class AdminProductPage extends Page {
 
@@ -10,6 +11,8 @@ export default class AdminProductPage extends Page {
     constructor() {
         super('Produits');
         this.promise = Product.getAll();
+        this.accept = this.accept.bind(this);
+        this.reject = this.reject.bind(this);
     }
 
     render(): string | Promise<string> {
@@ -38,12 +41,12 @@ export default class AdminProductPage extends Page {
     </td>
     <td>
         ${product.status === 'en attente' ? `<p>
-    <button type="button" class="btn btn-primary accept" data-toggle="button" aria-pressed="false">
+    <button id=${product.id} type="button" class="btn btn-primary accept" data-toggle="button" aria-pressed="false">
         Accepter
     </button>
 </p>
 <p>
-    <button type="button" class="btn btn-primary reject" data-toggle="button" aria-pressed="false">
+    <button id=${product.id} type="button" class="btn btn-primary reject" data-toggle="button" aria-pressed="false">
         Refuser
     </button>
 </p>` : ''}
@@ -57,13 +60,33 @@ export default class AdminProductPage extends Page {
         $('.reject').click(this.reject);
     }
 
-    accept(event: Event): void {
+    send(event: Event, accepted: boolean): void {
         event.preventDefault();
-        alert('accept');
+        let id = event.currentTarget.getAttribute('id');
+        fetch(`http://localhost:8080/api/v1/produit/${id}`, {
+            method: 'PUT',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            credentials: 'same-origin',
+            body: JSON.stringify({
+                statut: accepted ? 'en vente' : 'refuse'
+            })
+        }).then((response: Response) => {
+            if (response.ok) {
+                alert(accepted ? 'Le produit a été accepté avec succés' : 'Le produit a été refusé avec succés');
+            } else {
+                alert('Une erreur est survenue lors de la demande.');
+            }
+            PageRenderer.renderPage(new AdminProductPage());
+        }).catch((error: TypeError) => console.log('Erreur de fetch post commande : ', error.message));
+    }
+
+    accept(event: Event): void {
+        this.send(event, true);
     }
 
     reject(event: Event): void {
-        event.preventDefault();
-        alert('reject');
+        this.send(event, false);
     }
 }
