@@ -2,63 +2,95 @@
 export default class Product {
 
     id: number;
+    artisanId: number;
+    price: number;
+    deliveryTime: number;
+    ordered: boolean;
     name: string;
+    description: string;
     category: string;
     subCategory: string;
-    description: string;
-    price: number;
     img: string;
-    ordered: boolean;
+    status: string;
 
-    constructor(id: number, name: string, category: string, subCategory: string, description: string, price: number, img: string, ordered: boolean) {
+    constructor(id: number, artisanId: number, price: number, deliveryTime: number, ordered: boolean, name: string, description: string, category: string, subCategory: string, img: string, status: string) {
         this.id = id;
+        this.artisanId = artisanId;
+        this.price = price;
+        this.deliveryTime = deliveryTime;
+        this.ordered = ordered;
         this.name = name;
+        this.description = description;
         this.category = category;
         this.subCategory = subCategory;
-        this.description = description;
-        this.price = price;
         this.img = img;
-        this.ordered = ordered;
+        this.status = status;
     }
 
-    toLiteral(): { id: number, nom: string, categorie: string, description: string, prix: number, srcImage: string } {
-
-    }
-
-    static get(id: number): Promise<{ id: number, name: string, category: string, subCategory: string, description: string, price: number, img: string, ordered: boolean }> {
+    static get(id: number): Promise<{ id: number, artisanId: number, price: number, deliveryTime: number, ordered: boolean, name: string, description: string, category: string, subCategory: string, img: string, status: string }> {
         return fetch(`http://localhost:8080/api/v1/produit/${id}`)
             .then((response: Response) => response.json())
             .then((json: JSON) => {
                 const id: number = json.id;
+                const artisanId: number = json.idArtisan;
+                const price: number = json.prix;
+                const deliveryTime: number = json.delai;
+                const ordered: boolean = json.commande;
                 const name: string = json.nom;
+                const description: string = json.description;
                 const category: string = json.categorie;
                 const subCategory: string = json.sousCategorie;
-                const description: string = json.description;
-                const price: number = json.prix;
                 const img: string = json.srcImage;
-                const ordered: boolean = json.commande;
+                const status: string = json.statut;
 
-                return {id, name, category, subCategory, description, price, img, ordered};
+                return {
+                    id,
+                    artisanId,
+                    price,
+                    deliveryTime,
+                    ordered,
+                    name,
+                    description,
+                    category,
+                    subCategory,
+                    img,
+                    status
+                };
             })
             .catch((error: TypeError) => console.log('Erreur de fetch', error.message));
     }
 
-    static getAll(): Promise<{ id: number, name: string, category: string, subCategory: string, description: string, price: number, img: string, ordered: boolean }> {
+    static getAll(): Promise<Array<{ id: number, artisanId: number, price: number, deliveryTime: number, ordered: boolean, name: string, description: string, category: string, subCategory: string, img: string, status: string }>> {
         return fetch(`http://localhost:8080/api/v1/produit`)
             .then((response: Response) => response.json())
             .then((json: JSON) => {
                 const array = [];
                 for (let i = 0; i < json.length; ++i) {
                     const id: number = json[i].id;
+                    const artisanId: number = json[i].idArtisan;
+                    const price: number = json[i].prix;
+                    const deliveryTime: number = json[i].delai;
+                    const ordered: boolean = json[i].commande;
                     const name: string = json[i].nom;
+                    const description: string = json[i].description;
                     const category: string = json[i].categorie;
                     const subCategory: string = json[i].sousCategorie;
-                    const description: string = json[i].description;
-                    const price: number = json[i].prix;
                     const img: string = json[i].srcImage;
-                    const ordered: boolean = json[i].commande;
+                    const status: string = json[i].statut;
 
-                    array[i] = {id, name, category, subCategory, description, price, img, ordered};
+                    array[i] = {
+                        id,
+                        artisanId,
+                        price,
+                        deliveryTime,
+                        ordered,
+                        name,
+                        description,
+                        category,
+                        subCategory,
+                        img,
+                        status
+                    };
                 }
                 return array;
             })
@@ -66,6 +98,6 @@ export default class Product {
     }
 
     static jsonToObj(product) {
-        return new Product(product.id, product.name, product.category, product.subCategory, product.description, product.price, product.img, product.ordered);
+        return new Product(product.id, product.artisanId, product.price, product.deliveryTime, product.ordered, product.name, product.description, product.category, product.subCategory, product.img, product.status);
     }
 };

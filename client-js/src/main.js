@@ -77,10 +77,11 @@ adminLink.click((event: Event) => {
 function renderHome(): void {
     Menu.setSelectedLink(homeLink);
     PageRenderer.renderPage(homePage);
-
-    $('.productLink').click((event: Event) => {
-        event.preventDefault();
-        renderProduct(event.currentTarget.getAttribute('id'));
+    homePage.render().then(() => {
+        $('.productLink').click((event: Event) => {
+            event.preventDefault();
+            renderProduct(event.currentTarget.getAttribute('id'));
+        });
     });
 }
 
@@ -107,7 +108,7 @@ function renderProduct(id: number): void {
 function selectionCible(choix) {
     let tabId = [];
     let indice = 0;
-    
+
     Product.getAll().then(json => {
 
         for (let i = 0; i < json.length; i++) {
