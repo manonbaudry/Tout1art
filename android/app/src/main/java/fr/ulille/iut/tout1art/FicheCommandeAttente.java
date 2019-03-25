@@ -30,7 +30,7 @@ public class FicheCommandeAttente extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_fiche_commande);
+        setContentView(R.layout.activity_fiche_commande_attente);
         this.num_commande = (TextView) findViewById(R.id.num_commande);
         this.prix = (TextView) findViewById(R.id.fiche_prix);
         this.description = (TextView) findViewById(R.id.fiche_description);
@@ -45,7 +45,6 @@ public class FicheCommandeAttente extends AppCompatActivity {
         if(b != null){
             this.nom_produit.setText((String) b.get("NOM_PRODUIT"));
             this.id = (Integer) b.get("ID_COMMANDE");
-            System.out.println("ID DE LA COMMANDE : " + id);
         }
         this.num_commande.setText("Numéro commande : " + id);
         getProduit();
