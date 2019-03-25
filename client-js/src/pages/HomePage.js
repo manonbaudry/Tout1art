@@ -1,41 +1,52 @@
 // @flow
-import Component from '../components/Component.js';
-import PizzaThumbnail from '../components/PizzaThumbnail.js';
-import Page from './Page.js';
-import $ from 'jquery';
+import Page from "./Page";
+import Product from "../Product";
 
 export default class HomePage extends Page {
-	#data;
 
-	constructor( data:Array<{nom:string, base:string, prix_petite:number, prix_grande:number}> ){
-		super( 'La carte' );
-		this.attribute = {name:'class', value:'home'};
-		this.data = data;
-	}
+    products: Array<Product>;
 
-	set data(value:Array<{nom:string, base:string, prix_petite:number, prix_grande:number}>):void {
-		this.#data = value;
-		this.children = this.#data.map( pizza => new PizzaThumbnail(pizza) )
-	}
+    constructor(products: Array<Product>) {
+        super('Qui sommes-nous?');
+        this.products = products;
+    }
 
-	mount(container:HTMLElement):void {
-		container.classList.add('is-loading');
-		fetch('http://localhost:8080/api/v1/pizzas')
-			.then( (response:Response) => response.json() )
-			.then( (data:any) => {
-				this.data = data;
-				container.innerHTML = this.render();
-				container.classList.remove('is-loading');
-				$(container).find('a').click( this.onThumbnailClick )
-			});
-	}
+    render(): string {
+        const element: HTMLElement = document.createElement('div');
+        element.innerHTML = `<div>
+    <div class="card-body">
+        <p>Vous trouverez sur Tout1Art des créations «taillées » dans de belles matières, des réalisations dont vous
+            serez fiers et que vous ne trouverez pas ailleurs. Elles racontent toutes une histoire : celle de l’artisan
+            qui les ont imaginées, conçues, travaillées à la main.</p>
+    </div>
+</div>
+<p/>
+<div class="card-deck"></div>`;
 
-	onThumbnailClick(event:Event):void {
-		event.preventDefault();
-		window.open(
-			$(event.currentTarget).attr('href'),
-			'popup',
-			'width=350,height=200,menubar=0,toolbar=0,location=0,personalbar=0,status=0'
-		);
-	}
+        const deck: ?HTMLElement = element.querySelector('.card-deck');
+        if (deck) {
+            this.products.forEach((product: Product) => {
+                deck.innerHTML += HomePage.makeThumbnail(product);
+            });
+        }
+        return element.outerHTML;
+    }
+
+    static makeThumbnail(product: Product): string {
+        return `<div class="card">
+    <a href="#" class="productLink" id="${product.id}">
+        <div class="embed-responsive embed-responsive-1by1">
+            <img alt="${product.name}" class="card-img-top embed-responsive-item" src="${product.img}"
+                 style="object-fit: cover"/>
+        </div>
+        <div class="card-body">
+            <h5 class="card-title">${product.name}</h5>
+            <p class="card-text">${product.description}</p>
+            <p class="card-text">
+                <small class="text-muted">Disponible sous 2 semaines</small>
+            </p>
+        </div>
+    </a>
+</div>`
+    }
 }

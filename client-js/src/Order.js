@@ -16,7 +16,7 @@ export default class Order {
     }
 
     static get(id: number): Promise<{ id: number, artisanId: number, clientId: number, productId: number, status: string }> {
-        return fetch(`http://localhost:8080/api/v/com/${id}`)
+        return fetch(`http://localhost:8080/api/v1/com/${id}`)
             .then((response: Response) => response.json())
             .then((json: JSON) => {
                 const id: number = json.id;
@@ -31,17 +31,17 @@ export default class Order {
     }
 
     static getAll(): Promise<Array<{ id: number, artisanId: number, clientId: number, productId: number, status: string }>> {
-        return fetch(`http://localhost:8080/api/v/com`)
+        return fetch(`http://localhost:8080/api/v1/com`)
             .then((response: Response) => response.json())
             .then((json: JSON) => {
                 const array: Array<{ id: number, artisanId: number, clientId: number, productId: number, status: string; }> = [];
 
                 for (let i = 0; i < json.length; ++i) {
-                    const id: number = json.id;
-                    const artisanId: number = json.idArtisan;
-                    const clientId: number = json.idClient;
-                    const productId: number = json.idProduit;
-                    const status: string = json.statut;
+                    const id: number = json[i].id;
+                    const artisanId: number = json[i].idArtisan;
+                    const clientId: number = json[i].idClient;
+                    const productId: number = json[i].idProduit;
+                    const status: string = json[i].statut;
 
                     array[i] = {id, artisanId, clientId, productId, status};
                 }

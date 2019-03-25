@@ -1,7 +1,7 @@
 // @flow
 import PageRenderer from './PageRenderer.js';
 import Menu from './components/Menu.js';
-import NewHomePage from "./pages/NewHomePage";
+import HomePage from "./pages/HomePage";
 import ClientInscriptionPage from "./pages/ClientInscriptionPage";
 import ConnectionPage from "./pages/ConnectionPage";
 import $ from 'jquery';
@@ -21,14 +21,14 @@ for (let i = 0; i < 3; ++i) {
 }
 Promise.all(products).then(() => renderHome());
 
-const homePage: NewHomePage = new NewHomePage(products);
+const homePage: HomePage = new HomePage(products);
 const inscriptionPage: ClientInscriptionPage = new ClientInscriptionPage();
 const connectionPage: ConnectionPage = new ConnectionPage();
 const adminPage: AdminPage = new AdminPage();
 let productPage: ProductPage;
 
 const selection: Array<Product> = [];
-const selectionPage: NewHomePage = new NewHomePage(selection);
+const selectionPage: HomePage = new HomePage(selection);
 
 
 
