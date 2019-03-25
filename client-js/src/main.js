@@ -9,6 +9,7 @@ import ProductPage from "./pages/ProductPage";
 import Product from "./Product";
 import AdminPage from "./pages/AdminPage";
 import AdminProductPage from "./pages/AdminProductPage";
+import CiblePage from './pages/CiblePage.js';
 
 // configuration du PageRenderer
 PageRenderer.titleElement = document.querySelector('.pageTitle');
@@ -25,17 +26,17 @@ const inscriptionPage: ClientInscriptionPage = new ClientInscriptionPage();
 const connectionPage: ConnectionPage = new ConnectionPage();
 let productPage: ProductPage;
 
-const selection: Array<Product> = [];
-const selectionPage: HomePage = new HomePage(selection);
+const selection: Array<Promise<Product>> = [];
+const selectionPage: CiblePage = new CiblePage(selection);
 
 
-//recupération dropdown "mobilier, luminaire et déco" navbar
+//recupération button "mobilier, luminaire et déco" navbar
 const dropDownMobilier = document.querySelector('.mobButton');
 const dropDownLuminaire = document.querySelector('.lumButton');
 const dropDownDeco = document.querySelector('.decoButton');
 
 dropDownMobilier.addEventListener("click", function () {
-
+   
     selectionCible(dropDownMobilier.innerHTML.toLowerCase().trim());
 });
 
@@ -139,7 +140,6 @@ function selectionCible(choix) {
 
 function renderSelection(): void {
 
-    Menu.setSelectedLink(homeLink);
     PageRenderer.renderPage(selectionPage);
 
     selectionPage.render().then(() => {
