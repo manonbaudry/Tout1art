@@ -6,5 +6,10 @@
             <!--corners allow us to make the rounded corners button-->
             <corners android:radius="15dp" />
         </shape>
+        <shape android:shape="oval">
+            <solid android:color="#FF0000"/>
+            <corners android:radius="15dp" />
+        </shape>
+
     </item>
 </selector>

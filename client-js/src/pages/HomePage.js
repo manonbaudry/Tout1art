@@ -41,7 +41,7 @@ export default class HomePage extends Page {
     }
 
     static makeThumbnail(product: Product): string {
-        return `<div class="card">
+        return product.status === 'en vente' ? `<div class="card">
     <a href="#" class="productLink" id="${product.id}">
         <div class="embed-responsive embed-responsive-1by1">
             <img alt="${product.name}" class="card-img-top embed-responsive-item" src="${product.img}"
@@ -54,6 +54,6 @@ export default class HomePage extends Page {
             </p>
         </div>
     </a>
-</div>`
+</div>` : '';
     }
 }

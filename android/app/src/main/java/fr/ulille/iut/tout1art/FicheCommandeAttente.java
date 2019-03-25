@@ -96,7 +96,7 @@ public class FicheCommandeAttente extends AppCompatActivity {
         JSONObject obj=null;
         try {
             obj = new JSONObject();
-            obj.put("statut", "refuser");
+            obj.put("statut", "refuse");
         } catch(Exception e){
             e.printStackTrace();
         }
@@ -140,7 +140,7 @@ public class FicheCommandeAttente extends AppCompatActivity {
         JSONObject obj=null;
         try {
             obj = new JSONObject();
-            obj.put("statut", "accepter");
+            obj.put("statut", "en cours");
         } catch(Exception e){
             e.printStackTrace();
         }

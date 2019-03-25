@@ -54,4 +54,20 @@ export default class Order {
     static jsonToObj(order: { id: number, artisanId: number, clientId: number, productId: number, status: string }): Order {
         return new Order(order.id, order.artisanId, order.clientId, order.productId, order.status);
     }
+
+    static compare(a: Order, b: Order): number {
+        if (a === b) {
+            return 0;
+        }
+        if (a.status === b.status) {
+            return b.id - a.id;
+        }
+        if (a.status === 'en attente' || b.status==='en attente') {
+            return a.status === 'en attente' ? -1 : 1;
+        }
+        if (a.status === 'refuse' || b.status === 'refuse') {
+            return a.status === 'refuse' ? -1 : 1;
+        }
+        return 1;
+    }
 };

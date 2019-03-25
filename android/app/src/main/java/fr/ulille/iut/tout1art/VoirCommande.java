@@ -84,16 +84,19 @@ public class VoirCommande extends AppCompatActivity {
                     if(!this.nomId.containsKey(obj.get("id"))){
                         this.nomId.put(obj.getInt("id"),obj.getInt("idProduit"));
                     }
-                    if(obj.getString("statut").equals("En attente") || obj.getString("statut").equals("En cours")){
+                    if(obj.getString("statut").equalsIgnoreCase("en attente")){
                         this.listeCommandeAttente.add(produitNom.get(obj.getInt("idProduit")));
-                    } else if (obj.getString("statut").equals("refuser")){
+                    } else if (obj.getString("statut").equals("refuse")){
 
                     } else {
                         this.listeCommande.add(produitNom.get(obj.getInt("idProduit")));
                     }
 
                 }
-
+            System.out.println("SIZE " + this.nomId.size());
+                for(Integer it : this.nomId.keySet()){
+                    System.out.println(it + " : " + nomId.get(it));
+                }
 
             }
 
@@ -132,11 +135,19 @@ public class VoirCommande extends AppCompatActivity {
                 text.setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT,LinearLayout.LayoutParams.WRAP_CONTENT));
                 int idPut=0;
                 for(Integer i : this.produitNom.keySet()){
+                    System.out.println("L'id traité " + i);
                     if(this.produitNom.get(i).equals(str)){
                         idPut = i;
                     }
                 }
-                final int id=idPut;
+                int idCommande=0;
+                for(Integer i : this.nomId.keySet()){
+                    if (this.nomId.get(i) == idPut) {
+                        idCommande=i;
+                    }
+                }
+                System.out.println("Donc l'id c'est " + idCommande);
+                final int id=idCommande;
                 text.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
@@ -165,6 +176,7 @@ public class VoirCommande extends AppCompatActivity {
         Intent i = new Intent(this,FicheCommandeAccepte.class);
         i.putExtra("NOM_PRODUIT",nomProduit);
         i.putExtra("ID_COMMANDE",id);
+        System.out.println("ID COMMANDE ======== " + id );
         i.putExtra("id",this.idArtisan);
         startActivity(i);
     }
