@@ -38,13 +38,32 @@ export default class AdminProductPage extends Page {
     </td>
     <td>
         ${product.status === 'en attente' ? `<p>
-            <button class="accept">Accepter</button>
-        </p>
-        <p>
-            <button class="reject">Rejeter</button>
-        </p>` : ''}
+    <button type="button" class="btn btn-primary accept" data-toggle="button" aria-pressed="false">
+        Accepter
+    </button>
+</p>
+<p>
+    <button type="button" class="btn btn-primary reject" data-toggle="button" aria-pressed="false">
+        Refuser
+    </button>
+</p>` : ''}
     </td>
 </tr>
 <p/>`
+    }
+
+    mount(contentElement: HTMLElement): void {
+        $('.accept').click(this.accept);
+        $('.reject').click(this.reject);
+    }
+
+    accept(event: Event): void {
+        event.preventDefault();
+        alert('accept');
+    }
+
+    reject(event: Event): void {
+        event.preventDefault();
+        alert('reject');
     }
 }

@@ -14,13 +14,18 @@ export default class PageRenderer {
         if (this.contentElement) {
             const render = page.render();
             if (render instanceof Promise) {
-                render.then((string: string) => this.contentElement.innerHTML = string);
+                render.then((string: string) => {
+                    // $FlowFixMe
+                    this.contentElement.innerHTML = string;
+                    // $FlowFixMe
+                    page.mount(this.contentElement);
+                });
             } else {
                 // $FlowFixMe
                 this.contentElement.innerHTML = render;
+                // $FlowFixMe
+                page.mount(this.contentElement);
             }
-            // $FlowFixMe
-            page.mount(this.contentElement);
         }
     }
 }
