@@ -72,6 +72,7 @@ public class ProduitRessource {
                 return Response.ok(produitBDD).build(); //  .created(instanceURI).build();
             } catch (Exception ex) {
                 dataAccess.closeConnection(false);
+                
                 return Response.status(Status.CONFLICT).entity("Duplicated name").build();
             }
         }
