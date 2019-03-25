@@ -146,7 +146,7 @@ public class VoirCommande extends AppCompatActivity {
     }
 
     public void showFicheCommande(String nomProduit,int id) {
-        Intent i = new Intent(this,FicheCommande.class);
+        Intent i = new Intent(this,FicheCommandeAttente.class);
         i.putExtra("NOM_PRODUIT",nomProduit);
         i.putExtra("ID_COMMANDE",id);
         i.putExtra("id",this.idArtisan);
