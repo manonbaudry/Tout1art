@@ -19,7 +19,7 @@ export default class ProductPage extends Page {
         <div class="col">
             <h3>${this.product.name}</h3>
             <p>${this.product.description}</p>
-            <p>Prix : ${this.product.price}</p>
+            <p>Prix : ${this.product.price} €</p>
             <button type="button" class="btn btn-primary sendCommand" data-toggle="button" aria-pressed="false">
                 Commander
             </button>
