@@ -4,18 +4,19 @@ import Product from "../Product";
 
 export default class HomePage extends Page {
 
-    products: Array<Product>;
+    promises: Array<Promise<Product>>;
 
-    constructor(products: Array<Product>) {
-        super('');
-        this.products = products;
+
+    constructor(products: Promise<Array<Product>>) {
+        super( '<img class="logot1a" src="images/logoRect.png" alt="logo"></img>');
+        this.promises = products;
     }
 
-    render(): string {
+    render(): string | Promise<string> {
         const element: HTMLElement = document.createElement('div');
         element.innerHTML = `<div>
     <div class="card-body">
-    <img class="logot1a" src="images/logoRect.png" alt="logo">
+
     <img class="imgAccueil" src="images/Ambiance.jpg" alt="acceuil"/>
     </br>
         <p>Vous trouverez sur Tout1Art des créations «taillées » dans de belles matières, des réalisations dont vous serez fiers et que vous ne trouverez pas ailleurs. Elles racontent toutes une histoire : celle de l’artisan qui les ont imaginées, conçues, travaillées à la main.</p>
@@ -25,13 +26,15 @@ export default class HomePage extends Page {
     <div class="card-deck"></div>`;
 
 
-        const deck: ?HTMLElement = element.querySelector('.card-deck');
-        if (deck) {
-            this.products.forEach((product: Product) => {
-                deck.innerHTML += HomePage.makeThumbnail(product);
-            });
-        }
-        return element.outerHTML;
+        return Promise.all(this.promises).then((products: Array<Product>) => {
+            const deck: ?HTMLElement = element.querySelector('.card-deck');
+            if (deck) {
+                products.forEach((product: Product) => {
+                    deck.innerHTML += HomePage.makeThumbnail(product);
+                });
+            }
+            return element.outerHTML;
+        });
     }
 
     static makeThumbnail(product: Product): string {

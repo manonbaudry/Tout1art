@@ -14,23 +14,19 @@ PageRenderer.titleElement = document.querySelector('.pageTitle');
 PageRenderer.contentElement = document.querySelector('.pageContent');
 
 // déclaration des différentes page de l'app
-const products: Array<Product> = [];
+const products: Array<Promise<Product>> = [];
 for (let i = 0; i < 3; ++i) {
     products[i] = Product.get(i + 1);
-    products[i].then(product => products[i] = Product.jsonToObj(product));
 }
-Promise.all(products).then(() => renderHome());
 
 const homePage: HomePage = new HomePage(products);
 const inscriptionPage: ClientInscriptionPage = new ClientInscriptionPage();
 const connectionPage: ConnectionPage = new ConnectionPage();
-const adminPage: AdminPage = new AdminPage();
+let adminPage: AdminPage = new AdminPage();
 let productPage: ProductPage;
 
 const selection: Array<Product> = [];
 const selectionPage: HomePage = new HomePage(selection);
-
-
 
 
 //recupération dropdown "mobilier, luminaire et déco" navbar
@@ -53,7 +49,6 @@ dropDownDeco.addEventListener("click", function () {
 
     selectionCible(dropDownDeco.innerHTML.toLowerCase().trim());
 });
-
 
 
 // configuration des liens du menu
@@ -120,13 +115,13 @@ function selectionCible(choix) {
 
         for (let i = 0; i < json.length; i++) {
 
-            if(json[i].category == choix){
+            if (json[i].category == choix) {
                 tabId[indice] = json[i].id;
                 indice++;
             }
         }
 
-        if (tabId.length != 0){
+        if (tabId.length != 0) {
             selection.length = 0;
             for (let i = 0; i < tabId.length; ++i) {
                 selection[i] = Product.get(tabId[i]);
@@ -151,6 +146,8 @@ function renderSelection(): void {
 
 function renderAdmin(): void {
     Menu.setSelectedLink(adminLink);
+    adminPage = new AdminPage();
     PageRenderer.renderPage(adminPage);
 }
 
+renderHome();

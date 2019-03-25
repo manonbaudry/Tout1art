@@ -19,9 +19,24 @@ public class ProduitDto {
     protected String sousCategorie;
     protected int commande;
     protected int delai;
+    protected String statut;
 
     
-    public String getSrcImage() {
+    /**
+	 * @return the statut
+	 */
+	public String getStatut() {
+		return statut;
+	}
+
+	/**
+	 * @param statut the statut to set
+	 */
+	public void setStatut(String statut) {
+		this.statut = statut;
+	}
+
+	public String getSrcImage() {
 		return srcImage;
 	}
 
