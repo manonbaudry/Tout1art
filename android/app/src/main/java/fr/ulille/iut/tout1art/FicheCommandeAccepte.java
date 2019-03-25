@@ -132,6 +132,6 @@ public class FicheCommandeAccepte extends AppCompatActivity {
         queue.add(putRequest);
 
 
-        Toast.makeText(getApplicationContext(),"La modification a été prise en compte",Toast.LENGTH_SHORT);
+        Toast.makeText(getApplicationContext(),"La modification a été prise en compte",Toast.LENGTH_SHORT).show();
     }
 }
