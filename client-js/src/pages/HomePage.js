@@ -4,14 +4,14 @@ import Product from "../Product";
 
 export default class HomePage extends Page {
 
-    products: Array<Product>;
+    promises: Array<Promise<Product>>;
 
-    constructor(products: Array<Product>) {
+    constructor(products: Promise<Array<Product>>) {
         super('Qui sommes-nous?');
-        this.products = products;
+        this.promises = products;
     }
 
-    render(): string {
+    render(): string | Promise<string> {
         const element: HTMLElement = document.createElement('div');
         element.innerHTML = `<div>
     <div class="card-body">
@@ -23,13 +23,15 @@ export default class HomePage extends Page {
 <p/>
 <div class="card-deck"></div>`;
 
-        const deck: ?HTMLElement = element.querySelector('.card-deck');
-        if (deck) {
-            this.products.forEach((product: Product) => {
-                deck.innerHTML += HomePage.makeThumbnail(product);
-            });
-        }
-        return element.outerHTML;
+        return Promise.all(this.promises).then((products: Array<Product>) => {
+            const deck: ?HTMLElement = element.querySelector('.card-deck');
+            if (deck) {
+                products.forEach((product: Product) => {
+                    deck.innerHTML += HomePage.makeThumbnail(product);
+                });
+            }
+            return element.outerHTML;
+        });
     }
 
     static makeThumbnail(product: Product): string {

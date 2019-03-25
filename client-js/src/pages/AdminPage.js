@@ -17,7 +17,7 @@ export default class AdminPage extends Page {
         const card: HTMLElement = document.createElement('div');
         card.setAttribute('class', 'card');
         card.innerHTML = `<div class="card-title">Commandes en cours</div>
-<div class="card-body"></div>`;
+<div class="card-body container"></div>`;
 
         const cardBody = card.querySelector('.card-body');
 
@@ -39,12 +39,15 @@ export default class AdminPage extends Page {
         return Product.get(order.productId)
             .then((json) => {
                 const product: Product = Product.jsonToObj(json);
-                return `Commande n°${order.id}
-<ul>
-    <li>Statut : ${order.status}</li>
-    <li>Produit : ${product.name}</li>
-    <li>Prix : ${product.price}€</li>
-</ul>`;
+                return `<div class="row">
+    <div class="col">Commande n°${order.id}</div>
+    <div class="col">
+        <p>Statut : ${order.status}</p>
+        <p>Produit : ${product.name}</p>
+        <p>Prix : ${product.price}€</p>
+    </div>
+</div>
+<p/>`;
             });
     }
 }
