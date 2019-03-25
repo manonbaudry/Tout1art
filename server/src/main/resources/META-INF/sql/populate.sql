@@ -39,4 +39,4 @@ INSERT INTO produit (nom, description, srcImage, prix, idArtisan, categorie, sou
 
 INSERT INTO com (idProduit, idClient, idArtisan, statut) VALUES ('5','1', '1', 'En cours');
 INSERT INTO com (idProduit, idClient, idArtisan, statut) VALUES ('3','1', '1', 'En cours');
-INSERT INTO com (idProduit, idClient, idArtisan, statut) VALUES ('6','2', '2', 'En cours');
+INSERT INTO com (idProduit, idClient, idArtisan, statut) VALUES ('6','1', '2', 'En cours');

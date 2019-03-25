@@ -67,6 +67,7 @@ public class AddProduit extends AppCompatActivity {
             produit.put("idArtisan", (int)intent.getExtras().get("id"));
             produit.put("srcImage", "images/table.jpg");
             produit.put("commande", 0);
+            produit.put("statut", "En attente");
 
             System.out.println(produit.toString());
 

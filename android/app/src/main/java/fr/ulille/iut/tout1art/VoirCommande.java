@@ -26,8 +26,11 @@ public class VoirCommande extends AppCompatActivity {
     private LinearLayout layout_commande_attente;
     private RequestQueue queue,queueProduit;
     private int idArtisan;
+    private int idCommande;
     private ArrayList<String> listeCommande;
+    private ArrayList<String> listeCommandeAttente;
     private HashMap<Integer,String> produitNom;
+    private HashMap<Integer,Integer> nomId;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,7 +42,9 @@ public class VoirCommande extends AppCompatActivity {
         queueProduit = Volley.newRequestQueue(VoirCommande.this);
         this.idArtisan = 1;
         this.listeCommande = new ArrayList<>();
+        this.listeCommandeAttente = new ArrayList<>();
         this.produitNom = new HashMap<>();
+        this.nomId = new HashMap<>();
 
         getProduit();
 
@@ -52,8 +57,8 @@ public class VoirCommande extends AppCompatActivity {
             try {
                 for (int i = 0; i < response.length() ; i++) {
                     JSONObject obj = response.getJSONObject(i);
-                    if(!produitNom.containsKey(obj.getInt("id"))){
-                        produitNom.put(obj.getInt("id"),obj.getString("nom"));
+                    if(!produitNom.containsKey(obj.getInt("id"))) {
+                        produitNom.put(obj.getInt("id"), obj.getString("nom"));
                     }
                 }
                 getCommande();
@@ -71,26 +76,65 @@ public class VoirCommande extends AppCompatActivity {
             for (int i = 0; i < response.length() ; i++) {
                 JSONObject obj = response.getJSONObject(i);
                 if(obj.getInt("idArtisan") == idArtisan){
-                    this.listeCommande.add(produitNom.get(obj.getInt("idProduit")));
-                    System.out.println(listeCommande.size() + " SIZE");
+                    if(!this.nomId.containsKey(obj.get("id"))){
+                        this.nomId.put(obj.getInt("id"),obj.getInt("idProduit"));
+                    }
+                    if(obj.getString("statut").equals("En cours")){
+                        this.listeCommandeAttente.add(produitNom.get(obj.getInt("idProduit")));
+                    } else {
+                        this.listeCommande.add(produitNom.get(obj.getInt("idProduit")));
+                    }
+
                 }
 
 
             }
-            System.out.println("ICI");
 
+            for(final String str : this.listeCommandeAttente){
+                System.out.println("dans la liste " + str);
+                Button text = new Button(this);
+                text.setText(str);
+                text.setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT,LinearLayout.LayoutParams.WRAP_CONTENT));
+                int idProduit=0;
+                int idPut = 0;
+                for(Integer i : this.produitNom.keySet()){
+                    if(this.produitNom.get(i).equals(str)){
+                        idProduit = i;
+                    }
+                }
+                for(Integer i : this.nomId.keySet()){
+                    if(this.nomId.get(i) == idProduit){
+                        idPut = i;
+                    }
+                }
+                final int id=idPut;
+                text.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        showFicheCommande(str,id);
+                    }
+                });
+                layout_commande_attente.addView(text);
+            }
             for(final String str : this.listeCommande){
                 System.out.println("dans la liste " + str);
                 Button text = new Button(this);
                 text.setText(str);
                 text.setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT,LinearLayout.LayoutParams.WRAP_CONTENT));
+                int idPut=0;
+                for(Integer i : this.produitNom.keySet()){
+                    if(this.produitNom.get(i).equals(str)){
+                        idPut = i;
+                    }
+                }
+                final int id=idPut;
                 text.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        showFicheCommande(str);
+                        showFicheCommande(str,id);
                     }
                 });
-                layout_commande_attente.addView(text);
+                layout_commande.addView(text);
             }
 
 
@@ -99,9 +143,10 @@ public class VoirCommande extends AppCompatActivity {
         }
     }
 
-    public void showFicheCommande(String nomProduit) {
+    public void showFicheCommande(String nomProduit,int id) {
         Intent i = new Intent(this,FicheCommande.class);
         i.putExtra("NOM_PRODUIT",nomProduit);
+        i.putExtra("ID_COMMANDE",id);
         startActivity(i);
     }
 
