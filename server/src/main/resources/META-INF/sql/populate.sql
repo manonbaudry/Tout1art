@@ -4,7 +4,7 @@ DROP TABLE IF EXISTS produit CASCADE;
 DROP TABLE IF EXISTS client CASCADE;
 DROP TABLE IF EXISTS com CASCADE;
 
-CREATE TABLE notification	(id BIGINT IDENTITY NOT NULL,	conserne VARCHAR,	type VARCHAR,		  contenu VARCHAR,	 lu INTEGER,		PRIMARY KEY (id));
+CREATE TABLE notification	(id BIGINT IDENTITY NOT NULL,	concerne VARCHAR,	type VARCHAR,		  contenu VARCHAR,	 lu INTEGER,		PRIMARY KEY (id));
 CREATE TABLE artisan  		(id BIGINT IDENTITY NOT NULL,	login VARCHAR,		mdp VARCHAR,		  nom VARCHAR, 		 prenom VARCHAR,		adresse VARCHAR,		mail VARCHAR,			tel VARCHAR(10),		PRIMARY KEY (id));
 CREATE TABLE produit  		(id BIGINT IDENTITY NOT NULL,	nom VARCHAR,		description VARCHAR , srcImage VARCHAR,	 prix DOUBLE, 			idArtisan INTEGER, 		categorie VARCHAR,  	sousCategorie VARCHAR,  commande INTEGER, 	delai INTEGER, 	statut VARCHAR,		PRIMARY KEY (id));
 CREATE TABLE client   		(id BIGINT IDENTITY NOT NULL,	login VARCHAR,		mdp VARCHAR ,		  nom VARCHAR , 	 prenom VARCHAR,		adresse VARCHAR,		mail VARCHAR,			tel VARCHAR(10),		PRIMARY KEY (id));
@@ -37,3 +37,7 @@ INSERT INTO produit (nom, description, srcImage, prix, idArtisan, categorie, sou
 INSERT INTO produit (nom, description, srcImage, prix, idArtisan, categorie, sousCategorie, commande, delai,statut) VALUES ('table basse', 	 'Une table basse 1',		'images/tableBasseSimple.jpg',		'100',	 '1',	 'mobilier',	'table',	'1','4','en vente');
 INSERT INTO produit (nom, description, srcImage, prix, idArtisan, categorie, sousCategorie, commande, delai, statut) VALUES ('table basse', 	 'Une table basse 2',		'images/tableBasseComplexe.jpg',		'100',	 '1',	 'mobilier',	'table',	'1','4','en attente');
 
+INSERT INTO notification (concerne, type, contenu, lu) VALUES ('admin', 	 'commande',	'en cours',		'0');
+INSERT INTO notification (concerne, type, contenu, lu) VALUES ('admin', 	 'commande',	'en attente',	'1');
+INSERT INTO notification (concerne, type, contenu, lu) VALUES ('artisan', 	 'produit',		'en cours',		'0');
+INSERT INTO notification (concerne, type, contenu, lu) VALUES ('artisan', 	 'produit',		'en cours',		'1');
