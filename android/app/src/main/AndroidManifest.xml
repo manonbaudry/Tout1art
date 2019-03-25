@@ -61,7 +61,8 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".BacklogArt" />
         </activity>
-        <activity android:name=".AddProduit"></activity>
+        <activity android:name=".AddProduit" />
+        <activity android:name=".FicheProduit"></activity>
     </application>
 
 </manifest>

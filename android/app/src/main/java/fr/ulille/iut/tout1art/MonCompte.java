@@ -86,11 +86,7 @@ public class MonCompte extends AppCompatActivity {
 
                     TextView addresse = findViewById(R.id.caseAdresse);
                     addresse.setText(obj.getString("adresse"));
-                    //str += obj.getString("nom" ) + "nom: \n";
-                    //str += obj.getString("prenom") + "prenom: \n";
-                    //str += obj.getString("adresse") + "adresse: \n";
-                    //str += obj.getString("mail") + "mail: \n";
-                    //str += obj.getString("tel") + "tel: \n";
+
 
                 }
             }

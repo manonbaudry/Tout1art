@@ -1,8 +1,11 @@
 package fr.ulille.iut.tout1art;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
+import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
@@ -33,7 +36,8 @@ public class ConsulterProduit extends AppCompatActivity {
         queue = Volley.newRequestQueue(ConsulterProduit.this);
         layout = (LinearLayout) findViewById(R.id.layout_produit);
         this.nomProduit = new ArrayList<>();
-        this.idArtisan = 1;
+        Intent intentActu = getIntent();
+        idArtisan = (int) intentActu.getExtras().get("id");
         getProduit();
     }
 
@@ -43,22 +47,37 @@ public class ConsulterProduit extends AppCompatActivity {
                 JSONObject obj = response.getJSONObject(i);
                 System.out.println("NOM : "+obj.getString("nom"));
                 if(obj.getInt("idArtisan") == idArtisan){
-                    this.nomProduit.add(obj.getString("nom"));
+                    if(!this.nomProduit.contains(obj.getString("nom"))){
+                        this.nomProduit.add(obj.getString("nom"));
+                    }
                 }
             }
-            for(String s : this.nomProduit){
+            for(final String s : this.nomProduit){
                 System.out.println("dans la liste " + s);
-                TextView text = new TextView(this);
+                Button text = new Button(this);
+                text.setBackgroundResource(R.drawable.button_bg_round_produit);
                 text.setText(s);
                 text.setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT,LinearLayout.LayoutParams.WRAP_CONTENT));
+                text.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        showProduit(s);
+                    }
+                });
                 layout.addView(text);
+
             }
         } catch (Exception e) {
            e.printStackTrace();
         }
     }
 
+    public void showProduit(String prod){
+        Intent i = new Intent(this,FicheProduit.class);
+        i.putExtra("NOM_PRODUIT",prod);
+        startActivity(i);
 
+    }
 
     public void getArtisan(){
         String uri = "http://10.0.2.2:8080/api/v1/artisan";

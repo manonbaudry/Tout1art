@@ -92,8 +92,10 @@ public class FicheCommande extends AppCompatActivity {
 
     public void refuser(View view) {
         String uri = "http://10.0.2.2:8080/api/v1/com/";
-        uri+="2?statut=ok";
-        StringRequest putRequest = new StringRequest(Request.Method.PUT, uri,
+        uri+="2?statut=refuser";
+        StringRequest putRequest = new StringRequest(
+                Request.Method.PUT,
+                uri,
                 new Response.Listener<String>()
                 {
                     @Override
@@ -109,6 +111,7 @@ public class FicheCommande extends AppCompatActivity {
                     public void onErrorResponse(VolleyError error) {
                         // error
                        System.out.println(error);
+                       error.printStackTrace();
                     }
                 }
         ) {
