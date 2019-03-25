@@ -40,12 +40,12 @@ public class VoirCommande extends AppCompatActivity {
         this.layout_commande = (LinearLayout) findViewById(R.id.layout_commande);
         queue = Volley.newRequestQueue(VoirCommande.this);
         queueProduit = Volley.newRequestQueue(VoirCommande.this);
-        this.idArtisan = 1;
         this.listeCommande = new ArrayList<>();
         this.listeCommandeAttente = new ArrayList<>();
         this.produitNom = new HashMap<>();
         this.nomId = new HashMap<>();
-
+        Intent intentActu = getIntent();
+        idArtisan = (int) intentActu.getExtras().get("id");
         getProduit();
 
 
@@ -81,6 +81,8 @@ public class VoirCommande extends AppCompatActivity {
                     }
                     if(obj.getString("statut").equals("En cours")){
                         this.listeCommandeAttente.add(produitNom.get(obj.getInt("idProduit")));
+                    } else if (obj.getString("statut").equals("refuser")){
+
                     } else {
                         this.listeCommande.add(produitNom.get(obj.getInt("idProduit")));
                     }
@@ -147,6 +149,7 @@ public class VoirCommande extends AppCompatActivity {
         Intent i = new Intent(this,FicheCommande.class);
         i.putExtra("NOM_PRODUIT",nomProduit);
         i.putExtra("ID_COMMANDE",id);
+        i.putExtra("id",this.idArtisan);
         startActivity(i);
     }
 

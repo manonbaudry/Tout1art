@@ -45,7 +45,8 @@ public class FicheCommande extends AppCompatActivity {
         this.id=0;
         Intent in = getIntent();
         Bundle b = in.getExtras();
-        this.idArtisan = 1;
+        Intent intentActu = getIntent();
+        idArtisan = (int) intentActu.getExtras().get("id");
         if(b != null){
             this.nom_produit.setText((String) b.get("NOM_PRODUIT"));
             this.id = (Integer) b.get("ID_COMMANDE");
@@ -129,6 +130,9 @@ public class FicheCommande extends AppCompatActivity {
             }
         };
         queue.add(putRequest);
+        Intent i = new Intent(this,BacklogArt.class);
+        i.putExtra("id",this.idArtisan);
+        startActivity(i);
     }
 
     public void accepter(View view){
@@ -170,6 +174,9 @@ public class FicheCommande extends AppCompatActivity {
             }
         };
         queue.add(putRequest);
+        Intent i = new Intent(this,BacklogArt.class);
+        i.putExtra("id",this.idArtisan);
+        startActivity(i);
     }
 
 
