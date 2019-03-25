@@ -107,10 +107,7 @@ function renderProduct(id: number): void {
 function selectionCible(choix) {
     let tabId = [];
     let indice = 0;
-
-    const deck: ?HTMLElement = element.querySelector('.card-deck');
-    deck.innerHTML = " ";
-
+    
     Product.getAll().then(json => {
 
         for (let i = 0; i < json.length; i++) {
