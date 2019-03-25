@@ -184,5 +184,55 @@ public class FicheCommandeAccepte extends AppCompatActivity {
 
 
         Toast.makeText(getApplicationContext(),"Votre commande a bien été envoyée",Toast.LENGTH_SHORT).show();
+
+
+        // concerne , type (commande/produit) , contenu (envoye/en cours /refuse) , lu (0 pas lu 1 lu)
+       // notifier();
+    }
+
+    public void notifier() {
+        try {
+
+            // crea JSON
+            JSONObject notification = new JSONObject();
+            notification.put("concerne","admin");
+            notification.put("type","commande");
+            notification.put("contenu","envoye");
+            notification.put("lu",0);
+
+
+            // POST
+            RequestQueue queue = Volley.newRequestQueue(this);
+            String uri = "http://10.0.2.2:8080/api/v1/notification";
+            JSONObject jsonRequest;
+            try {
+                jsonRequest = notification;
+
+                JsonObjectRequest request = new JsonObjectRequest(
+                        Request.Method.POST,
+                        uri,
+                        jsonRequest,
+                        new Response.Listener<JSONObject>() {
+                            @Override
+                            public void onResponse(JSONObject response) {
+                                System.out.println("post : " + response.toString());
+
+                            }
+                        },
+                        new Response.ErrorListener() {
+                            @Override
+                            public void onErrorResponse(VolleyError error) {
+                                System.out.println(error);
+                            }
+                        });
+                queue.add(request);
+            } catch (Exception e) {
+                System.out.println("erreur" + e.getMessage());
+            }
+
+
+        }catch(Exception e){
+            e.printStackTrace();
+        }
     }
 }

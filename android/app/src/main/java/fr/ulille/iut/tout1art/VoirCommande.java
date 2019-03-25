@@ -128,14 +128,12 @@ public class VoirCommande extends AppCompatActivity {
                 layout_commande_attente.addView(text);
             }
             for(final String str : this.listeCommande){
-                System.out.println("dans la liste " + str);
                 Button text = new Button(this);
                 text.setText(str);
                 text.setBackgroundResource(R.drawable.button_bg_round_produit);
                 text.setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT,LinearLayout.LayoutParams.WRAP_CONTENT));
                 int idPut=0;
                 for(Integer i : this.produitNom.keySet()){
-                    System.out.println("L'id traité " + i);
                     if(this.produitNom.get(i).equals(str)){
                         idPut = i;
                     }
@@ -146,7 +144,6 @@ public class VoirCommande extends AppCompatActivity {
                         idCommande=i;
                     }
                 }
-                System.out.println("Donc l'id c'est " + idCommande);
                 final int id=idCommande;
                 text.setOnClickListener(new View.OnClickListener() {
                     @Override
