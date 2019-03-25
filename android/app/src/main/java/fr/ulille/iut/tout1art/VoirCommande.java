@@ -79,7 +79,7 @@ public class VoirCommande extends AppCompatActivity {
                     if(!this.nomId.containsKey(obj.get("id"))){
                         this.nomId.put(obj.getInt("id"),obj.getInt("idProduit"));
                     }
-                    if(obj.getString("statut").equals("En cours")){
+                    if(obj.getString("statut").equals("En attente")){
                         this.listeCommandeAttente.add(produitNom.get(obj.getInt("idProduit")));
                     } else if (obj.getString("statut").equals("refuser")){
 
