@@ -23,9 +23,6 @@ main{
 	margin-right: auto;
 }
 
-.pageTitle{
-	animation: colorblink 2s infinite;    
-}
 
 .form-group{
 	padding-bottom: 1.5%;
@@ -47,7 +44,8 @@ nav ul li a:focus {
 } 
 
 .liste{
-	right: 0;
+	
+	margin-left: 60%;
 }
 
 .imgAccueil{
@@ -67,9 +65,6 @@ nav ul li a:focus {
 	margin-right: auto;
 }
 
-@keyframes colorblink{
-    50% {color:brown;}
-}
 
 p{
 	text-align: center;
@@ -79,7 +74,7 @@ p{
 }
 
 .navbar{
-	background-color: #b47973;
+	background-color: #b47973 !important;
 }
 
 
