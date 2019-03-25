@@ -1,6 +1,7 @@
 package fr.ulille.iut.tout1art;
 
 import android.content.Intent;
+import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -38,7 +39,12 @@ public class ConsulterProduit extends AppCompatActivity {
         this.nomProduit = new ArrayList<>();
         Intent intentActu = getIntent();
         idArtisan = (int) intentActu.getExtras().get("id");
+        if (getSupportActionBar() != null) {
+            ActionBar actionBar = getSupportActionBar();
+            actionBar.setDisplayHomeAsUpEnabled(false);
+        }
         getProduit();
+
     }
 
     public void showJsonArrayResponseProduit(JSONArray response) {

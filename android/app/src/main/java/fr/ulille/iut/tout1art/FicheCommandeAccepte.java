@@ -2,6 +2,7 @@ package fr.ulille.iut.tout1art;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.EditText;
@@ -42,6 +43,10 @@ public class FicheCommandeAccepte extends AppCompatActivity {
         Bundle b = in.getExtras();
         Intent intentActu = getIntent();
         idArtisan = (int) intentActu.getExtras().get("id");
+        if (getSupportActionBar() != null) {
+            ActionBar actionBar = getSupportActionBar();
+            actionBar.setDisplayHomeAsUpEnabled(false);
+        }
         if(b != null){
             this.nom_produit.setText((String) b.get("NOM_PRODUIT"));
             this.idCommande = (Integer) b.get("ID_COMMANDE");
