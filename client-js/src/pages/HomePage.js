@@ -8,7 +8,7 @@ export default class HomePage extends Page {
 
 
     constructor(products: Promise<Array<Product>>) {
-        super( '<img class="logot1a" src="images/logoRect.png" alt="logo"></img>');
+        super('<img class="logot1a" src="images/logoRect.png" alt="logo"></img>');
         this.promises = products;
     }
 
@@ -46,7 +46,7 @@ export default class HomePage extends Page {
         <div class="card-body">
             <h5 class="card-title">${product.name}</h5>
             <p class="card-text">
-                <small class="text-muted">Disponible sous 2 semaines</small>
+                <small class="text-muted">Disponible sous ${product.deliveryTime} semaines</small>
             </p>
         </div>
     </a>
