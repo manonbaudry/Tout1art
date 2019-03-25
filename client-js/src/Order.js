@@ -68,6 +68,9 @@ export default class Order {
         if (a.status === 'refuse' || b.status === 'refuse') {
             return a.status === 'refuse' ? -1 : 1;
         }
+        if (a.status === 'en cours') {
+            return -1;
+        }
         return 1;
     }
 };
