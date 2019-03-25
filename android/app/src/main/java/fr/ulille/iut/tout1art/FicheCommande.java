@@ -16,6 +16,7 @@ import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonArrayRequest;
+import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 
@@ -30,6 +31,7 @@ public class FicheCommande extends AppCompatActivity {
     private TextView num_commande,prix,description,nom_produit,delai;
     private int idArtisan;
     private RequestQueue queue;
+    private int id;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -40,13 +42,16 @@ public class FicheCommande extends AppCompatActivity {
         this.nom_produit = (TextView) findViewById(R.id.fiche_nom_produit);
         this.delai = (TextView) findViewById(R.id.fiche_delai);
         queue = Volley.newRequestQueue(FicheCommande.this);
+        this.id=0;
         Intent in = getIntent();
         Bundle b = in.getExtras();
         this.idArtisan = 1;
         if(b != null){
             this.nom_produit.setText((String) b.get("NOM_PRODUIT"));
+            this.id = (Integer) b.get("ID_COMMANDE");
+            System.out.println("ID DE LA COMMANDE : " + id);
         }
-        this.num_commande.setText("Numéro commande : ");
+        this.num_commande.setText("Numéro commande : " + id);
         getProduit();
 
     }
@@ -55,16 +60,11 @@ public class FicheCommande extends AppCompatActivity {
         try {
             for (int i = 0; i < response.length() ; i++) {
                 JSONObject obj = response.getJSONObject(i);
-                System.out.println("NOM : "+obj.getString("nom"));
                 if(obj.getInt("idArtisan") == idArtisan){
-                    System.out.println(obj.getString("nom") + "<-- obj getString nom"  +  this.nom_produit.getText().toString());
                     if(obj.getString("nom").equals(this.nom_produit.getText().toString())) {
-                        System.out.println("JE TRAITE " + obj.getString("nom"));
                         this.description.setText(obj.getString("description") + ".");
                         this.prix.setText(obj.getString("prix") + " €.");
                         this.delai.setText(obj.getString("delai")+ " semaines.");
-                    } else {
-                        System.out.println("ICI LAG");
                     }
                 }
             }
@@ -90,16 +90,24 @@ public class FicheCommande extends AppCompatActivity {
         queue.add(request);
     }
 
-    public void refuser(View view) {
+    public void refuser(View view){
         String uri = "http://10.0.2.2:8080/api/v1/com/";
-        uri+="2?statut=ok";
-        StringRequest putRequest = new StringRequest(Request.Method.PUT, uri,
-                new Response.Listener<String>()
+        uri+=id;
+        JSONObject obj=null;
+        try {
+            obj = new JSONObject();
+            obj.put("statut", "refuser");
+        } catch(Exception e){
+            e.printStackTrace();
+        }
+
+        JsonObjectRequest putRequest = new JsonObjectRequest(Request.Method.PUT, uri,
+                obj,
+                new Response.Listener<JSONObject>()
                 {
                     @Override
-                    public void onResponse(String response) {
+                    public void onResponse(JSONObject response) {
                         // response
-                        Log.d("Response", response);
                         System.out.println("REUSSITE");
                     }
                 },
@@ -108,17 +116,60 @@ public class FicheCommande extends AppCompatActivity {
                     @Override
                     public void onErrorResponse(VolleyError error) {
                         // error
-                       System.out.println(error);
+                        System.out.println(error);
                     }
                 }
         ) {
-            
+            @Override
+            public Map<String, String> getHeaders()
+            {
+                Map<String, String> headers = new HashMap<String, String>();
+                headers.put("Content-Type", "application/json");
+                return headers;
+            }
         };
         queue.add(putRequest);
     }
 
     public void accepter(View view){
+        String uri = "http://10.0.2.2:8080/api/v1/com/";
+        uri+=id;
+        JSONObject obj=null;
+        try {
+            obj = new JSONObject();
+            obj.put("statut", "accepter");
+        } catch(Exception e){
+            e.printStackTrace();
+        }
 
+        JsonObjectRequest putRequest = new JsonObjectRequest(Request.Method.PUT, uri,
+                obj,
+                new Response.Listener<JSONObject>()
+                {
+                    @Override
+                    public void onResponse(JSONObject response) {
+                        // response
+                        System.out.println("REUSSITE");
+                    }
+                },
+                new Response.ErrorListener()
+                {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                        // error
+                        System.out.println(error);
+                    }
+                }
+        ) {
+            @Override
+            public Map<String, String> getHeaders()
+            {
+                Map<String, String> headers = new HashMap<String, String>();
+                headers.put("Content-Type", "application/json");
+                return headers;
+            }
+        };
+        queue.add(putRequest);
     }
 
 
