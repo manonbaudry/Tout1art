@@ -52,7 +52,7 @@
     <string name="Stat">Statistiques</string>
     <string name="Produits">Mes produits</string>
     <string name="button5">Statistiques</string>
-    <string name="ip">10.0.2.2:8080</string>
+    <string name="ip">192.168.43.69:8080</string>
 
     <string name="commande">Mes commandes validées</string>
     <string name="commande_attente">Mes commandes en attentes</string>
