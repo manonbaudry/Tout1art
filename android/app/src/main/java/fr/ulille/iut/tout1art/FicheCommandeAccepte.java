@@ -80,7 +80,8 @@ public class FicheCommandeAccepte extends AppCompatActivity {
     }
 
     public void getProduit() {
-        String uri = "http://10.0.2.2:8080/api/v1/produit";
+        String ip = getString(R.string.ip);
+        String uri = "http://"+ip+"/api/v1/produit";
         JsonArrayRequest request = new JsonArrayRequest(Request.Method.GET,uri,null,new Response.Listener<JSONArray>() {
             @Override
             public void onResponse(JSONArray response) {
@@ -96,8 +97,8 @@ public class FicheCommandeAccepte extends AppCompatActivity {
     }
 
     public void modifierDelai(View view){
-        String uri = "http://10.0.2.2:8080/api/v1/produit/";
-        uri+=idProduit;
+        String ip = getString(R.string.ip);
+        String uri = "http://"+ip+"/api/v1/produit";
         JSONObject obj=null;
 
         try {
@@ -142,7 +143,8 @@ public class FicheCommandeAccepte extends AppCompatActivity {
 
 
     public void envoyer(View view){
-        String uri = "http://10.0.2.2:8080/api/v1/com/";
+        String ip = getString(R.string.ip);
+        String uri = "http://"+ip+"/api/v1/com/";
         uri+=idCommande;
         JSONObject obj=null;
 

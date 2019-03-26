@@ -37,7 +37,6 @@ public class AddProduit extends AppCompatActivity {
     }
 
     public void send(View view){
-        System.out.println("DEBUT");
         JSONObject produit = new JSONObject();
 
         TextView n = findViewById(R.id.nom);
@@ -76,11 +75,12 @@ public class AddProduit extends AppCompatActivity {
             produit.put("commande", 0);
             produit.put("statut", "en attente");
 
-            System.out.println(produit.toString());
 
             // POST
             RequestQueue queue = Volley.newRequestQueue(AddProduit.this);
-            String uri = "http://10.0.2.2:8080/api/v1/produit";
+            String ip = getString(R.string.ip);
+            String uri = "http://"+ip+"/api/v1/produit";
+
             JSONObject jsonRequest;
             try {
                 jsonRequest = produit;

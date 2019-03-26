@@ -46,7 +46,8 @@ public class MonCompte extends AppCompatActivity {
     }
 
     public void getArtisan(){
-        String uri = "http://10.0.2.2:8080/api/v1/artisan";
+        String ip = getString(R.string.ip);
+        String uri = "http://"+ip+"/api/v1/artisan";
         JsonArrayRequest request = new JsonArrayRequest(
                 Request.Method.GET,
                 uri,
@@ -71,7 +72,6 @@ public class MonCompte extends AppCompatActivity {
         try {
             for (int i = 0; i < response.length() ; i++) {
                 JSONObject obj = response.getJSONObject(i);
-                System.out.println("NOM : "+obj.getString("nom"));
                 if(obj.getInt("id") == id){
                     //str += obj.getInt("id" + "\n");
                     TextView mail = findViewById(R.id.caseMail);
@@ -96,7 +96,6 @@ public class MonCompte extends AppCompatActivity {
                 }
             }
 
-            System.out.println("LE TXT "+str);
 
         } catch (Exception e) {
             e.printStackTrace();

@@ -29,6 +29,7 @@ import java.util.HashMap;
 public class NotificationIntentService extends IntentService {
     private RequestQueue queue;
     private HashMap<Integer,Boolean> aEteNotifier;
+
     private MyNotification notification;
     public NotificationIntentService(){
         super("NotificationService");
@@ -87,7 +88,8 @@ public class NotificationIntentService extends IntentService {
         notification.getManager().notify(12,builder.build());
     }
     public void getCommande() {
-        String uri = "http://10.0.2.2:8080/api/v1/com";
+        String ip = getString(R.string.ip);
+        String uri = "http://"+ip+"/api/v1/com";
         JsonArrayRequest request = new JsonArrayRequest(Request.Method.GET,uri,null,new Response.Listener<JSONArray>() {
             @Override
             public void onResponse(JSONArray response) {

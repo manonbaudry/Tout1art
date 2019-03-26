@@ -27,7 +27,6 @@ public class VoirCommande extends AppCompatActivity {
     private LinearLayout layout_commande_attente;
     private RequestQueue queue,queueProduit;
     private int idArtisan;
-    private int idCommande;
     private ArrayList<String> listeCommande;
     private ArrayList<String> listeCommandeAttente;
     private HashMap<Integer,String> produitNom;
@@ -93,15 +92,9 @@ public class VoirCommande extends AppCompatActivity {
                     }
 
                 }
-            System.out.println("SIZE " + this.nomId.size());
-                for(Integer it : this.nomId.keySet()){
-                    System.out.println(it + " : " + nomId.get(it));
-                }
-
             }
 
             for(final String str : this.listeCommandeAttente){
-                System.out.println("dans la liste " + str);
                 Button text = new Button(this);
                 text.setText(str);
                 text.setBackgroundResource(R.drawable.button_bg_round_produit);
@@ -182,7 +175,8 @@ public class VoirCommande extends AppCompatActivity {
 
 
     public void getCommande() {
-        String uri = "http://10.0.2.2:8080/api/v1/com";
+        String ip = getString(R.string.ip);
+        String uri = "http://"+ip+"/api/v1/com";
         JsonArrayRequest request = new JsonArrayRequest(Request.Method.GET,uri,null,new Response.Listener<JSONArray>() {
             @Override
             public void onResponse(JSONArray response) {
@@ -198,7 +192,8 @@ public class VoirCommande extends AppCompatActivity {
     }
 
     public void getProduit(){
-        String uri = "http://10.0.2.2:8080/api/v1/produit";
+        String ip = getString(R.string.ip);
+        String uri = "http://"+ip+"/api/v1/produit";
         JsonArrayRequest request = new JsonArrayRequest(Request.Method.GET,uri,null,new Response.Listener<JSONArray>() {
             @Override
             public void onResponse(JSONArray response) {

@@ -25,7 +25,6 @@ public class BacklogArt extends AppCompatActivity {
     Intent intentActu;
     Intent nextIntent;
     private RequestQueue queue;
-
     int id;
     @Override
     protected void onCreate(Bundle savedInstanceState) {

@@ -215,8 +215,8 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
 
     private boolean connect(){
 
-
-        String uri = "http://10.0.2.2:8080/api/v1/artisan";
+        String ip = getString(R.string.ip);
+        String uri = "http://"+ip+"/api/v1/artisan";
         result = true;
 
         JsonArrayRequest request = new JsonArrayRequest(

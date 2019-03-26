@@ -33,13 +33,14 @@ public class FicheProduit extends AppCompatActivity {
         }
         Intent intent = getIntent();
         id_produit = (String) intent.getExtras().get("NOM_PRODUIT");
-        System.out.println("PRODUIT : "+id_produit);
         afficher();
 
     }
 
     public void afficher(){
-        String uri = "http://10.0.2.2:8080/api/v1/produit";
+        String ip = getString(R.string.ip);
+        String uri = "http://"+ip+"/api/v1/produit";
+
         JsonArrayRequest request = new JsonArrayRequest(
                 Request.Method.GET,
                 uri,
@@ -47,7 +48,6 @@ public class FicheProduit extends AppCompatActivity {
                 new Response.Listener<JSONArray>() {
                     @Override
                     public void onResponse(JSONArray response) {
-                        System.out.println("GET FINI");
                         showProd(response);
                     }
                 },
@@ -62,12 +62,10 @@ public class FicheProduit extends AppCompatActivity {
 
 
     public void showProd(JSONArray response){
-        System.out.println("ENTREE TTTTTTTTTTTTTTTTTTTTTTTTT");
         String str = "";
         try {
             for (int i = 0; i < response.length() ; i++) {
                 JSONObject obj = response.getJSONObject(i);
-                System.out.println("NOM : "+obj.getString("nom"));
                 if(obj.getString("nom").equals(id_produit)){
                     //str += obj.getInt("id" + "\n");
 

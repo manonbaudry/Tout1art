@@ -27,7 +27,6 @@ public class ConsulterProduit extends AppCompatActivity {
 
     private RequestQueue queue;
     private LinearLayout layout;
-
     private int idArtisan;
     private ArrayList<String> nomProduit;
     @Override
@@ -51,7 +50,6 @@ public class ConsulterProduit extends AppCompatActivity {
         try {
             for (int i = 0; i < response.length() ; i++) {
                 JSONObject obj = response.getJSONObject(i);
-                System.out.println("NOM : "+obj.getString("nom"));
                 if(obj.getInt("idArtisan") == idArtisan){
                     if(!this.nomProduit.contains(obj.getString("nom"))){
                         this.nomProduit.add(obj.getString("nom"));
@@ -59,7 +57,6 @@ public class ConsulterProduit extends AppCompatActivity {
                 }
             }
             for(final String s : this.nomProduit){
-                System.out.println("dans la liste " + s);
                 Button text = new Button(this);
                 text.setBackgroundResource(R.drawable.button_bg_round_produit);
                 text.setText(s);
@@ -87,7 +84,8 @@ public class ConsulterProduit extends AppCompatActivity {
 
 
     public void getProduit(){
-        String uri = "http://10.0.2.2:8080/api/v1/produit";
+        String ip = getString(R.string.ip);
+        String uri = "http://"+ip+"/api/v1/produit";
         JsonArrayRequest request = new JsonArrayRequest(Request.Method.GET,uri,null,new Response.Listener<JSONArray>() {
             @Override
             public void onResponse(JSONArray response) {

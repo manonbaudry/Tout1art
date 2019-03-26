@@ -24,6 +24,7 @@ import java.util.Map;
 
 public class FicheCommandeAttente extends AppCompatActivity {
 
+    private String uri = "http://10.0.2.2:8080/api/v1";
     private TextView num_commande,prix,description,nom_produit,delai;
     private int idArtisan;
     private RequestQueue queue;
@@ -75,7 +76,8 @@ public class FicheCommandeAttente extends AppCompatActivity {
 
 
     public void getProduit() {
-        String uri = "http://10.0.2.2:8080/api/v1/produit";
+        String ip = getString(R.string.ip);
+        String uri = "http://"+ip+"/api/v1/produit";
         JsonArrayRequest request = new JsonArrayRequest(Request.Method.GET,uri,null,new Response.Listener<JSONArray>() {
             @Override
             public void onResponse(JSONArray response) {
@@ -91,7 +93,8 @@ public class FicheCommandeAttente extends AppCompatActivity {
     }
 
     public void refuser(View view){
-        String uri = "http://10.0.2.2:8080/api/v1/com/";
+        String ip = getString(R.string.ip);
+        String uri = "http://"+ip+"/api/v1/com/";
         uri+=id;
         JSONObject obj=null;
         try {
@@ -135,7 +138,8 @@ public class FicheCommandeAttente extends AppCompatActivity {
     }
 
     public void accepter(View view){
-        String uri = "http://10.0.2.2:8080/api/v1/com/";
+        String ip = getString(R.string.ip);
+        String uri = "http://"+ip+"/api/v1/com/";
         uri+=id;
         JSONObject obj=null;
         try {
