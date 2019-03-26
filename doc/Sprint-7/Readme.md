@@ -1,15 +1,15 @@
 # Sprint 7
 
 ## Travail effectué
-Affichage des produits.
-affichage interface artisan sur android
-Design interface sur papier.
-Modification de la page d'accueil après en avoir parlé.
+les connexions entre le serveur, android et la page web sont établies
+travail sur l'interface utilisateur (page web) et sur l'interface artisan (appli mobile)
+début de travail sr le passage d'une commande (création de commande dans la BDD)
 
 ## Résultats
-Les 3 premières page du site : Accueil, Connexion, Inscription.
-Interface artisan Android.
+l'artisan voit seulement ses produits sur l'application mobile
+on voit sur la page web les produits stockés dans la BDD
 
 ## Travail à faire au prochain sprint
-Affichage des produits.
-Modification de la page d'accueil après en avoir parlé.
+passer une commande sur le site web (commander un produit)
+l'artisan voit ses commandes
+

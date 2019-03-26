@@ -6,7 +6,7 @@ Affichage de l'interface du site.
 Finalisation du backlog.
 
 ## Résultats
-Des postes de travail fonctionnel.
+Des postes de travail fonctionnels.
 Une première page d'accueil.
 Fin du backlog.
 
