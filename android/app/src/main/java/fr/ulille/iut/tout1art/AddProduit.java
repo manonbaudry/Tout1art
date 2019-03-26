@@ -46,7 +46,7 @@ public class AddProduit extends AppCompatActivity {
         String categorie = cat.getText().toString();
 
         TextView sous = findViewById(R.id.souscat);
-        String img = "images/"+sous.getText().toString()+".jpg";
+        String img = "images/"+sous.getText().toString()+".jpeg";
         System.out.println("SOUSCAT : "+  img);
 
         TextView des = findViewById(R.id.description);
