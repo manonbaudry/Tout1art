@@ -40,9 +40,10 @@ export default class CiblePage extends Page {
                         deck = elements[elements.length - 1];
                     }
                 });
-
-                const produit: Product = new Product(-1, 1, 1, 1, false, '', '', '', '', '', 'en vente');
-                while (this.compteur < 4) {
+             
+                const produit:Product = new Product(-1,1,1,1,false,'','','','','','en vente');
+                while(this.compteur < 4){
+                  
 
                     deck.innerHTML += HomePage.makeThumbnail(produit);
                     this.compteur++;

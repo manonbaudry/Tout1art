@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
@@ -46,7 +47,7 @@ public class AddProduit extends AppCompatActivity {
         String categorie = cat.getText().toString();
 
         TextView sous = findViewById(R.id.souscat);
-        String img = "images/"+sous.getText().toString()+".jpg";
+        String img = "images/"+sous.getText().toString()+".jpeg";
         System.out.println("SOUSCAT : "+  img);
 
         TextView des = findViewById(R.id.description);
@@ -101,9 +102,11 @@ public class AddProduit extends AppCompatActivity {
                                 System.out.println(error);
                             }
                         });
+                Toast.makeText(getApplicationContext(),"Demande de produit envoyée",Toast.LENGTH_SHORT).show();
                 queue.add(request);
             } catch (Exception e) {
                 System.out.println("erreur" + e.getMessage());
+
             }
 
 

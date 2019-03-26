@@ -84,24 +84,7 @@ public class ConsulterProduit extends AppCompatActivity {
 
     }
 
-    public void getArtisan(){
-        String uri = "http://10.0.2.2:8080/api/v1/artisan";
-        JsonArrayRequest request = new JsonArrayRequest(Request.Method.GET,uri,null,new Response.Listener<JSONArray>() {
-            TextView tx = findViewById(R.id.textView2);
-            @Override
-            public void onResponse(JSONArray response) {
-                //showJsonArrayResponse(response);
-            }
-        },
-                new Response.ErrorListener() {
-                    @Override
-                    public void onErrorResponse(VolleyError error) {
-                        System.out.println(error);
-                    }
-                });
 
-        queue.add(request);
-    }
 
     public void getProduit(){
         String uri = "http://10.0.2.2:8080/api/v1/produit";
