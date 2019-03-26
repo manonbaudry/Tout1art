@@ -41,7 +41,10 @@ export default class AdminPage extends Page {
             .then((json) => {
                 const product: Product = Product.jsonToObj(json);
                 return `<div class="row">
-    <div class="col">Commande n°${order.id}</div>
+    <div class="col">
+    <p>Commande n°${order.id}</p>
+    <p><img src="${product.img}" alt="${product.id}" width="20%"/></p>
+    </div>
     <div class="col">
         <p>Statut : ${order.status}</p>
         <p>Produit : ${product.name}</p>

@@ -34,7 +34,10 @@ export default class AdminProductPage extends Page {
 
     static makeProduct(product: Product): string {
         return product.status === 'refuse' ? '' : `<tr>
-    <td>Produit n°${product.id}</td>
+    <td width="15%">
+    <p>Produit n°${product.id}</p>
+    <p><img src="${product.img}" alt="${product.id}" width="100%"/></p>
+    </td>
     <td>
         <p>Statut : ${product.status}</p>
         <p>Nom : ${product.name}</p>
