@@ -218,47 +218,51 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
         String ip = getString(R.string.ip);
         String uri = "http://"+ip+"/api/v1/artisan";
         result = true;
+        try {
+            JsonArrayRequest request = new JsonArrayRequest(
+                    Request.Method.GET,
+                    uri,
+                    null,
+                    new Response.Listener<JSONArray>() {
+                        TextView tx = findViewById(R.id.textView2);
+                        @Override
+                        public void onResponse(JSONArray response) {
+                            if(!verif(response,email,password)){
+                                System.out.println("MAUVAIS MDP OU MAIL");
+                                mEmailView.setError(getString(R.string.error_invalid_email));
+                                mPasswordView.setError(getString(R.string.error_incorrect_password));
+                                //focusView = mEmailView;
+                                result = false;
+                            }else{
+                                intent.putExtra("id", id);
+                                if (cancel) {
+                                    // There was an error; don't attempt login and focus the first
+                                    // form field with an error.
+                                    focusView.requestFocus();
+                                } else {
+                                    // Show a progress spinner, and kick off a background task to
+                                    // perform the user login attempt.
+                                    showProgress(true);
+                                    mAuthTask = new UserLoginTask(email, password);
+                                    mAuthTask.execute((Void) null);
 
-        JsonArrayRequest request = new JsonArrayRequest(
-                Request.Method.GET,
-                uri,
-                null,
-                new Response.Listener<JSONArray>() {
-                    TextView tx = findViewById(R.id.textView2);
-                    @Override
-                    public void onResponse(JSONArray response) {
-                        if(!verif(response,email,password)){
-                            System.out.println("MAUVAIS MDP OU MAIL");
-                            mEmailView.setError(getString(R.string.error_invalid_email));
-                            mPasswordView.setError(getString(R.string.error_incorrect_password));
-                            //focusView = mEmailView;
-                            result = false;
-                        }else{
-                            intent.putExtra("id", id);
-                            if (cancel) {
-                                // There was an error; don't attempt login and focus the first
-                                // form field with an error.
-                                focusView.requestFocus();
-                            } else {
-                                // Show a progress spinner, and kick off a background task to
-                                // perform the user login attempt.
-                                showProgress(true);
-                                mAuthTask = new UserLoginTask(email, password);
-                                mAuthTask.execute((Void) null);
-
-                                startService(msgIntent);
-                                startActivity(intent);
+                                    startService(msgIntent);
+                                    startActivity(intent);
+                                }
                             }
                         }
-                    }
-                },
-                new ErrorListener() {
-                    @Override
-                    public void onErrorResponse(VolleyError error) {
-                        System.out.println(error);
-                    }
-                });
-        queue.add(request);
+                    },
+                    new ErrorListener() {
+                        @Override
+                        public void onErrorResponse(VolleyError error) {
+                            System.out.println(error);
+                        }
+                    });
+            queue.add(request);
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
 
 
         return result;
