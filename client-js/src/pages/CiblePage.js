@@ -40,7 +40,7 @@ export default class CiblePage extends Page {
                     }
                 });
              
-                const produit:Product = new Product(-1,1,1,1,1,false,'','','','','','en vente');
+                const produit:Product = new Product(-1,1,1,1,false,'','','','','','en vente');
                 while(this.compteur < 4){
                   
                     deck.innerHTML += HomePage.makeThumbnail(produit);
