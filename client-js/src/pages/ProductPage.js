@@ -43,7 +43,7 @@ export default class ProductPage extends Page {
             },
             credentials: 'same-origin',
             body: JSON.stringify({
-                idArtisan: 1,
+                idArtisan: this.product.artisanId,
                 idClient: 1,
                 idProduit: this.product.id,
                 statut: 'en attente'
