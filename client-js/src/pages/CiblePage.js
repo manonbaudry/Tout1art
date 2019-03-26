@@ -24,10 +24,14 @@ export default class CiblePage extends Page {
 
             if (deck) {
                 products.forEach((product: Product) => {
+
                    if(this.compteur < 4){
-                        deck.innerHTML += HomePage.makeThumbnail(product);
-                        this.compteur++;
-                        console.log(this.compteur);
+                       const test: string = HomePage.makeThumbnail(product);
+                       if(test !== ''){
+                            deck.innerHTML += HomePage.makeThumbnail(product);
+                            this.compteur++;
+                       }
+                        
                     }else{
                         element.innerHTML += '<div class="card-deck"></div>';
                         this.compteur = 0;
@@ -35,6 +39,14 @@ export default class CiblePage extends Page {
                         deck = elements[elements.length -1];
                     }
                 });
+             
+                const produit:Product = new Product(-1,1,1,1,1,false,'','','','','','en vente');
+                while(this.compteur < 4){
+                  
+                    deck.innerHTML += HomePage.makeThumbnail(produit);
+                    this.compteur++;
+                }
+
             }
             return element.outerHTML;
         });
