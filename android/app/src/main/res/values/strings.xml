@@ -62,7 +62,7 @@
     <string name="tel">Telephone :</string>
     <string name="addr">Adresse :</string>
     <string name="modif">Modifier</string>
-
+    <string name="notification_title">Notification Tout1Art</string>
 
 </resources>
 

@@ -39,7 +39,6 @@ public class BacklogArt extends AppCompatActivity {
             ActionBar actionBar = getSupportActionBar();
             actionBar.setDisplayHomeAsUpEnabled(false);
         }
-        getCommande();
     }
 
     @Override
@@ -52,51 +51,8 @@ public class BacklogArt extends AppCompatActivity {
         if(resultCode == RESULT_OK){
             id = dataIntent.getIntExtra("id",1);
         }
-        getCommande();
     }
 
-    public void showJsonArrayResponseCommande(JSONArray response) {
-        try {
-
-            int notif = 0;
-            for (int i = 0; i < response.length() ; i++) {
-                JSONObject obj = response.getJSONObject(i);
-                if(obj.getInt("idArtisan") == id){
-                   if(obj.getString("statut").equals("en attente")){
-                       System.out.println("modif notif");
-                        notif=1;
-                   }
-                }
-
-
-            }
-            if(notif == 1) {
-                gerer.setTextColor(Color.RED);
-            } else {
-                gerer.setTextColor(Color.WHITE);
-            }
-
-
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-    }
-
-    public void getCommande() {
-        String uri = "http://10.0.2.2:8080/api/v1/com";
-        JsonArrayRequest request = new JsonArrayRequest(Request.Method.GET,uri,null,new Response.Listener<JSONArray>() {
-            @Override
-            public void onResponse(JSONArray response) {
-                showJsonArrayResponseCommande(response);
-            }
-        }, new Response.ErrorListener() {
-            @Override
-            public void onErrorResponse(VolleyError error) {
-                System.out.println(error);
-            }
-        });
-        queue.add(request);
-    }
 
     public  void addProduit(View view){
         nextIntent = new Intent(this,AddProduit.class);

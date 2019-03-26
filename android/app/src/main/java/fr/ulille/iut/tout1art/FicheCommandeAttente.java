@@ -145,6 +145,7 @@ public class FicheCommandeAttente extends AppCompatActivity {
             e.printStackTrace();
         }
 
+
         JsonObjectRequest putRequest = new JsonObjectRequest(Request.Method.PUT, uri,
                 obj,
                 new Response.Listener<JSONObject>()

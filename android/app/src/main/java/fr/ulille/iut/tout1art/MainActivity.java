@@ -27,6 +27,9 @@ public class MainActivity extends AppCompatActivity {
             actionBar.setDisplayHomeAsUpEnabled(false);
         }
 
+
+
+
     }
 
     public void onTouchScreen(View view) {

@@ -61,7 +61,7 @@ import static android.Manifest.permission.READ_CONTACTS;
 public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<Cursor> {
     private RequestQueue queue;
     boolean cancel = false;
-    Intent intent;
+    Intent intent,msgIntent;
     String email;
     int id;
     View focusView = null;
@@ -103,6 +103,7 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
             ActionBar actionBar = getSupportActionBar();
             actionBar.setDisplayHomeAsUpEnabled(false);
         }
+        msgIntent = new Intent(this,NotificationIntentService.class);
         mPasswordView = (EditText) findViewById(R.id.password);
         mPasswordView.setOnEditorActionListener(new TextView.OnEditorActionListener() {
             @Override
@@ -245,6 +246,7 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
                                 mAuthTask = new UserLoginTask(email, password);
                                 mAuthTask.execute((Void) null);
 
+                                startService(msgIntent);
                                 startActivity(intent);
                             }
                         }

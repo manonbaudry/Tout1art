@@ -73,6 +73,11 @@
             android:label="@string/title_activity_login" />
         <activity android:name=".AddProduit" />
         <activity android:name=".FicheProduit"></activity>
+
+
+        <service
+            android:name=".NotificationIntentService"
+            android:exported="false" />
     </application>
 
 </manifest>
