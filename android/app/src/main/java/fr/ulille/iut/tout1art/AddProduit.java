@@ -46,8 +46,9 @@ public class AddProduit extends AppCompatActivity {
         String categorie = cat.getText().toString();
 
         TextView sous = findViewById(R.id.souscat);
-        String souscat = sous.getText().toString();
-        System.out.println("SOUSCAT : "+  souscat);
+        String img = "images/"+sous.getText().toString()+".jpg";
+        System.out.println("SOUSCAT : "+  img);
+
         TextView des = findViewById(R.id.description);
         String description = des.getText().toString();
 
@@ -64,15 +65,15 @@ public class AddProduit extends AppCompatActivity {
             // crea JSON
 
             produit.put("nom", nom);
-            produit.put("categorie",categorie);
-            produit.put("sousCategorie", souscat);
+            produit.put("categorie",categorie.toLowerCase());
+            produit.put("srcImage", img.toLowerCase());
             produit.put("description", description);
             produit.put("prix", prix);
             produit.put("delai", delai);
             produit.put("idArtisan", (int)intent.getExtras().get("id"));
-            produit.put("srcImage", "images/table.jpg");
+            //produit.put("srcImage", "images/table.jpg");
             produit.put("commande", 0);
-            produit.put("statut", "En attente");
+            produit.put("statut", "en attente");
 
             System.out.println(produit.toString());
 
