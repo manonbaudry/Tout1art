@@ -18,7 +18,7 @@ PageRenderer.contentElement = document.querySelector('.pageContent');
 
 // déclaration des différentes page de l'app
 const products: Array<Promise<Product>> = [];
-for (let i = 0; i < 3; ++i) {
+for (let i = 0; i < 4; ++i) {
     products[i] = Product.get(i + 1);
 }
 

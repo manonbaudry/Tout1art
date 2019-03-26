@@ -24,17 +24,30 @@ export default class CiblePage extends Page {
 
             if (deck) {
                 products.forEach((product: Product) => {
-                   if(this.compteur < 4){
-                        deck.innerHTML += HomePage.makeThumbnail(product);
-                        this.compteur++;
-                        console.log(this.compteur);
-                    }else{
-                        element.innerHTML += '<div class="card-deck"></div>';
+
+                    if (this.compteur < 4) {
+                        const test: string = HomePage.makeThumbnail(product);
+                        console.log(product, test);
+                        if (test !== '') {
+                            deck.innerHTML += test;
+                            this.compteur++;
+                        }
+
+                    } else {
+                        element.innerHTML += '<br/><div class="card-deck"></div>';
                         this.compteur = 0;
                         let elements = element.querySelectorAll('.card-deck');
-                        deck = elements[elements.length -1];
+                        deck = elements[elements.length - 1];
                     }
                 });
+
+                const produit: Product = new Product(-1, 1, 1, 1, false, '', '', '', '', '', 'en vente');
+                while (this.compteur < 4) {
+
+                    deck.innerHTML += HomePage.makeThumbnail(produit);
+                    this.compteur++;
+                }
+
             }
             return element.outerHTML;
         });

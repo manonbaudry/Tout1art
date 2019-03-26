@@ -41,7 +41,7 @@ export default class HomePage extends Page {
     }
 
     static makeThumbnail(product: Product): string {
-        return product.status === 'en vente' ? `<div class="card">
+        return product.status === 'en vente' ? `<div class="card" ${product.id === -1 ? 'style="visibility:hidden"' : ''}>
     <a href="#" class="productLink" id="${product.id}">
         <div class="embed-responsive embed-responsive-1by1">
             <img alt="${product.name}" class="card-img-top embed-responsive-item" src="${product.img}"
