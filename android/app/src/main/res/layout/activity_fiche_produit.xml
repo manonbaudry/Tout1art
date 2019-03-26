@@ -9,7 +9,7 @@
     <TextView
         android:id="@+id/descProd"
         android:layout_width="200dp"
-        android:layout_height="100dp"
+        android:layout_height="145dp"
         android:layout_marginStart="8dp"
         android:layout_marginLeft="8dp"
         android:layout_marginTop="16dp"
@@ -133,7 +133,7 @@
         android:layout_height="30dp"
         android:layout_marginStart="28dp"
         android:layout_marginLeft="28dp"
-        android:layout_marginTop="84dp"
+        android:layout_marginTop="130dp"
         android:layout_weight="1"
         android:text="Delai"
         app:layout_constraintStart_toStartOf="parent"
