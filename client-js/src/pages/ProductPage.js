@@ -36,7 +36,7 @@ export default class ProductPage extends Page {
     click(event: Event) {
         event.preventDefault();
 
-        fetch(`http://localhost:8080/api/v1/com`, {
+        fetch(`http://vps648942.ovh.net:8080/api/v1/com`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'

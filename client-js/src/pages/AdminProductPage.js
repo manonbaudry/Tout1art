@@ -67,7 +67,7 @@ export default class AdminProductPage extends Page {
     send(event: Event, accepted: boolean): void {
         event.preventDefault();
         let id = event.currentTarget.getAttribute('id');
-        fetch(`http://localhost:8080/api/v1/produit/${id}`, {
+        fetch(`http://vps648942.ovh.net:8080/api/v1/produit/${id}`, {
             method: 'PUT',
             headers: {
                 'Content-Type': 'application/json'

@@ -16,7 +16,7 @@ export default class Order {
     }
 
     static get(id: number): Promise<{ id: number, artisanId: number, clientId: number, productId: number, status: string }> {
-        return fetch(`http://localhost:8080/api/v1/com/${id}`)
+        return fetch(`http://vps648942.ovh.net:8080/api/v1/com/${id}`)
             .then((response: Response) => response.json())
             .then((json: JSON) => {
                 const id: number = json.id;
@@ -31,7 +31,7 @@ export default class Order {
     }
 
     static getAll(): Promise<Array<{ id: number, artisanId: number, clientId: number, productId: number, status: string }>> {
-        return fetch(`http://localhost:8080/api/v1/com`)
+        return fetch(`http://vps648942.ovh.net:8080/api/v1/com`)
             .then((response: Response) => response.json())
             .then((json: JSON) => {
                 const array: Array<{ id: number, artisanId: number, clientId: number, productId: number, status: string; }> = [];
